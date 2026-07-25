@@ -1,26 +1,21 @@
-"use client";
-
-import { useLanguage } from "@/components/layout/language-context";
-
 export function JsonLd() {
-  const { language } = useLanguage();
-
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "Corporation",
+    "@id": "https://www.zybiov.com/#organization",
     "name": "Zybiov Multi-Activities Limited",
-    "alternateName": ["Zybiov", "زيبوف"],
+    "legalName": "Zybiov Multi-Activities Limited",
+    "alternateName": ["Zybiov", "زيبوف", "Zybiov Sudan", "Zybiov India"],
     "url": "https://www.zybiov.com",
     "logo": "https://www.zybiov.com/logo.webp",
+    "image": "https://www.zybiov.com/og-image.png",
     "sameAs": [
       "https://www.linkedin.com/in/zybiov-co-ltd-976298421",
       "https://www.instagram.com/zybiov.ltd",
-      "https://www.facebook.com/share/18tCP3Y4zr/",
+      "https://www.facebook.com/share/176TZy5JGM/",
       "https://www.youtube.com/@Zybiov"
     ],
-    "description": language === "ar"
-      ? "شركة زيبوف للأنشطة المتعددة المحدودة هي شركة سودانية رائدة متخصصة في استيراد وتوزيع الأدوية والمستلزمات الطبية من مصادر عالمية تشمل الهند (مومباي) والسودان."
-      : "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging global manufacturing in India (Mumbai) with regional networks in Sudan.",
+    "description": "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging global manufacturing in India (Mumbai) with regional distribution networks in Sudan and East Africa.",
     "contactPoint": [
       {
         "@type": "ContactPoint",
@@ -50,9 +45,10 @@ export function JsonLd() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "WholesaleStore",
+    "@id": "https://www.zybiov.com/#localbusiness",
     "name": "Zybiov Multi-Activities Limited",
     "logo": "https://www.zybiov.com/logo.webp",
-    "image": "https://www.zybiov.com/logo.webp",
+    "image": "https://www.zybiov.com/og-image.png",
     "telephone": "+249-111-909-092",
     "url": "https://www.zybiov.com",
     "priceRange": "$$",
@@ -81,6 +77,19 @@ export function JsonLd() {
     }
   };
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.zybiov.com/#website",
+    "url": "https://www.zybiov.com",
+    "name": "Zybiov Multi-Activities Limited",
+    "description": "Global Pharmaceutical & Medical Supplies Distribution — Sudan & India",
+    "publisher": {
+      "@id": "https://www.zybiov.com/#organization"
+    },
+    "inLanguage": ["en", "ar"]
+  };
+
   return (
     <>
       <script
@@ -90,6 +99,10 @@ export function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
     </>
   );

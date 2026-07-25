@@ -19,12 +19,117 @@ import {
 import { useLanguage } from "@/components/layout/language-context";
 import { cn } from "@/lib/utils";
 
-// Partner logos data (real pharmaceutical companies)
+// Partner data — real global pharma & healthcare companies with inline SVG wordmarks
 const partners = [
-  { name: "Haleon", tagline: "Global Consumer Health" },
-  { name: "Alexion", tagline: "Rare Disease Pharma" },
-  { name: "Grifols", tagline: "Biopharma & Healthcare" },
-  { name: "Genetix", tagline: "Biotherapeutics" },
+  {
+    name: "Pfizer",
+    domain: "pfizer.com",
+    // Pfizer blue wordmark — simple bold sans-serif
+    svg: (
+      <svg viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="28" fill="currentColor" letterSpacing="-0.5">Pfizer</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Novartis",
+    domain: "novartis.com",
+    svg: (
+      <svg viewBox="0 0 148 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="26" fill="currentColor" letterSpacing="-0.3">Novartis</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Roche",
+    domain: "roche.com",
+    svg: (
+      <svg viewBox="0 0 100 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="28" fill="currentColor" letterSpacing="-0.3">Roche</text>
+      </svg>
+    ),
+  },
+  {
+    name: "AstraZeneca",
+    domain: "astrazeneca.com",
+    svg: (
+      <svg viewBox="0 0 200 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="24" fill="currentColor" letterSpacing="-0.3">AstraZeneca</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Sanofi",
+    domain: "sanofi.com",
+    svg: (
+      <svg viewBox="0 0 110 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="28" fill="currentColor" letterSpacing="-0.3">Sanofi</text>
+      </svg>
+    ),
+  },
+  {
+    name: "GSK",
+    domain: "gsk.com",
+    svg: (
+      <svg viewBox="0 0 72 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="800" fontSize="30" fill="currentColor" letterSpacing="0">GSK</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Bayer",
+    domain: "bayer.com",
+    svg: (
+      <svg viewBox="0 0 100 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="28" fill="currentColor" letterSpacing="-0.3">Bayer</text>
+      </svg>
+    ),
+  },
+  {
+    name: "AbbVie",
+    domain: "abbvie.com",
+    svg: (
+      <svg viewBox="0 0 112 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="27" fill="currentColor" letterSpacing="-0.3">AbbVie</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Merck",
+    domain: "merck.com",
+    svg: (
+      <svg viewBox="0 0 104 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="28" fill="currentColor" letterSpacing="-0.3">Merck</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Haleon",
+    domain: "haleon.com",
+    svg: (
+      <svg viewBox="0 0 114 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="27" fill="currentColor" letterSpacing="-0.3">Haleon</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Alexion",
+    domain: "alexion.com",
+    svg: (
+      <svg viewBox="0 0 118 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="27" fill="currentColor" letterSpacing="-0.3">Alexion</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Grifols",
+    domain: "grifols.com",
+    svg: (
+      <svg viewBox="0 0 112 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+        <text x="0" y="27" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="27" fill="currentColor" letterSpacing="-0.3">Grifols</text>
+      </svg>
+    ),
+  },
 ];
 
 export function HomeClientPage() {
@@ -108,41 +213,6 @@ export function HomeClientPage() {
 
         {/* Counter Statistics Strip */}
         <StatsStrip />
-
-        {/* ── Partner Logos Strip ── */}
-        <section className="py-10 sm:py-14 border-b border-[#E4E7F2]" style={{ background: "#FAFBFD" }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal>
-              <p className="text-center text-xs font-bold uppercase tracking-widest text-[#8892A4] mb-8">
-                {language === "en" ? "Trusted Partners & Distributors" : "شركاؤنا الموثوقون"}
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 lg:gap-16">
-                {partners.map((p) => (
-                  <div
-                    key={p.name}
-                    className="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity duration-300"
-                  >
-                    <span
-                      className="text-lg sm:text-xl font-extrabold tracking-tight"
-                      style={{
-                        background: "linear-gradient(135deg, #1E244B, #5B43D6)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                        fontFamily: "Manrope, sans-serif",
-                      }}
-                    >
-                      {p.name}
-                    </span>
-                    <span className="text-[10px] text-[#8892A4] font-medium">{p.tagline}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
 
         {/* ── Areas of Expertise (3 sectors) ── */}
         <section
@@ -266,6 +336,36 @@ export function HomeClientPage() {
                 <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
               </Link>
             </Reveal>
+          </div>
+        </section>
+
+        {/* ── Trusted Partners — infinite marquee ── */}
+        <section className="py-12 sm:py-16 border-b border-[#E4E7F2] bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10">
+            <Reveal className="flex items-center gap-3">
+              <div className="h-px flex-1 bg-[#E4E7F2]" />
+              <p className="text-xs font-bold uppercase tracking-widest text-[#8892A4] whitespace-nowrap px-2">
+                {language === "en" ? "Trusted Partners & Distributors" : "شركاؤنا الموثوقون"}
+              </p>
+              <div className="h-px flex-1 bg-[#E4E7F2]" />
+            </Reveal>
+          </div>
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(90deg, white 0%, transparent 100%)" }} />
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(270deg, white 0%, transparent 100%)" }} />
+            <div className="marquee-track">
+              {[...partners, ...partners].map((p, i) => (
+                <div
+                  key={`${p.name}-${i}`}
+                  className="flex items-center justify-center mx-10 sm:mx-14 text-[#8892A4] hover:text-[#1E244B] transition-colors duration-300 select-none"
+                  title={p.name}
+                >
+                  {p.svg}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

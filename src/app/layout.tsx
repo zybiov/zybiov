@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/layout/language-context";
+import { PageLoader } from "@/components/ui/loader";
+import { CookieBanner } from "@/components/ui/cookie-banner";
+import { ScrollToTop } from "@/components/layout/scroll-to-top";
+import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
+import { JsonLd } from "@/components/seo/json-ld";
+import { FloatingChatbot } from "@/components/ui/floating-chatbot";
+import { Plus_Jakarta_Sans, Manrope, Cairo, Tajawal } from "next/font/google";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -28,10 +35,12 @@ export const metadata: Metadata = {
     "Sudan medicine import",
     "healthcare solutions East Africa",
     "Sudan India pharma trade",
+    "Khartoum medical importer",
   ],
   authors: [{ name: "Zybiov Multi-Activities Limited" }],
   creator: "Zybiov Multi-Activities Limited",
   publisher: "Zybiov Multi-Activities Limited",
+  manifest: "/manifest.json",
   alternates: {
     canonical: "https://www.zybiov.com",
     languages: {
@@ -68,6 +77,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
@@ -82,15 +94,6 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
 };
-
-import { PageLoader } from "@/components/ui/loader";
-import { CookieBanner } from "@/components/ui/cookie-banner";
-import { ScrollToTop } from "@/components/layout/scroll-to-top";
-import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
-import { JsonLd } from "@/components/seo/json-ld";
-import { FloatingChatbot } from "@/components/ui/floating-chatbot";
-
-import { Plus_Jakarta_Sans, Manrope, Cairo, Tajawal } from "next/font/google";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -126,12 +129,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable} ${manrope.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
+        <JsonLd />
       </head>
       <body className="antialiased">
         <ScrollProgressBar />
         <PageLoader />
         <LanguageProvider>
-          <JsonLd />
           <ScrollToTop />
           {children}
           <BackToTopButton />

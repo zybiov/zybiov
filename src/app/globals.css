@@ -298,3 +298,17 @@ main { animation: fadeIn 0.45s ease both; }
 /* Smooth image load */
 img { transition: opacity 0.3s ease; }
 
+/* ─── Marquee / infinite scroll ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+

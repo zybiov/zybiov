@@ -20,7 +20,7 @@ const socialLinks = [
   { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com" },
   { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421" },
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd" },
-  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/18tCP3Y4zr/" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/" },
   { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov" },
 ];
 
