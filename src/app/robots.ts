@@ -7,17 +7,9 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
       },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-      },
-      {
-        userAgent: "Bingbot",
-        allow: "/",
-      },
     ],
     sitemap: "https://www.zybiov.com/sitemap.xml",
-    host: "https://www.zybiov.com",
   };
 }
+
 

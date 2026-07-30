@@ -22,10 +22,16 @@ export const metadata: Metadata = {
     template: "%s | Zybiov Multi-Activities Limited",
   },
   description:
-    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa.",
+    "Zybiov Multi-Activities Limited (Zybiov) is a premier pharmaceutical and medical supplies importer and distributor, bridging manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa.",
   keywords: [
+    "zybiov",
     "Zybiov",
+    "zybiov.com",
     "Zybiov Multi-Activities Limited",
+    "Zybiov Sudan",
+    "Zybiov India",
+    "Zybiov Mumbai",
+    "Zybiov Khartoum",
     "pharmaceutical distribution Sudan",
     "medical supplies Sudan",
     "Mumbai pharmaceutical sourcing",
@@ -41,11 +47,13 @@ export const metadata: Metadata = {
   creator: "Zybiov Multi-Activities Limited",
   publisher: "Zybiov Multi-Activities Limited",
   manifest: "/manifest.json",
+  category: "Pharmaceutical & Healthcare Distribution",
   alternates: {
     canonical: "https://www.zybiov.com",
     languages: {
       "en": "https://www.zybiov.com",
       "ar": "https://www.zybiov.com",
+      "x-default": "https://www.zybiov.com",
     },
   },
   openGraph: {
@@ -53,11 +61,13 @@ export const metadata: Metadata = {
     url: "https://www.zybiov.com",
     title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     description:
-      "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa. Quality in Every Step.",
+      "Zybiov Multi-Activities Limited bridges global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa. Quality in Every Step.",
     siteName: "Zybiov Multi-Activities Limited",
+    locale: "en_US",
+    alternateLocale: ["ar_SD"],
     images: [
       {
-        url: "/og-image.png",
+        url: "https://www.zybiov.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Zybiov Multi-Activities Limited — Global Pharmaceutical Distribution",
@@ -68,15 +78,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Sourcing",
     description:
-      "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
-    images: ["/og-image.png"],
+      "Zybiov Multi-Activities Limited bridges global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
+    images: ["https://www.zybiov.com/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,

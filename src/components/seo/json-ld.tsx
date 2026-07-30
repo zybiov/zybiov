@@ -5,7 +5,16 @@ export function JsonLd() {
     "@id": "https://www.zybiov.com/#organization",
     "name": "Zybiov Multi-Activities Limited",
     "legalName": "Zybiov Multi-Activities Limited",
-    "alternateName": ["Zybiov", "زيبوف", "Zybiov Sudan", "Zybiov India"],
+    "alternateName": [
+      "Zybiov",
+      "zybiov",
+      "zybiov.com",
+      "زيبوف",
+      "Zybiov Sudan",
+      "Zybiov India",
+      "Zybiov Pharma",
+      "Zybiov Multi-Activities"
+    ],
     "url": "https://www.zybiov.com",
     "logo": "https://www.zybiov.com/logo.webp",
     "image": "https://www.zybiov.com/og-image.png",
@@ -15,7 +24,7 @@ export function JsonLd() {
       "https://www.facebook.com/share/176TZy5JGM/",
       "https://www.youtube.com/@Zybiov"
     ],
-    "description": "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging global manufacturing in India (Mumbai) with regional distribution networks in Sudan and East Africa.",
+    "description": "Zybiov Multi-Activities Limited (Zybiov) is a premier pharmaceutical and medical supplies importer and distributor, bridging global manufacturing in India (Mumbai) with regional distribution networks in Sudan and East Africa.",
     "contactPoint": [
       {
         "@type": "ContactPoint",
@@ -47,6 +56,7 @@ export function JsonLd() {
     "@type": "WholesaleStore",
     "@id": "https://www.zybiov.com/#localbusiness",
     "name": "Zybiov Multi-Activities Limited",
+    "alternateName": "Zybiov",
     "logo": "https://www.zybiov.com/logo.webp",
     "image": "https://www.zybiov.com/og-image.png",
     "telephone": "+249-111-909-092",
@@ -83,11 +93,49 @@ export function JsonLd() {
     "@id": "https://www.zybiov.com/#website",
     "url": "https://www.zybiov.com",
     "name": "Zybiov Multi-Activities Limited",
-    "description": "Global Pharmaceutical & Medical Supplies Distribution — Sudan & India",
+    "alternateName": "Zybiov",
+    "description": "Zybiov — Global Pharmaceutical & Medical Supplies Distribution — Sudan & India",
     "publisher": {
       "@id": "https://www.zybiov.com/#organization"
     },
     "inLanguage": ["en", "ar"]
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.zybiov.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Us",
+        "item": "https://www.zybiov.com/about"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Expertise",
+        "item": "https://www.zybiov.com/expertise"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Why Us",
+        "item": "https://www.zybiov.com/why-us"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Contact",
+        "item": "https://www.zybiov.com/contact"
+      }
+    ]
   };
 
   return (
@@ -104,6 +152,11 @@ export function JsonLd() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     </>
   );
 }
+

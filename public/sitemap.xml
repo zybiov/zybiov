@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.zybiov.com/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.zybiov.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.zybiov.com/" />
+  </url>
+  <url>
+    <loc>https://www.zybiov.com/about</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.zybiov.com/about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.zybiov.com/about" />
+  </url>
+  <url>
+    <loc>https://www.zybiov.com/expertise</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.zybiov.com/expertise" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.zybiov.com/expertise" />
+  </url>
+  <url>
+    <loc>https://www.zybiov.com/why-us</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.zybiov.com/why-us" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.zybiov.com/why-us" />
+  </url>
+  <url>
+    <loc>https://www.zybiov.com/contact</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.zybiov.com/contact" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.zybiov.com/contact" />
+  </url>
+  <url>
+    <loc>https://www.zybiov.com/privacy-policy</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.zybiov.com/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.zybiov.com/privacy-policy" />
+  </url>
+</urlset>
