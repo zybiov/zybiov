@@ -2,7 +2,7 @@ import { PrivacyPolicyClientPage } from "./privacy-policy-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Zybiov Multi-Activities Limited",
+  title: "Privacy Policy",
   description:
     "Read the Privacy Policy, Cookie Policy, and Terms of Service for Zybiov Multi-Activities Limited. Learn how we handle personal data and business information safely.",
   keywords: [
