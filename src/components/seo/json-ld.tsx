@@ -175,6 +175,45 @@ export function JsonLd() {
     }
   };
 
+  const indiaOfficeSchema = {
+    "@context": "https://schema.org",
+    "@type": "WholesaleStore",
+    "@id": "https://www.zybiov.com/#mumbaioffice",
+    "name": "Zybiov Multi-Activities Limited — Mumbai Liaison & Sourcing Office",
+    "alternateName": ["Zybiov Mumbai", "Zybiov India Sourcing Hub", "Zybiov Dava Bazar"],
+    "logo": "https://www.zybiov.com/logo.webp",
+    "image": "https://www.zybiov.com/og-image.png",
+    "telephone": "+249-111-909-092",
+    "url": "https://www.zybiov.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kalbadevi Dava Bazar, Marine Lines",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400002",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "18.9482",
+      "longitude": "72.8295"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  };
+
   return (
     <>
       <script
@@ -184,6 +223,10 @@ export function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(indiaOfficeSchema) }}
       />
       <script
         type="application/ld+json"

@@ -142,6 +142,28 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable} ${manrope.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
         <JsonLd />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [
+                {
+                  source: "list",
+                  urls: [
+                    "https://www.zybiov.com/",
+                    "https://www.zybiov.com/about",
+                    "https://www.zybiov.com/expertise",
+                    "https://www.zybiov.com/why-us",
+                    "https://www.zybiov.com/contact"
+                  ],
+                  eagerness: "moderate"
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className="antialiased">
         <ScrollProgressBar />
