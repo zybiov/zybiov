@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.zybiov.com/contact",
+    languages: {
+      "en": "https://www.zybiov.com/contact",
+      "ar": "https://www.zybiov.com/contact",
+      "x-default": "https://www.zybiov.com/contact",
+    },
   },
   openGraph: {
     title: "Contact Us | Zybiov Multi-Activities Limited",

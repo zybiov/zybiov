@@ -277,12 +277,13 @@ export function ContactSection() {
 
                   {/* Inquiry Type Selector (B2B Dynamic Routing) */}
                   <div className="relative">
-                    <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
+                    <label htmlFor="contact-inquiry-type" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
                       {language === "en" ? "Purpose of Inquiry" : "الغرض من التواصل"}
                     </label>
                     <div className="relative">
                       <Settings className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                       <select
+                        id="contact-inquiry-type"
                         name="inquiryType"
                         value={inquiryType}
                         onChange={(e) => setInquiryType(e.target.value as any)}
@@ -298,7 +299,7 @@ export function ContactSection() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     {/* Name */}
                     <div className="relative">
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelName")}</label>
+                      <label htmlFor="contact-name" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelName")}</label>
                       <div className="relative">
                         <User className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
@@ -316,7 +317,7 @@ export function ContactSection() {
 
                     {/* Email */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelEmail")}</label>
+                      <label htmlFor="contact-email" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelEmail")}</label>
                       <div className="relative">
                         <Mail className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
@@ -334,7 +335,7 @@ export function ContactSection() {
 
                     {/* Phone */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelPhone")}</label>
+                      <label htmlFor="contact-phone" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelPhone")}</label>
                       <div className="relative">
                         <Phone className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
@@ -351,7 +352,7 @@ export function ContactSection() {
 
                     {/* Company / Facility */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
+                      <label htmlFor="contact-company" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
                         {inquiryType === "client" 
                           ? (language === "en" ? "Pharmacy / Facility Name" : "اسم الصيدلية / المنشأة") 
                           : t("contactPage.labelCompany")}
@@ -381,10 +382,11 @@ export function ContactSection() {
                       className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 p-4 rounded-2xl bg-blue-50/50 border border-blue-100"
                     >
                       <div>
-                        <label className="block text-xs font-semibold mb-1.5 text-blue-900">
+                        <label htmlFor="contact-business-type" className="block text-xs font-semibold mb-1.5 text-blue-900">
                           {language === "en" ? "Facility Type" : "نوع المنشأة"}
                         </label>
                         <select
+                          id="contact-business-type"
                           name="businessType"
                           value={formData.businessType}
                           onChange={handleChange}
@@ -397,12 +399,13 @@ export function ContactSection() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold mb-1.5 text-blue-900">
+                        <label htmlFor="contact-license-number" className="block text-xs font-semibold mb-1.5 text-blue-900">
                           {language === "en" ? "Healthcare License Number" : "رقم ترخيص المنشأة الطبية"}
                         </label>
                         <div className="relative">
                           <FileText className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#2B7DDC" }} />
                           <input
+                            id="contact-license-number"
                             type="text"
                             name="licenseNumber"
                             value={formData.licenseNumber}
@@ -424,12 +427,13 @@ export function ContactSection() {
                       className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-purple-50/50 border border-purple-100"
                     >
                       <div>
-                        <label className="block text-xs font-semibold mb-1.5 text-purple-900">
+                        <label htmlFor="contact-manufacturing-country" className="block text-xs font-semibold mb-1.5 text-purple-900">
                           {language === "en" ? "Country of Origin" : "بلد المنشأ"}
                         </label>
                         <div className="relative">
                           <Globe className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#5B43D6" }} />
                           <input
+                            id="contact-manufacturing-country"
                             type="text"
                             name="manufacturingCountry"
                             value={formData.manufacturingCountry}
@@ -442,12 +446,13 @@ export function ContactSection() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold mb-1.5 text-purple-900">
+                        <label htmlFor="contact-certifications" className="block text-xs font-semibold mb-1.5 text-purple-900">
                           {language === "en" ? "Certifications" : "الشهادات والاعتمادات"}
                         </label>
                         <div className="relative">
                           <Award className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#5B43D6" }} />
                           <input
+                            id="contact-certifications"
                             type="text"
                             name="certifications"
                             value={formData.certifications}
@@ -460,12 +465,13 @@ export function ContactSection() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold mb-1.5 text-purple-900">
+                        <label htmlFor="contact-therapeutic-area" className="block text-xs font-semibold mb-1.5 text-purple-900">
                           {language === "en" ? "Therapeutic Focus" : "التخصص العلاجي"}
                         </label>
                         <div className="relative">
                           <FileText className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#5B43D6" }} />
                           <input
+                            id="contact-therapeutic-area"
                             type="text"
                             name="therapeuticArea"
                             value={formData.therapeuticArea}
@@ -481,7 +487,7 @@ export function ContactSection() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelMessage")}</label>
+                    <label htmlFor="contact-message" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelMessage")}</label>
                     <div className="relative">
                       <MessageSquare className={cn("absolute w-4 h-4", dir === "rtl" ? "right-4 top-4" : "left-4 top-4")} style={{ color: "#8892A4" }} />
                       <textarea

@@ -138,6 +138,43 @@ export function JsonLd() {
     ]
   };
 
+  const medicalBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": "https://www.zybiov.com/#medicalbusiness",
+    "name": "Zybiov Multi-Activities Limited",
+    "alternateName": ["Zybiov Pharma", "Zybiov Medical Supplies"],
+    "url": "https://www.zybiov.com",
+    "logo": "https://www.zybiov.com/logo.webp",
+    "image": "https://www.zybiov.com/og-image.png",
+    "telephone": "+249-111-909-092",
+    "priceRange": "$$",
+    "knowsAbout": [
+      "Pharmaceutical Sourcing & Importation",
+      "Medical Equipment Distribution",
+      "Nutritional Supplements Wholesale",
+      "Cold-Chain Pharmaceutical Logistics",
+      "WHO-GMP Compliance & Quality Control",
+      "Hospital Equipment Supply Chain"
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "WHO-GMP Partner Manufacturing Standards"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "ISO 9001 Quality Management Certification"
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Khartoum Al-Riyadh",
+      "addressLocality": "Khartoum",
+      "addressCountry": "SD"
+    }
+  };
+
   return (
     <>
       <script
@@ -147,6 +184,10 @@ export function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalBusinessSchema) }}
       />
       <script
         type="application/ld+json"

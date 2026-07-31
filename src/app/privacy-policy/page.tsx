@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.zybiov.com/privacy-policy",
+    languages: {
+      "en": "https://www.zybiov.com/privacy-policy",
+      "ar": "https://www.zybiov.com/privacy-policy",
+      "x-default": "https://www.zybiov.com/privacy-policy",
+    },
   },
   openGraph: {
     title: "Privacy Policy | Zybiov Multi-Activities Limited",

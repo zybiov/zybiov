@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.zybiov.com/expertise",
+    languages: {
+      "en": "https://www.zybiov.com/expertise",
+      "ar": "https://www.zybiov.com/expertise",
+      "x-default": "https://www.zybiov.com/expertise",
+    },
   },
   openGraph: {
     title: "Areas of Expertise | Zybiov Multi-Activities Limited",

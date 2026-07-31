@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.zybiov.com",
+    languages: {
+      "en": "https://www.zybiov.com",
+      "ar": "https://www.zybiov.com",
+      "x-default": "https://www.zybiov.com",
+    },
   },
   openGraph: {
     title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",

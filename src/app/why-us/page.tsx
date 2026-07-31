@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.zybiov.com/why-us",
+    languages: {
+      "en": "https://www.zybiov.com/why-us",
+      "ar": "https://www.zybiov.com/why-us",
+      "x-default": "https://www.zybiov.com/why-us",
+    },
   },
   openGraph: {
     title: "Why Zybiov | Zybiov Multi-Activities Limited",
