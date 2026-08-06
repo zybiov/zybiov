@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { LanguageProvider } from "@/components/layout/language-context";
 import { PageLoader } from "@/components/ui/loader";
@@ -7,7 +8,10 @@ import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
 import { JsonLd } from "@/components/seo/json-ld";
 import { FloatingChatbot } from "@/components/ui/floating-chatbot";
+import { FirebaseAnalytics } from "@/components/analytics/firebase-analytics";
 import { Plus_Jakarta_Sans, Manrope, Cairo, Tajawal } from "next/font/google";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "G-28GVLEF2K7";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -166,6 +170,26 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        {/* Google Tag Manager / GA4 (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+        <FirebaseAnalytics />
         <ScrollProgressBar />
         <PageLoader />
         <LanguageProvider>
@@ -179,3 +203,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { Reveal } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
-import { Send, User, Mail, Phone, Building2, MessageSquare, MapPin, Globe, FileText, Settings, Award } from "lucide-react";
+import { Send, User, Mail, Phone, Building2, MessageSquare, MapPin, Globe, FileText, Settings, Award, Loader2, AlertCircle } from "lucide-react";
 import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon, YoutubeIcon } from "@/components/icons/social-icons";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const socialLinks = [
   { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", handle: "www.zybiov.com" },
@@ -31,7 +33,10 @@ export function ContactSection() {
     certifications: "",
     therapeuticArea: "",
   });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [serverError, setServerError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -49,25 +54,129 @@ export function ContactSection() {
   }, [language]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error for field on typing
+    if (formErrors[name]) {
+      setFormErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      errors.name = language === "en" ? "Full Name is required." : "الاسم الكامل مطلوب.";
+    } else if (formData.name.trim().length < 2) {
+      errors.name = language === "en" ? "Name must be at least 2 characters." : "يجب أن يتكون الاسم من حرفين على الأقل.";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = language === "en" ? "Email address is required." : "البريد الإلكتروني مطلوب.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      errors.email = language === "en" ? "Please enter a valid email address." : "يرجى إدخال بريد إلكتروني صحيح.";
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = language === "en" ? "Message is required." : "الرسالة مطلوبة.";
+    } else if (formData.message.trim().length < 10) {
+      errors.message = language === "en" ? "Message must be at least 10 characters long." : "يجب أن تتكون الرسالة من 10 أحرف على الأقل.";
+    }
+
+    if (inquiryType === "client") {
+      if (!formData.licenseNumber.trim()) {
+        errors.licenseNumber = language === "en" ? "Healthcare License Number is required." : "رقم الترخيص مطلوب.";
+      }
+    } else if (inquiryType === "manufacturer") {
+      if (!formData.manufacturingCountry.trim()) {
+        errors.manufacturingCountry = language === "en" ? "Manufacturing Country is required." : "بلد التصنيع مطلوب.";
+      }
+      if (!formData.certifications.trim()) {
+        errors.certifications = language === "en" ? "Certifications are required." : "الشهادات مطلوبة.";
+      }
+      if (!formData.therapeuticArea.trim()) {
+        errors.therapeuticArea = language === "en" ? "Therapeutic Focus is required." : "التخصص العلاجي مطلوب.";
+      }
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    setServerError(null);
+
+    if (!validateForm()) {
+      console.warn("[Contact Form] Validation failed. Correct form errors:", formErrors);
       return;
     }
 
-    setSubmitted(true);
+    setIsSubmitting(true);
 
     let prefix = "General Inquiry";
-    let extraDetails = "";
+    let extraDetailsText = "";
+    let extraFields: Record<string, string> = {};
+
     if (inquiryType === "client") {
       prefix = "Client Application (B2B)";
-      extraDetails = `Business Type: ${formData.businessType}\nLicense Number: ${formData.licenseNumber}\n`;
+      extraDetailsText = `Business Type: ${formData.businessType}\nLicense Number: ${formData.licenseNumber}\n`;
+      extraFields = {
+        businessType: formData.businessType,
+        licenseNumber: formData.licenseNumber,
+      };
     } else if (inquiryType === "manufacturer") {
       prefix = "Manufacturer Proposal (Sourcing)";
-      extraDetails = `Manufacturing Country: ${formData.manufacturingCountry}\nCertifications: ${formData.certifications}\nTherapeutic Area: ${formData.therapeuticArea}\n`;
+      extraDetailsText = `Manufacturing Country: ${formData.manufacturingCountry}\nCertifications: ${formData.certifications}\nTherapeutic Area: ${formData.therapeuticArea}\n`;
+      extraFields = {
+        manufacturingCountry: formData.manufacturingCountry,
+        certifications: formData.certifications,
+        therapeuticArea: formData.therapeuticArea,
+      };
+    }
+
+    const payload = {
+      inquiryType,
+      prefix,
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim() || null,
+      company: formData.company.trim() || null,
+      message: formData.message.trim(),
+      ...extraFields,
+      createdAt: serverTimestamp(),
+      status: "new",
+    };
+
+    console.log("[Firestore] Attempting to save inquiry payload to 'inquiries' collection...", payload);
+
+    try {
+      const docRef = await addDoc(collection(db, "inquiries"), payload);
+      console.log(`%c[Firestore Success] Document written successfully! Document ID: ${docRef.id}`, "color: #10B981; font-weight: bold;");
+    } catch (err: any) {
+      console.error(
+        `%c[Firestore Connection Error] Failed to write inquiry to Cloud Firestore database!`,
+        "color: #EF4444; font-weight: bold;",
+        {
+          errorCode: err?.code || "unknown",
+          errorMessage: err?.message || String(err),
+          errorStack: err?.stack,
+          targetCollection: "inquiries",
+          payload,
+        }
+      );
+      setServerError(
+        language === "en"
+          ? "There was a network or server issue submitting your message. Please check your connection or send us an email directly."
+          : "حدثت مشكلة في الاتصال بالخادم. يرجى التحقق من الاتصال بالإنترنت أو مراسلتنا مباشرة."
+      );
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
     }
 
     const subject = encodeURIComponent(`[${prefix}] from ${formData.name} (${formData.company || "Individual"})`);
@@ -76,7 +185,7 @@ export function ContactSection() {
       `Email: ${formData.email}\n` +
       `Phone: ${formData.phone || "N/A"}\n` +
       `Company/Facility: ${formData.company || "N/A"}\n` +
-      extraDetails +
+      extraDetailsText +
       `\nMessage:\n${formData.message}`
     );
 
@@ -98,6 +207,7 @@ export function ContactSection() {
       certifications: "",
       therapeuticArea: "",
     });
+    setFormErrors({});
   };
 
   return (
@@ -275,6 +385,17 @@ export function ContactSection() {
                     {t("contactPage.formTitle")}
                   </h3>
 
+                  {serverError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3 text-red-700 text-xs font-medium"
+                    >
+                      <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                      <span>{serverError}</span>
+                    </motion.div>
+                  )}
+
                   {/* Inquiry Type Selector (B2B Dynamic Routing) */}
                   <div className="relative">
                     <label htmlFor="contact-inquiry-type" className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
@@ -308,11 +429,13 @@ export function ContactSection() {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          required
                           placeholder={t("contactPage.placeholderName")}
-                          className="form-input !ps-11 !pe-4 text-start"
+                          className={cn("form-input !ps-11 !pe-4 text-start", formErrors.name && "!border-red-500 focus:!ring-red-200")}
                         />
                       </div>
+                      {formErrors.name && (
+                        <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.name}</p>
+                      )}
                     </div>
 
                     {/* Email */}
@@ -326,11 +449,13 @@ export function ContactSection() {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          required
                           placeholder={t("contactPage.placeholderEmail")}
-                          className="form-input !ps-11 !pe-4 text-start"
+                          className={cn("form-input !ps-11 !pe-4 text-start", formErrors.email && "!border-red-500 focus:!ring-red-200")}
                         />
                       </div>
+                      {formErrors.email && (
+                        <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.email}</p>
+                      )}
                     </div>
 
                     {/* Phone */}
@@ -410,11 +535,13 @@ export function ContactSection() {
                             name="licenseNumber"
                             value={formData.licenseNumber}
                             onChange={handleChange}
-                            required
                             placeholder={language === "en" ? "e.g., LIC-8742-SD" : "مثال: LIC-8742-SD"}
-                            className="form-input !ps-11 !pe-4 border-blue-200 text-start"
+                            className={cn("form-input !ps-11 !pe-4 border-blue-200 text-start", formErrors.licenseNumber && "!border-red-500 focus:!ring-red-200")}
                           />
                         </div>
+                        {formErrors.licenseNumber && (
+                          <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.licenseNumber}</p>
+                        )}
                       </div>
                     </motion.div>
                   )}
@@ -438,11 +565,13 @@ export function ContactSection() {
                             name="manufacturingCountry"
                             value={formData.manufacturingCountry}
                             onChange={handleChange}
-                            required
                             placeholder={language === "en" ? "e.g., India, Germany" : "مثال: الهند، ألمانيا"}
-                            className="form-input !ps-11 !pe-4 border-purple-200 text-start"
+                            className={cn("form-input !ps-11 !pe-4 border-purple-200 text-start", formErrors.manufacturingCountry && "!border-red-500 focus:!ring-red-200")}
                           />
                         </div>
+                        {formErrors.manufacturingCountry && (
+                          <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.manufacturingCountry}</p>
+                        )}
                       </div>
 
                       <div>
@@ -457,11 +586,13 @@ export function ContactSection() {
                             name="certifications"
                             value={formData.certifications}
                             onChange={handleChange}
-                            required
                             placeholder={language === "en" ? "e.g., WHO-GMP, FDA" : "مثال: WHO-GMP, FDA"}
-                            className="form-input !ps-11 !pe-4 border-purple-200 text-start"
+                            className={cn("form-input !ps-11 !pe-4 border-purple-200 text-start", formErrors.certifications && "!border-red-500 focus:!ring-red-200")}
                           />
                         </div>
+                        {formErrors.certifications && (
+                          <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.certifications}</p>
+                        )}
                       </div>
 
                       <div>
@@ -476,11 +607,13 @@ export function ContactSection() {
                             name="therapeuticArea"
                             value={formData.therapeuticArea}
                             onChange={handleChange}
-                            required
                             placeholder={language === "en" ? "e.g., Oncology, Cardiology" : "مثال: الأورام، أمراض القلب"}
-                            className="form-input !ps-11 !pe-4 border-purple-200 text-start"
+                            className={cn("form-input !ps-11 !pe-4 border-purple-200 text-start", formErrors.therapeuticArea && "!border-red-500 focus:!ring-red-200")}
                           />
                         </div>
+                        {formErrors.therapeuticArea && (
+                          <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.therapeuticArea}</p>
+                        )}
                       </div>
                     </motion.div>
                   )}
@@ -495,23 +628,35 @@ export function ContactSection() {
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
-                          required
                           placeholder={t("contactPage.placeholderMessage")}
                           rows={5}
-                          className="form-input resize-none !ps-11 !pe-4 !pt-3.5 text-start"
+                          className={cn("form-input resize-none !ps-11 !pe-4 !pt-3.5 text-start", formErrors.message && "!border-red-500 focus:!ring-red-200")}
                       />
                     </div>
+                    {formErrors.message && (
+                      <p className="text-[11px] text-red-500 mt-1 font-medium">{formErrors.message}</p>
+                    )}
                   </div>
 
                   <motion.button
                     type="submit"
+                    disabled={isSubmitting}
                     whileHover={{ scale: 1.01, boxShadow: "0 12px 36px rgba(91,67,214,0.4)" }}
                     whileTap={{ scale: 0.99 }}
-                    className="btn-primary justify-center mt-2 w-full sm:w-auto sm:self-start"
+                    className="btn-primary justify-center mt-2 w-full sm:w-auto sm:self-start disabled:opacity-60 disabled:cursor-not-allowed"
                     id="contact-submit"
                   >
-                    {t("contactPage.btnSend")}
-                    <Send className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
+                    {isSubmitting ? (
+                      <>
+                        <span>{language === "en" ? "Sending..." : "جاري الإرسال..."}</span>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        {t("contactPage.btnSend")}
+                        <Send className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
+                      </>
+                    )}
                   </motion.button>
                 </form>
               )}
