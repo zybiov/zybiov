@@ -34,20 +34,20 @@ function LanguageToggle({
     <button
       onClick={() => setLanguage(language === "en" ? "ar" : "en")}
       type="button"
-      className="relative w-[90px] h-[38px] bg-[#F3F4FB] rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-[#E2E5F3] select-none shadow-inner transition-all hover:border-[#5B43D6]/40"
+      className="relative w-[86px] h-[36px] bg-[#F0F2FA] rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-[#E2E5F3] select-none shadow-inner transition-all hover:border-[#5B43D6]/40"
       aria-label="Toggle language / تغيير اللغة"
     >
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 400, damping: 28 }}
-        className="absolute top-[3px] bottom-[3px] w-[40px] bg-white rounded-full shadow-[0_2px_8px_rgba(91,67,214,0.15)] border border-[#E2E5F3]"
+        className="absolute top-[3px] bottom-[3px] w-[38px] bg-white rounded-full shadow-[0_2px_6px_rgba(91,67,214,0.12)] border border-[#E2E5F3]"
         style={{
-          left: language === "en" ? "3px" : "calc(100% - 43px)",
+          left: language === "en" ? "3px" : "calc(100% - 41px)",
         }}
       />
       <span
         className={cn(
-          "z-10 text-[11px] font-extrabold flex-1 text-center transition-colors duration-200",
+          "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
           language === "en" ? "text-[#5B43D6]" : "text-[#8892A4]"
         )}
       >
@@ -55,7 +55,7 @@ function LanguageToggle({
       </span>
       <span
         className={cn(
-          "z-10 text-[11px] font-extrabold flex-1 text-center transition-colors duration-200",
+          "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
           language === "ar" ? "text-[#5B43D6]" : "text-[#8892A4]"
         )}
       >
@@ -175,25 +175,23 @@ export function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -60, opacity: 0 }}
+        initial={{ y: -70, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 pt-3 sm:pt-4 pointer-events-none transition-all duration-300"
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-3.5",
+          scrolled
+            ? "bg-white/95 backdrop-blur-xl border-b border-[#E4E7F2] shadow-[0_4px_24px_rgba(30,36,75,0.08)]"
+            : "bg-white/90 backdrop-blur-lg border-b border-white/20 shadow-sm"
+        )}
       >
-        <div
-          className={cn(
-            "pointer-events-auto max-w-7xl mx-auto rounded-2xl sm:rounded-full transition-all duration-300 border flex items-center justify-between px-3 sm:px-6 py-2 sm:py-2.5",
-            scrolled
-              ? "bg-white/95 backdrop-blur-2xl border-[#E2E5F3] shadow-[0_12px_40px_rgba(30,36,75,0.12)]"
-              : "bg-white/90 backdrop-blur-xl border-white/60 shadow-[0_8px_30px_rgba(30,36,75,0.06)] hover:bg-white/95"
-          )}
-        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-2 group flex-shrink-0 relative py-1"
           >
-            <div className="relative w-[140px] h-[48px] sm:w-[165px] sm:h-[54px] md:w-[180px] md:h-[58px] transition-transform duration-300 group-hover:scale-[1.02]">
+            <div className="relative w-[145px] h-[48px] sm:w-[170px] sm:h-[54px] md:w-[185px] md:h-[58px] transition-transform duration-300 group-hover:scale-[1.02]">
               <Image
                 src="/logo.webp"
                 alt={t("brandName")}
@@ -203,17 +201,15 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 140px, (max-width: 768px) 165px, 180px"
+                sizes="(max-width: 640px) 145px, (max-width: 768px) 170px, 185px"
               />
             </div>
-            {/* Ambient accent dot */}
-            <span className="w-2 h-2 rounded-full bg-[#28B7C7] animate-pulse hidden xl:inline-block shadow-[0_0_8px_#28B7C7]" />
           </Link>
 
           {/* ── Desktop Navigation Capsule ── */}
           <nav
             onMouseLeave={() => setHoveredLink(null)}
-            className="hidden lg:flex items-center gap-1 bg-[#F4F5FB] p-1.5 rounded-full border border-[#E4E7F2]/80 shadow-inner relative"
+            className="hidden lg:flex items-center gap-1 bg-[#F0F2FA]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#E2E5F3] shadow-inner relative"
           >
             {/* Home */}
             <Link
@@ -223,7 +219,7 @@ export function Navbar() {
                 handleMouseLeave();
               }}
               className={cn(
-                "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
                 pathname === "/" ? "text-[#5B43D6]" : "text-[#1E244B]"
               )}
             >
@@ -256,7 +252,7 @@ export function Navbar() {
               <Link
                 href="/about"
                 className={cn(
-                  "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
+                  "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
                   pathname.startsWith("/about") || pathname === "/why-us"
                     ? "text-[#5B43D6]"
                     : "text-[#1E244B]"
@@ -296,7 +292,7 @@ export function Navbar() {
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={cn(
-                      "absolute top-full pt-3 z-50 w-[360px]",
+                      "absolute top-full pt-3 z-50 w-[350px]",
                       dir === "rtl" ? "right-0" : "left-0"
                     )}
                   >
@@ -353,7 +349,7 @@ export function Navbar() {
               <Link
                 href="/expertise"
                 className={cn(
-                  "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
+                  "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
                   pathname.startsWith("/expertise")
                     ? "text-[#5B43D6]"
                     : "text-[#1E244B]"
@@ -392,7 +388,7 @@ export function Navbar() {
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={cn(
-                      "absolute top-full pt-3 z-50 w-[380px]",
+                      "absolute top-full pt-3 z-50 w-[370px]",
                       dir === "rtl" ? "right-0" : "left-0"
                     )}
                   >
@@ -458,7 +454,7 @@ export function Navbar() {
                 handleMouseLeave();
               }}
               className={cn(
-                "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
                 pathname === "/why-us" ? "text-[#5B43D6]" : "text-[#1E244B]"
               )}
             >
@@ -487,7 +483,7 @@ export function Navbar() {
                 handleMouseLeave();
               }}
               className={cn(
-                "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
                 pathname === "/contact" ? "text-[#5B43D6]" : "text-[#1E244B]"
               )}
             >
@@ -514,10 +510,8 @@ export function Navbar() {
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <Link
               href="/contact"
-              className="relative group overflow-hidden inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-extrabold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_20px_rgba(91,67,214,0.32)] transition-all duration-300 hover:shadow-[0_6px_28px_rgba(91,67,214,0.48)] hover:scale-[1.03] active:scale-[0.98]"
+              className="relative group overflow-hidden inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-extrabold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] hover:scale-[1.03] active:scale-[0.98]"
             >
-              {/* Shimmer light sweep */}
-              <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
               <span>{t("contactUs")}</span>
               <ArrowRight
                 className={cn(
@@ -533,7 +527,7 @@ export function Navbar() {
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <button
               onClick={() => setMobileOpen(true)}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F3F4FB] text-[#1E244B] border border-[#E2E5F3] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer shadow-sm"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F0F2FA] text-[#1E244B] border border-[#E2E5F3] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer shadow-sm"
               aria-label={t("nav.openMenu")}
               aria-expanded={mobileOpen}
             >
@@ -573,7 +567,7 @@ export function Navbar() {
                 dir === "rtl" ? "left-0 border-r border-l-0" : "right-0"
               )}
             >
-              {/* Glowing Top Gradient Bar */}
+              {/* Top Accent Gradient Bar */}
               <div className="h-1.5 w-full bg-gradient-to-r from-[#5B43D6] via-[#28B7C7] to-[#7B64E0]" />
 
               {/* Header */}

@@ -110,8 +110,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden bg-[#0F142D]"
-      style={{ minHeight: "calc(100vh - 80px)", marginTop: "80px" }}
+      className="relative w-full min-h-screen overflow-hidden bg-[#0F142D]"
     >
       {/* ── Background Video Layers ── */}
       <div className="absolute inset-0 z-0">
@@ -145,8 +144,7 @@ export function HeroSection() {
 
       {/* ── Foreground Content ── */}
       <div
-        className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24"
-        style={{ minHeight: "calc(100vh - 80px)" }}
+        className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-20 sm:pb-24 min-h-screen"
       >
         {/* Brand badge */}
         <motion.div
