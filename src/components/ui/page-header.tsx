@@ -22,7 +22,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <section
-      className="relative py-20 sm:py-28 lg:py-32 overflow-hidden border-b border-[#E4E7F2]/80 cursor-default"
+      className="relative py-12 sm:py-24 lg:py-28 overflow-hidden border-b border-[#E4E7F2]/80 cursor-default"
       style={{
         background: "linear-gradient(135deg, #FFFFFF 0%, #F5F7FF 100%)",
       }}

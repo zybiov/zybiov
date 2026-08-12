@@ -46,7 +46,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      className="relative py-12 sm:py-20 lg:py-28 overflow-hidden"
       style={{ background: "#FFFFFF" }}
     >
       {/* Background decoration */}
@@ -112,27 +112,27 @@ export function AboutSection() {
               </h2>
             </Reveal>
 
-            <div className="space-y-5 mb-8">
+            <div className="space-y-3.5 sm:space-y-4.5 mb-6 sm:mb-8 bg-[#F8F9FE] sm:bg-transparent p-4 sm:p-0 rounded-2xl sm:rounded-none border border-[#E8ECF8] sm:border-0 shadow-sm sm:shadow-none">
               <Reveal delay={0.15}>
-                <p className="text-[15px] sm:text-base leading-relaxed" style={{ color: "#5E647A" }}>
+                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
                   {t("about.desc1")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.2}>
-                <p className="text-[15px] sm:text-base leading-relaxed" style={{ color: "#5E647A" }}>
+                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
                   {t("about.desc2")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.25}>
-                <p className="text-[15px] sm:text-base leading-relaxed" style={{ color: "#5E647A" }}>
+                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
                   {t("about.desc3")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.3}>
-                <p className="text-[15px] sm:text-base leading-relaxed" style={{ color: "#5E647A" }}>
+                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
                   {t("about.desc4")}
                 </p>
               </Reveal>
