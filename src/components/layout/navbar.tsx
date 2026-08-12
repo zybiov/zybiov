@@ -179,13 +179,13 @@ export function Navbar() {
           mobileOpen ? "rounded-2xl sm:rounded-3xl" : "rounded-full"
         )}
       >
-        <div className="flex items-center justify-between w-full gap-x-3 sm:gap-x-6 h-[38px] sm:h-[42px]">
+        <div className="flex items-center justify-between w-full gap-x-3 sm:gap-x-6 h-[40px] sm:h-[44px]">
           {/* Logo */}
           <Link
             href="/"
             className="flex items-center group flex-shrink-0 relative"
           >
-            <div className="relative w-[125px] h-[38px] sm:w-[150px] sm:h-[42px] transition-transform duration-300 group-hover:scale-[1.02]">
+            <div className="relative w-[145px] h-[40px] sm:w-[175px] sm:h-[44px] md:w-[190px] md:h-[44px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
                 src="/logo.webp"
                 alt={t("brandName")}
@@ -195,7 +195,7 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 125px, 150px"
+                sizes="(max-width: 640px) 145px, (max-width: 768px) 175px, 190px"
               />
             </div>
           </Link>

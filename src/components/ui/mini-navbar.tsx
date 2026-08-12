@@ -139,7 +139,7 @@ export function MiniNavbar() {
       <div className="flex items-center justify-between w-full gap-x-4 sm:gap-x-8">
         {/* Logo */}
         <Link href="/" className="flex items-center group flex-shrink-0">
-          <div className="relative w-[130px] h-[42px] sm:w-[155px] sm:h-[48px] transition-transform duration-300 group-hover:scale-[1.03]">
+          <div className="relative w-[145px] h-[40px] sm:w-[175px] sm:h-[44px] md:w-[190px] md:h-[44px] transition-transform duration-300 group-hover:scale-[1.03]">
             <Image
               src="/logo.webp"
               alt={t("brandName")}
@@ -149,7 +149,7 @@ export function MiniNavbar() {
                 dir === "rtl" ? "object-right" : "object-left"
               )}
               priority
-              sizes="(max-width: 640px) 130px, 155px"
+              sizes="(max-width: 640px) 145px, (max-width: 768px) 175px, 190px"
             />
           </div>
         </Link>
