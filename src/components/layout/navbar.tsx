@@ -8,7 +8,6 @@ import {
   Menu,
   X,
   ArrowRight,
-  Phone,
   ChevronDown,
   Award,
   Zap,
@@ -17,12 +16,13 @@ import {
   ShieldCheck,
   Layers,
   ChevronRight,
+  Phone,
 } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "./language-context";
 
-// ─── Language Capsule Toggle ──────────────────────────────────────────────────
+// ─── Compact Language Pill Toggle ─────────────────────────────────────────────
 function LanguageToggle({
   language,
   setLanguage,
@@ -34,20 +34,20 @@ function LanguageToggle({
     <button
       onClick={() => setLanguage(language === "en" ? "ar" : "en")}
       type="button"
-      className="relative w-[84px] h-[34px] bg-[#F0F2FA] rounded-full p-[2px] flex items-center justify-between cursor-pointer border border-[#E2E5F3] select-none shadow-inner transition-all hover:border-[#5B43D6]/40"
+      className="relative w-[78px] h-[32px] bg-[#F0F2FA] rounded-full p-[2px] flex items-center justify-between cursor-pointer border border-[#E2E5F3] select-none shadow-inner transition-all hover:border-[#5B43D6]/40 flex-shrink-0"
       aria-label="Toggle language / تغيير اللغة"
     >
       <motion.div
         layout
-        transition={{ type: "spring", stiffness: 400, damping: 28 }}
-        className="absolute top-[2px] bottom-[2px] w-[38px] bg-white rounded-full shadow-[0_2px_6px_rgba(91,67,214,0.12)] border border-[#E2E5F3]"
+        transition={{ type: "spring", stiffness: 450, damping: 30 }}
+        className="absolute top-[2px] bottom-[2px] w-[35px] bg-white rounded-full shadow-[0_2px_6px_rgba(91,67,214,0.14)] border border-[#E2E5F3]"
         style={{
-          left: language === "en" ? "2px" : "calc(100% - 40px)",
+          left: language === "en" ? "2px" : "calc(100% - 37px)",
         }}
       />
       <span
         className={cn(
-          "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
+          "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200 whitespace-nowrap",
           language === "en" ? "text-[#5B43D6]" : "text-[#8892A4]"
         )}
       >
@@ -55,7 +55,7 @@ function LanguageToggle({
       </span>
       <span
         className={cn(
-          "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
+          "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200 whitespace-nowrap",
           language === "ar" ? "text-[#5B43D6]" : "text-[#8892A4]"
         )}
       >
@@ -65,7 +65,7 @@ function LanguageToggle({
   );
 }
 
-// ─── Main 21st.dev Mini Floating Capsule Navbar ───────────────────────────────
+// ─── 21st.dev Style Sleek Floating Island Navbar ──────────────────────────────
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
@@ -167,25 +167,25 @@ export function Navbar() {
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "fixed top-4 sm:top-5 left-1/2 transform -translate-x-1/2 z-50",
           "flex flex-col items-center",
-          "px-4 sm:px-6 py-2.5 sm:py-3",
-          "bg-white/92 backdrop-blur-2xl border border-[#E2E5F3]",
-          "shadow-[0_16px_50px_rgba(30,36,75,0.14)]",
+          "px-3 sm:px-5 py-2 sm:py-2.5",
+          "bg-white/88 backdrop-blur-2xl border border-[#E2E5F3]",
+          "shadow-[0_10px_35px_rgba(30,36,75,0.12)] hover:bg-white/94",
           "w-[calc(100%-2rem)] max-w-6xl sm:w-auto",
           "transition-all duration-300 ease-out",
           mobileOpen ? "rounded-2xl sm:rounded-3xl" : "rounded-full"
         )}
       >
-        <div className="flex items-center justify-between w-full gap-x-4 sm:gap-x-8">
+        <div className="flex items-center justify-between w-full gap-x-3 sm:gap-x-6 h-[38px] sm:h-[42px]">
           {/* Logo */}
           <Link
             href="/"
             className="flex items-center group flex-shrink-0 relative"
           >
-            <div className="relative w-[135px] h-[44px] sm:w-[160px] sm:h-[50px] transition-transform duration-300 group-hover:scale-[1.03]">
+            <div className="relative w-[125px] h-[38px] sm:w-[150px] sm:h-[42px] transition-transform duration-300 group-hover:scale-[1.02]">
               <Image
                 src="/logo.webp"
                 alt={t("brandName")}
@@ -195,12 +195,12 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 135px, 160px"
+                sizes="(max-width: 640px) 125px, 150px"
               />
             </div>
           </Link>
 
-          {/* ── Desktop Navigation Links ── */}
+          {/* ── Desktop Navigation Bar ── */}
           <nav
             onMouseLeave={() => setHoveredLink(null)}
             className="hidden lg:flex items-center gap-1 relative"
@@ -213,7 +213,7 @@ export function Navbar() {
                 handleMouseLeave();
               }}
               className={cn(
-                "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                "relative px-3.5 py-1.5 text-[13px] font-extrabold transition-colors duration-200 rounded-full z-10 whitespace-nowrap",
                 pathname === "/" ? "text-[#5B43D6]" : "text-[#1E244B] hover:text-[#5B43D6]"
               )}
             >
@@ -246,7 +246,7 @@ export function Navbar() {
               <Link
                 href="/about"
                 className={cn(
-                  "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
+                  "relative px-3.5 py-1.5 text-[13px] font-extrabold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1 whitespace-nowrap",
                   pathname.startsWith("/about") || pathname === "/why-us"
                     ? "text-[#5B43D6]"
                     : "text-[#1E244B] hover:text-[#5B43D6]"
@@ -255,7 +255,7 @@ export function Navbar() {
                 <span>{t("nav.about")}</span>
                 <ChevronDown
                   className={cn(
-                    "w-3.5 h-3.5 transition-transform duration-200 opacity-70",
+                    "w-3 h-3 transition-transform duration-200 opacity-70 flex-shrink-0",
                     activeDropdown === "about" && "rotate-180 text-[#5B43D6]"
                   )}
                 />
@@ -281,16 +281,16 @@ export function Navbar() {
               <AnimatePresence>
                 {activeDropdown === "about" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={cn(
-                      "absolute top-full pt-3 z-50 w-[340px]",
+                      "absolute top-full pt-3 z-50 w-[330px]",
                       dir === "rtl" ? "right-0" : "left-0"
                     )}
                   >
-                    <div className="bg-white/95 backdrop-blur-2xl border border-[#E2E5F3] rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(30,36,75,0.18)] space-y-1">
+                    <div className="bg-white/96 backdrop-blur-2xl border border-[#E2E5F3] rounded-2xl p-3 shadow-[0_20px_50px_rgba(30,36,75,0.18)] space-y-1">
                       <div className="px-3 py-1 mb-1 border-b border-[#F0F2FA]">
                         <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#5B43D6]">
                           {isAr ? "معلومات الشركة" : "Company Highlights"}
@@ -307,14 +307,14 @@ export function Navbar() {
                           >
                             <div
                               className={cn(
-                                "w-8 h-8 rounded-xl flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br",
+                                "w-7 h-7 rounded-xl flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br",
                                 item.gradient
                               )}
                             >
                               <Icon className="w-3.5 h-3.5" />
                             </div>
                             <div>
-                              <div className="text-xs font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors flex items-center gap-1">
+                              <div className="text-xs font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors flex items-center gap-1 whitespace-nowrap">
                                 {item.title}
                                 <ChevronRight className={cn("w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity", dir === "rtl" && "rotate-180")} />
                               </div>
@@ -343,7 +343,7 @@ export function Navbar() {
               <Link
                 href="/expertise"
                 className={cn(
-                  "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
+                  "relative px-3.5 py-1.5 text-[13px] font-extrabold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1 whitespace-nowrap",
                   pathname.startsWith("/expertise")
                     ? "text-[#5B43D6]"
                     : "text-[#1E244B] hover:text-[#5B43D6]"
@@ -352,7 +352,7 @@ export function Navbar() {
                 <span>{t("nav.expertise")}</span>
                 <ChevronDown
                   className={cn(
-                    "w-3.5 h-3.5 transition-transform duration-200 opacity-70",
+                    "w-3 h-3 transition-transform duration-200 opacity-70 flex-shrink-0",
                     activeDropdown === "expertise" && "rotate-180 text-[#5B43D6]"
                   )}
                 />
@@ -377,16 +377,16 @@ export function Navbar() {
               <AnimatePresence>
                 {activeDropdown === "expertise" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={cn(
-                      "absolute top-full pt-3 z-50 w-[360px]",
+                      "absolute top-full pt-3 z-50 w-[350px]",
                       dir === "rtl" ? "right-0" : "left-0"
                     )}
                   >
-                    <div className="bg-white/95 backdrop-blur-2xl border border-[#E2E5F3] rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(30,36,75,0.18)] space-y-1">
+                    <div className="bg-white/96 backdrop-blur-2xl border border-[#E2E5F3] rounded-2xl p-3 shadow-[0_20px_50px_rgba(30,36,75,0.18)] space-y-1">
                       <div className="px-3 py-1 mb-1 border-b border-[#F0F2FA] flex items-center justify-between">
                         <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#5B43D6]">
                           {isAr ? "مجالات الخبرة والتوريد" : "Core Expertise Sectors"}
@@ -406,14 +406,14 @@ export function Navbar() {
                           >
                             <div
                               className={cn(
-                                "w-8 h-8 rounded-xl flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br",
+                                "w-7 h-7 rounded-xl flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br",
                                 item.gradient
                               )}
                             >
                               <Icon className="w-3.5 h-3.5" />
                             </div>
                             <div>
-                              <div className="text-xs font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors flex items-center gap-1">
+                              <div className="text-xs font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors flex items-center gap-1 whitespace-nowrap">
                                 {item.title}
                                 <ChevronRight className={cn("w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity", dir === "rtl" && "rotate-180")} />
                               </div>
@@ -448,7 +448,7 @@ export function Navbar() {
                 handleMouseLeave();
               }}
               className={cn(
-                "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                "relative px-3.5 py-1.5 text-[13px] font-extrabold transition-colors duration-200 rounded-full z-10 whitespace-nowrap",
                 pathname === "/why-us" ? "text-[#5B43D6]" : "text-[#1E244B] hover:text-[#5B43D6]"
               )}
             >
@@ -477,7 +477,7 @@ export function Navbar() {
                 handleMouseLeave();
               }}
               className={cn(
-                "relative px-4 py-1.5 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                "relative px-3.5 py-1.5 text-[13px] font-extrabold transition-colors duration-200 rounded-full z-10 whitespace-nowrap",
                 pathname === "/contact" ? "text-[#5B43D6]" : "text-[#1E244B] hover:text-[#5B43D6]"
               )}
             >
@@ -500,16 +500,16 @@ export function Navbar() {
           </nav>
 
           {/* ── Action Section (Desktop) ── */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <Link
               href="/contact"
-              className="relative group overflow-hidden inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] hover:scale-[1.03] active:scale-[0.98]"
+              className="relative group overflow-hidden inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap"
             >
               <span>{t("contactUs")}</span>
               <ArrowRight
                 className={cn(
-                  "w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1",
+                  "w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1 flex-shrink-0",
                   dir === "rtl" && "rotate-180 group-hover:-translate-x-1"
                 )}
               />
@@ -521,10 +521,10 @@ export function Navbar() {
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F2FA] text-[#1E244B] border border-[#E2E5F3] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-[#F0F2FA] text-[#1E244B] border border-[#E2E5F3] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
               aria-label={mobileOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -534,7 +534,7 @@ export function Navbar() {
           className={cn(
             "lg:hidden flex flex-col items-center w-full transition-all ease-in-out duration-300 overflow-hidden",
             mobileOpen
-              ? "max-h-[500px] opacity-100 pt-4 border-t border-[#F0F2FA] mt-3"
+              ? "max-h-[500px] opacity-100 pt-3 border-t border-[#F0F2FA] mt-2.5"
               : "max-h-0 opacity-0 pt-0 mt-0 pointer-events-none"
           )}
         >
@@ -543,7 +543,7 @@ export function Navbar() {
               href="/"
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "py-2 text-sm font-bold w-full text-center rounded-xl transition-colors",
+                "py-2 text-xs font-extrabold w-full text-center rounded-xl transition-colors whitespace-nowrap",
                 pathname === "/" ? "text-[#5B43D6] bg-[#5B43D6]/10" : "text-[#1E244B]"
               )}
             >
@@ -553,7 +553,7 @@ export function Navbar() {
               href="/about"
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "py-2 text-sm font-bold w-full text-center rounded-xl transition-colors",
+                "py-2 text-xs font-extrabold w-full text-center rounded-xl transition-colors whitespace-nowrap",
                 pathname.startsWith("/about") ? "text-[#5B43D6] bg-[#5B43D6]/10" : "text-[#1E244B]"
               )}
             >
@@ -563,7 +563,7 @@ export function Navbar() {
               href="/expertise"
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "py-2 text-sm font-bold w-full text-center rounded-xl transition-colors",
+                "py-2 text-xs font-extrabold w-full text-center rounded-xl transition-colors whitespace-nowrap",
                 pathname.startsWith("/expertise") ? "text-[#5B43D6] bg-[#5B43D6]/10" : "text-[#1E244B]"
               )}
             >
@@ -573,7 +573,7 @@ export function Navbar() {
               href="/why-us"
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "py-2 text-sm font-bold w-full text-center rounded-xl transition-colors",
+                "py-2 text-xs font-extrabold w-full text-center rounded-xl transition-colors whitespace-nowrap",
                 pathname === "/why-us" ? "text-[#5B43D6] bg-[#5B43D6]/10" : "text-[#1E244B]"
               )}
             >
@@ -583,7 +583,7 @@ export function Navbar() {
               href="/contact"
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "py-2 text-sm font-bold w-full text-center rounded-xl transition-colors",
+                "py-2 text-xs font-extrabold w-full text-center rounded-xl transition-colors whitespace-nowrap",
                 pathname === "/contact" ? "text-[#5B43D6] bg-[#5B43D6]/10" : "text-[#1E244B]"
               )}
             >
@@ -591,11 +591,11 @@ export function Navbar() {
             </Link>
           </nav>
 
-          <div className="flex flex-col items-center space-y-2 mt-3 w-full pt-3 border-t border-[#F0F2FA]">
+          <div className="flex flex-col items-center space-y-2 mt-2.5 w-full pt-2.5 border-t border-[#F0F2FA]">
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="w-full text-center px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] rounded-full shadow-md flex items-center justify-center gap-1.5"
+              className="w-full text-center px-4 py-2 text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] rounded-full shadow-md flex items-center justify-center gap-1.5 whitespace-nowrap"
             >
               <span>{t("contactUs")}</span>
               <ArrowRight className={cn("w-3.5 h-3.5", dir === "rtl" && "rotate-180")} />
