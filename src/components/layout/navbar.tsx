@@ -86,10 +86,10 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl border-b border-[#E4E7F2]",
           scrolled
-            ? "bg-white/96 backdrop-blur-xl shadow-[0_4px_24px_rgba(30,36,75,0.08)] border-b border-[#E4E7F2]/80"
-            : "bg-white/80 backdrop-blur-md border-b border-white/20"
+            ? "shadow-[0_4px_24px_rgba(30,36,75,0.08)]"
+            : "shadow-[0_2px_12px_rgba(30,36,75,0.04)]"
         )}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[80px] sm:h-[88px]">

@@ -47,7 +47,7 @@ export function AboutClientPage() {
           title={titleNode}
           description={t("aboutPage.desc")}
           tag={t("aboutPage.tag")}
-          bgImage="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1400"
+          bgImage="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80&w=1400"
           breadcrumbLabel={language === "en" ? "About Us" : "من نحن"}
         />
 
