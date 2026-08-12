@@ -139,8 +139,8 @@ export function HeroSection() {
           </div>
         ))}
 
-        {/* Balanced Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/85 via-[#0B0F28]/40 to-[#0B0F28]/50" />
+        {/* Lightened Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/40 via-[#0B0F28]/15 to-[#0B0F28]/25" />
       </div>
 
       {/* ── Foreground Content ── */}
@@ -179,7 +179,7 @@ export function HeroSection() {
           style={{
             fontFamily:
               language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif",
-            textShadow: "0 4px 30px rgba(0,0,0,0.5)",
+            textShadow: "0 2px 10px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)",
           }}
         >
           {words.map((word, index) => (
@@ -198,8 +198,8 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 0.7 }}
-          className="text-base sm:text-lg md:text-xl leading-relaxed text-white/95 max-w-2xl mb-10 font-normal"
-          style={{ textShadow: "0 2px 16px rgba(0,0,0,0.6)" }}
+          className="text-base sm:text-lg md:text-xl leading-relaxed text-white max-w-2xl mb-10 font-normal"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.85)" }}
         >
           {t("hero.desc")}
         </motion.p>
