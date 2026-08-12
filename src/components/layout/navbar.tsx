@@ -1,59 +1,144 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, Phone, Globe } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  Phone,
+  ChevronDown,
+  Award,
+  Zap,
+  Sparkles,
+  Building2,
+  ShieldCheck,
+  Layers,
+  ChevronRight,
+} from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "./language-context";
 
-const navLinks = [
-  { key: "nav.home", href: "/" },
-  { key: "nav.about", href: "/about" },
-  { key: "nav.expertise", href: "/expertise" },
-  { key: "nav.whyZybiov", href: "/why-us" },
-  { key: "nav.contact", href: "/contact" },
-];
-
-// Minimalist sliding capsule language toggle with fixed width to prevent layout shifts
-function LanguageToggle({ language, setLanguage }: { language: "en" | "ar", setLanguage: (l: "en" | "ar") => void }) {
+// ─── Language Capsule Toggle ──────────────────────────────────────────────────
+function LanguageToggle({
+  language,
+  setLanguage,
+}: {
+  language: "en" | "ar";
+  setLanguage: (l: "en" | "ar") => void;
+}) {
   return (
-    <div
+    <button
       onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-      className="relative w-[86px] h-[38px] bg-[#F0F2FA] rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-[#E4E7F2] select-none"
+      type="button"
+      className="relative w-[90px] h-[38px] bg-[#F3F4FB] rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-[#E2E5F3] select-none shadow-inner transition-all hover:border-[#5B43D6]/40"
+      aria-label="Toggle language / تغيير اللغة"
     >
-      {/* Sliding Pill Indicator */}
       <motion.div
         layout
-        transition={{ type: "spring", stiffness: 350, damping: 25 }}
-        className="absolute top-[3px] bottom-[3px] w-[38px] bg-white rounded-full shadow-sm"
+        transition={{ type: "spring", stiffness: 400, damping: 28 }}
+        className="absolute top-[3px] bottom-[3px] w-[40px] bg-white rounded-full shadow-[0_2px_8px_rgba(91,67,214,0.15)] border border-[#E2E5F3]"
         style={{
-          left: language === "en" ? "3px" : "calc(100% - 41px)"
+          left: language === "en" ? "3px" : "calc(100% - 43px)",
         }}
       />
-      {/* Labels */}
-      <span className={cn(
-        "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
-        language === "en" ? "text-[#5B43D6]" : "text-[#8892A4]"
-      )}>
+      <span
+        className={cn(
+          "z-10 text-[11px] font-extrabold flex-1 text-center transition-colors duration-200",
+          language === "en" ? "text-[#5B43D6]" : "text-[#8892A4]"
+        )}
+      >
         EN
       </span>
-      <span className={cn(
-        "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
-        language === "ar" ? "text-[#5B43D6]" : "text-[#8892A4]"
-      )}>
+      <span
+        className={cn(
+          "z-10 text-[11px] font-extrabold flex-1 text-center transition-colors duration-200",
+          language === "ar" ? "text-[#5B43D6]" : "text-[#8892A4]"
+        )}
+      >
         عربي
       </span>
-    </div>
+    </button>
   );
 }
 
+// ─── Main 21st.dev Style Navbar ───────────────────────────────────────────────
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+
+  const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const { language, setLanguage, t, dir } = useLanguage();
+
+  const isAr = language === "ar";
+
+  // Mega Menu Data
+  const expertiseItems = [
+    {
+      icon: Award,
+      title: isAr ? "منتجات صيدلانية فاخرة" : "Pharmaceutical Products",
+      desc: isAr
+        ? "استيراد وتوزيع الأدوية المبتكرة والجنيسية المعتمدة"
+        : "Branded & generic medicines with temperature control",
+      href: "/expertise#pharma",
+      gradient: "from-[#5B43D6] to-[#7C5CFC]",
+    },
+    {
+      icon: Zap,
+      title: isAr ? "حلول وتجهيزات طبية متقدمة" : "Advanced Medical Equipment",
+      desc: isAr
+        ? "أجهزة التشخيص، التصوير الطبي وتجهيز المستشفيات"
+        : "Diagnostic analyzers, imaging systems & hospital setup",
+      href: "/expertise#equipment",
+      gradient: "from-[#2B7DDC] to-[#28B7C7]",
+    },
+    {
+      icon: Sparkles,
+      title: isAr ? "المكملات الغذائية والصحة" : "Nutraceuticals & Wellness",
+      desc: isAr
+        ? "فيتامينات وتركيبات عشبية لتلبية احتياجات الصحة اليومية"
+        : "Vitamins, mineral formulas & daily health supplements",
+      href: "/expertise#supplements",
+      gradient: "from-[#28B7C7] to-[#10B981]",
+    },
+  ];
+
+  const aboutItems = [
+    {
+      icon: Building2,
+      title: isAr ? "عن زيبوف للأنشطة المتعددة" : "Corporate Overview",
+      desc: isAr
+        ? "شركة رائدة في استيراد وتوزيع المستلزمات الطبية في السودان"
+        : "Leading pharmaceutical & medical supply operator in Sudan",
+      href: "/about",
+      gradient: "from-[#5B43D6] to-[#6E56E8]",
+    },
+    {
+      icon: ShieldCheck,
+      title: isAr ? "لماذا تختار زيبوف" : "Why Choose Zybiov",
+      desc: isAr
+        ? "شراكات عالمية، معايير ISO وسلسلة توريد موثوقة على مدار الساعة"
+        : "Global network, ISO compliance, and 24/7 logistics resilience",
+      href: "/why-us",
+      gradient: "from-[#2B7DDC] to-[#5B43D6]",
+    },
+    {
+      icon: Layers,
+      title: isAr ? "الرؤية والقيم الجوهرية" : "Vision & Core Values",
+      desc: isAr
+        ? "التزام بالسعي نحو تميز الرعاية الصحية ونقاء الجودة"
+        : "Uncompromising quality, integrity and commitment to care",
+      href: "/about#vision",
+      gradient: "from-[#28B7C7] to-[#2B7DDC]",
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,11 +150,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -77,25 +158,42 @@ export function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setActiveDropdown(null);
   }, [pathname]);
+
+  const handleMouseEnter = (key: string) => {
+    if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
+    setActiveDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  };
 
   return (
     <>
       <motion.header
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl border-b border-[#E4E7F2]",
-          scrolled
-            ? "shadow-[0_4px_24px_rgba(30,36,75,0.08)]"
-            : "shadow-[0_2px_12px_rgba(30,36,75,0.04)]"
-        )}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 pt-3 sm:pt-4 pointer-events-none transition-all duration-300"
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[80px] sm:h-[88px]">
+        <div
+          className={cn(
+            "pointer-events-auto max-w-7xl mx-auto rounded-2xl sm:rounded-full transition-all duration-300 border flex items-center justify-between px-3 sm:px-6 py-2 sm:py-2.5",
+            scrolled
+              ? "bg-white/95 backdrop-blur-2xl border-[#E2E5F3] shadow-[0_12px_40px_rgba(30,36,75,0.12)]"
+              : "bg-white/90 backdrop-blur-xl border-white/60 shadow-[0_8px_30px_rgba(30,36,75,0.06)] hover:bg-white/95"
+          )}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="relative w-[155px] h-[55px] sm:w-[170px] sm:h-[60px] md:w-[185px] md:h-[66px] lg:w-[200px] lg:h-[72px] transition-transform duration-300 group-hover:scale-[1.03]">
+          <Link
+            href="/"
+            className="flex items-center gap-2 group flex-shrink-0 relative py-1"
+          >
+            <div className="relative w-[140px] h-[48px] sm:w-[165px] sm:h-[54px] md:w-[180px] md:h-[58px] transition-transform duration-300 group-hover:scale-[1.02]">
               <Image
                 src="/logo.webp"
                 alt={t("brandName")}
@@ -105,62 +203,347 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 55px, (max-width: 768px) 60px, (max-width: 1024px) 66px, 72px"
+                sizes="(max-width: 640px) 140px, (max-width: 768px) 165px, 180px"
               />
             </div>
+            {/* Ambient accent dot */}
+            <span className="w-2 h-2 rounded-full bg-[#28B7C7] animate-pulse hidden xl:inline-block shadow-[0_0_8px_#28B7C7]" />
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
+          {/* ── Desktop Navigation Capsule ── */}
+          <nav
+            onMouseLeave={() => setHoveredLink(null)}
+            className="hidden lg:flex items-center gap-1 bg-[#F4F5FB] p-1.5 rounded-full border border-[#E4E7F2]/80 shadow-inner relative"
+          >
+            {/* Home */}
+            <Link
+              href="/"
+              onMouseEnter={() => {
+                setHoveredLink("/");
+                handleMouseLeave();
+              }}
+              className={cn(
+                "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                pathname === "/" ? "text-[#5B43D6]" : "text-[#1E244B]"
+              )}
+            >
+              {t("nav.home")}
+              {pathname === "/" && (
+                <motion.span
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-white rounded-full shadow-sm z-[-1] border border-[#E2E5F3]"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              {hoveredLink === "/" && pathname !== "/" && (
+                <motion.span
+                  layoutId="hoverNavPill"
+                  className="absolute inset-0 bg-white/70 rounded-full z-[-1]"
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                />
+              )}
+            </Link>
+
+            {/* About Us (with Mega Menu) */}
+            <div
+              onMouseEnter={() => {
+                setHoveredLink("/about");
+                handleMouseEnter("about");
+              }}
+              onMouseLeave={handleMouseLeave}
+              className="relative"
+            >
+              <Link
+                href="/about"
+                className={cn(
+                  "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
+                  pathname.startsWith("/about") || pathname === "/why-us"
+                    ? "text-[#5B43D6]"
+                    : "text-[#1E244B]"
+                )}
+              >
+                <span>{t("nav.about")}</span>
+                <ChevronDown
                   className={cn(
-                    "relative px-2.5 xl:px-4 py-2 text-[14px] xl:text-[15px] font-semibold transition-all duration-200 rounded-lg hover:text-[#5B43D6] hover:bg-[#5B43D6]/5",
-                    isActive ? "text-[#5B43D6]" : "text-[#1E244B]"
+                    "w-3.5 h-3.5 transition-transform duration-200 opacity-70",
+                    activeDropdown === "about" && "rotate-180 text-[#5B43D6]"
                   )}
-                >
-                  {t(link.key)}
-                  {isActive && (
+                />
+                {(pathname.startsWith("/about") || pathname === "/why-us") && (
+                  <motion.span
+                    layoutId="activeNavTab"
+                    className="absolute inset-0 bg-white rounded-full shadow-sm z-[-1] border border-[#E2E5F3]"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                {hoveredLink === "/about" &&
+                  !pathname.startsWith("/about") &&
+                  pathname !== "/why-us" && (
                     <motion.span
-                      layoutId="activeNavUnderline"
-                      className="absolute bottom-0 h-0.5 bg-[#5B43D6] left-2.5 right-2.5 xl:left-4 xl:right-4 rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      layoutId="hoverNavPill"
+                      className="absolute inset-0 bg-white/70 rounded-full z-[-1]"
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
                     />
                   )}
-                </Link>
-              );
-            })}
-          </div>
+              </Link>
 
-          {/* CTA & Language Toggle — desktop only */}
-          <div className="hidden lg:flex items-center gap-4">
+              {/* About Mega Menu Dropdown */}
+              <AnimatePresence>
+                {activeDropdown === "about" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className={cn(
+                      "absolute top-full pt-3 z-50 w-[360px]",
+                      dir === "rtl" ? "right-0" : "left-0"
+                    )}
+                  >
+                    <div className="bg-white/95 backdrop-blur-2xl border border-[#E2E5F3] rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(30,36,75,0.18)] space-y-1">
+                      <div className="px-3 py-1.5 mb-1 border-b border-[#F0F2FA]">
+                        <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#5B43D6]">
+                          {isAr ? "معلومات الشركة" : "Company Highlights"}
+                        </span>
+                      </div>
+                      {aboutItems.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="flex items-start gap-3 p-3 rounded-xl hover:bg-[#5B43D6]/5 transition-all duration-200 group"
+                          >
+                            <div
+                              className={cn(
+                                "w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br",
+                                item.gradient
+                              )}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors flex items-center gap-1">
+                                {item.title}
+                                <ChevronRight className={cn("w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity", dir === "rtl" && "rotate-180")} />
+                              </div>
+                              <div className="text-[11px] text-[#5E647A] leading-tight mt-0.5">
+                                {item.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Expertise (with Mega Menu) */}
+            <div
+              onMouseEnter={() => {
+                setHoveredLink("/expertise");
+                handleMouseEnter("expertise");
+              }}
+              onMouseLeave={handleMouseLeave}
+              className="relative"
+            >
+              <Link
+                href="/expertise"
+                className={cn(
+                  "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10 inline-flex items-center gap-1.5",
+                  pathname.startsWith("/expertise")
+                    ? "text-[#5B43D6]"
+                    : "text-[#1E244B]"
+                )}
+              >
+                <span>{t("nav.expertise")}</span>
+                <ChevronDown
+                  className={cn(
+                    "w-3.5 h-3.5 transition-transform duration-200 opacity-70",
+                    activeDropdown === "expertise" && "rotate-180 text-[#5B43D6]"
+                  )}
+                />
+                {pathname.startsWith("/expertise") && (
+                  <motion.span
+                    layoutId="activeNavTab"
+                    className="absolute inset-0 bg-white rounded-full shadow-sm z-[-1] border border-[#E2E5F3]"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                {hoveredLink === "/expertise" &&
+                  !pathname.startsWith("/expertise") && (
+                    <motion.span
+                      layoutId="hoverNavPill"
+                      className="absolute inset-0 bg-white/70 rounded-full z-[-1]"
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    />
+                  )}
+              </Link>
+
+              {/* Expertise Mega Menu Dropdown */}
+              <AnimatePresence>
+                {activeDropdown === "expertise" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className={cn(
+                      "absolute top-full pt-3 z-50 w-[380px]",
+                      dir === "rtl" ? "right-0" : "left-0"
+                    )}
+                  >
+                    <div className="bg-white/95 backdrop-blur-2xl border border-[#E2E5F3] rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(30,36,75,0.18)] space-y-1">
+                      <div className="px-3 py-1.5 mb-1 border-b border-[#F0F2FA] flex items-center justify-between">
+                        <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#5B43D6]">
+                          {isAr ? "مجالات الخبرة والتوريد" : "Core Expertise Sectors"}
+                        </span>
+                        <span className="text-[10px] bg-[#5B43D6]/10 text-[#5B43D6] px-2 py-0.5 rounded-full font-bold">
+                          ISO Certified
+                        </span>
+                      </div>
+                      {expertiseItems.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="flex items-start gap-3 p-3 rounded-xl hover:bg-[#5B43D6]/5 transition-all duration-200 group"
+                          >
+                            <div
+                              className={cn(
+                                "w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br",
+                                item.gradient
+                              )}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors flex items-center gap-1">
+                                {item.title}
+                                <ChevronRight className={cn("w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity", dir === "rtl" && "rotate-180")} />
+                              </div>
+                              <div className="text-[11px] text-[#5E647A] leading-tight mt-0.5">
+                                {item.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                      <div className="pt-2 border-t border-[#F0F2FA]">
+                        <Link
+                          href="/expertise"
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F5FB] text-xs font-bold text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 group"
+                        >
+                          <span>{isAr ? "استكشف جميع قطاعات الخبرة" : "View All Sectors"}</span>
+                          <ArrowRight className={cn("w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1", dir === "rtl" && "rotate-180 group-hover:-translate-x-1")} />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Why Zybiov */}
+            <Link
+              href="/why-us"
+              onMouseEnter={() => {
+                setHoveredLink("/why-us");
+                handleMouseLeave();
+              }}
+              className={cn(
+                "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                pathname === "/why-us" ? "text-[#5B43D6]" : "text-[#1E244B]"
+              )}
+            >
+              {t("nav.whyZybiov")}
+              {pathname === "/why-us" && (
+                <motion.span
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-white rounded-full shadow-sm z-[-1] border border-[#E2E5F3]"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              {hoveredLink === "/why-us" && pathname !== "/why-us" && (
+                <motion.span
+                  layoutId="hoverNavPill"
+                  className="absolute inset-0 bg-white/70 rounded-full z-[-1]"
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                />
+              )}
+            </Link>
+
+            {/* Contact */}
+            <Link
+              href="/contact"
+              onMouseEnter={() => {
+                setHoveredLink("/contact");
+                handleMouseLeave();
+              }}
+              className={cn(
+                "relative px-4 py-2 text-[14px] font-bold transition-colors duration-200 rounded-full z-10",
+                pathname === "/contact" ? "text-[#5B43D6]" : "text-[#1E244B]"
+              )}
+            >
+              {t("nav.contact")}
+              {pathname === "/contact" && (
+                <motion.span
+                  layoutId="activeNavTab"
+                  className="absolute inset-0 bg-white rounded-full shadow-sm z-[-1] border border-[#E2E5F3]"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              {hoveredLink === "/contact" && pathname !== "/contact" && (
+                <motion.span
+                  layoutId="hoverNavPill"
+                  className="absolute inset-0 bg-white/70 rounded-full z-[-1]"
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                />
+              )}
+            </Link>
+          </nav>
+
+          {/* ── Action Section (Desktop) ── */}
+          <div className="hidden lg:flex items-center gap-3">
             <LanguageToggle language={language} setLanguage={setLanguage} />
-            <Link href="/contact" className="btn-primary text-sm py-2.5 px-6">
-              {t("contactUs")}
-              <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", dir === "rtl" && "rotate-180")} />
+            <Link
+              href="/contact"
+              className="relative group overflow-hidden inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-extrabold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_20px_rgba(91,67,214,0.32)] transition-all duration-300 hover:shadow-[0_6px_28px_rgba(91,67,214,0.48)] hover:scale-[1.03] active:scale-[0.98]"
+            >
+              {/* Shimmer light sweep */}
+              <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
+              <span>{t("contactUs")}</span>
+              <ArrowRight
+                className={cn(
+                  "w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1",
+                  dir === "rtl" && "rotate-180 group-hover:-translate-x-1"
+                )}
+              />
             </Link>
           </div>
 
-          {/* Mobile menu toggle & Language Toggle */}
+          {/* ── Mobile Trigger & Language Toggle ── */}
           <div className="lg:hidden flex items-center gap-2">
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <button
               onClick={() => setMobileOpen(true)}
-              className="w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/10 transition-all duration-200 active:scale-95 cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F3F4FB] text-[#1E244B] border border-[#E2E5F3] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer shadow-sm"
               aria-label={t("nav.openMenu")}
               aria-expanded={mobileOpen}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             </button>
           </div>
-        </nav>
+        </div>
       </motion.header>
 
-      {/* ─── Right-Side Mobile Drawer ─── */}
+      {/* ─── Mobile Drawer ─── */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -171,26 +554,31 @@ export function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 z-[60] bg-[#0d1136]/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[60] bg-[#0A0D24]/60 backdrop-blur-md lg:hidden"
             />
 
-            {/* Drawer panel */}
+            {/* Drawer Panel */}
             <motion.aside
               initial={{ x: dir === "rtl" ? "-100%" : "100%" }}
               animate={{ x: 0 }}
               exit={{ x: dir === "rtl" ? "-100%" : "100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 220, mass: 0.8 }}
+              transition={{
+                type: "spring",
+                damping: 30,
+                stiffness: 260,
+                mass: 0.8,
+              }}
               className={cn(
-                "fixed top-0 bottom-0 z-[70] w-[310px] sm:w-[360px] bg-white shadow-[0_0_40px_rgba(30,36,75,0.15)] flex flex-col lg:hidden overflow-hidden",
-                dir === "rtl" ? "left-0" : "right-0"
+                "fixed top-0 bottom-0 z-[70] w-[320px] sm:w-[370px] bg-white/98 backdrop-blur-2xl shadow-[0_0_60px_rgba(10,13,36,0.25)] flex flex-col lg:hidden overflow-hidden border-l border-[#E2E5F3]",
+                dir === "rtl" ? "left-0 border-r border-l-0" : "right-0"
               )}
             >
-              {/* Top gradient strip */}
-              <div className="h-1 w-full bg-gradient-to-r from-[#5B43D6] via-[#7C5CFC] to-[#A78BFA]" />
+              {/* Glowing Top Gradient Bar */}
+              <div className="h-1.5 w-full bg-gradient-to-r from-[#5B43D6] via-[#28B7C7] to-[#7B64E0]" />
 
               {/* Header */}
-              <div className="flex items-center justify-between px-6 pt-5 pb-5 border-b border-[#F0F2FA]">
-                <div className="relative w-[150px] h-[53px]">
+              <div className="flex items-center justify-between px-5 pt-4 pb-4 border-b border-[#F0F2FA]">
+                <div className="relative w-[140px] h-[48px]">
                   <Image
                     src="/logo.webp"
                     alt={t("brandShort")}
@@ -200,84 +588,192 @@ export function Navbar() {
                       dir === "rtl" ? "object-right" : "object-left"
                     )}
                     priority
-                    sizes="55px"
+                    sizes="140px"
                   />
                 </div>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F5F4FF] text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F3F4FB] text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border border-[#E2E5F3]"
                   aria-label={t("nav.closeMenu")}
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Nav links */}
-              <div className="flex flex-col px-4 py-4 flex-1 overflow-y-auto gap-1">
-                {navLinks.map((link, i) => {
-                  const isActive = pathname === link.href;
-                  return (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: dir === "rtl" ? -30 : 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.05 + i * 0.06, ease: "easeOut" }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={cn(
-                          "flex items-center justify-between px-4 py-4 text-[15px] font-semibold rounded-xl transition-all duration-200 group",
-                          isActive
-                            ? "text-[#5B43D6] bg-[#5B43D6]/8"
-                            : "text-[#1E244B] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5"
-                        )}
+              {/* Navigation Links */}
+              <div className="flex flex-col px-4 py-4 flex-1 overflow-y-auto space-y-1.5">
+                {/* Home */}
+                <Link
+                  href="/"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between px-4 py-3.5 text-[15px] font-bold rounded-2xl transition-all duration-200",
+                    pathname === "/"
+                      ? "text-[#5B43D6] bg-[#5B43D6]/10 border border-[#5B43D6]/20"
+                      : "text-[#1E244B] hover:bg-[#F4F5FB]"
+                  )}
+                >
+                  <span>{t("nav.home")}</span>
+                  <ArrowRight
+                    className={cn("w-4 h-4 opacity-50", dir === "rtl" && "rotate-180")}
+                  />
+                </Link>
+
+                {/* About Accordion */}
+                <div>
+                  <button
+                    onClick={() =>
+                      setMobileExpanded(
+                        mobileExpanded === "about" ? null : "about"
+                      )
+                    }
+                    className={cn(
+                      "w-full flex items-center justify-between px-4 py-3.5 text-[15px] font-bold rounded-2xl transition-all duration-200 cursor-pointer",
+                      pathname.startsWith("/about") || pathname === "/why-us"
+                        ? "text-[#5B43D6] bg-[#5B43D6]/10 border border-[#5B43D6]/20"
+                        : "text-[#1E244B] hover:bg-[#F4F5FB]"
+                    )}
+                  >
+                    <span>{t("nav.about")}</span>
+                    <ChevronDown
+                      className={cn(
+                        "w-4 h-4 transition-transform duration-200 opacity-60",
+                        mobileExpanded === "about" && "rotate-180 text-[#5B43D6]"
+                      )}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileExpanded === "about" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden pl-3 pr-3 py-1 space-y-1"
                       >
-                        <span>{t(link.key)}</span>
-                        <span
-                          className={cn(
-                            "w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-200",
-                            isActive
-                              ? "bg-[#5B43D6] text-white"
-                              : "bg-[#F0F2FA] text-[#5B43D6] group-hover:bg-[#5B43D6]/10",
-                            dir === "rtl" ? "rotate-180" : ""
-                          )}
-                        >
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </span>
-                      </Link>
-                    </motion.div>
-                  );
-                })}
+                        {aboutItems.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="flex items-center gap-2.5 p-2.5 rounded-xl text-xs font-semibold text-[#5E647A] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5 transition-all"
+                          >
+                            <item.icon className="w-4 h-4 text-[#5B43D6]" />
+                            <span>{item.title}</span>
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Expertise Accordion */}
+                <div>
+                  <button
+                    onClick={() =>
+                      setMobileExpanded(
+                        mobileExpanded === "expertise" ? null : "expertise"
+                      )
+                    }
+                    className={cn(
+                      "w-full flex items-center justify-between px-4 py-3.5 text-[15px] font-bold rounded-2xl transition-all duration-200 cursor-pointer",
+                      pathname.startsWith("/expertise")
+                        ? "text-[#5B43D6] bg-[#5B43D6]/10 border border-[#5B43D6]/20"
+                        : "text-[#1E244B] hover:bg-[#F4F5FB]"
+                    )}
+                  >
+                    <span>{t("nav.expertise")}</span>
+                    <ChevronDown
+                      className={cn(
+                        "w-4 h-4 transition-transform duration-200 opacity-60",
+                        mobileExpanded === "expertise" && "rotate-180 text-[#5B43D6]"
+                      )}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileExpanded === "expertise" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden pl-3 pr-3 py-1 space-y-1"
+                      >
+                        {expertiseItems.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="flex items-center gap-2.5 p-2.5 rounded-xl text-xs font-semibold text-[#5E647A] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5 transition-all"
+                          >
+                            <item.icon className="w-4 h-4 text-[#5B43D6]" />
+                            <span>{item.title}</span>
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Why Zybiov */}
+                <Link
+                  href="/why-us"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between px-4 py-3.5 text-[15px] font-bold rounded-2xl transition-all duration-200",
+                    pathname === "/why-us"
+                      ? "text-[#5B43D6] bg-[#5B43D6]/10 border border-[#5B43D6]/20"
+                      : "text-[#1E244B] hover:bg-[#F4F5FB]"
+                  )}
+                >
+                  <span>{t("nav.whyZybiov")}</span>
+                  <ArrowRight
+                    className={cn("w-4 h-4 opacity-50", dir === "rtl" && "rotate-180")}
+                  />
+                </Link>
+
+                {/* Contact */}
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between px-4 py-3.5 text-[15px] font-bold rounded-2xl transition-all duration-200",
+                    pathname === "/contact"
+                      ? "text-[#5B43D6] bg-[#5B43D6]/10 border border-[#5B43D6]/20"
+                      : "text-[#1E244B] hover:bg-[#F4F5FB]"
+                  )}
+                >
+                  <span>{t("nav.contact")}</span>
+                  <ArrowRight
+                    className={cn("w-4 h-4 opacity-50", dir === "rtl" && "rotate-180")}
+                  />
+                </Link>
               </div>
 
-              {/* Footer CTA & Language Toggle */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }}
-                className="p-5 border-t border-[#F0F2FA] bg-[#FAFBFD] space-y-4"
-              >
-                <div className="flex items-center justify-between bg-white border border-[#E4E7F2] p-3 rounded-xl">
-                  <span className="text-xs font-bold text-[#5E647A]">{language === "en" ? "Change Language" : "تغيير اللغة"}</span>
+              {/* Bottom Actions Panel */}
+              <div className="p-4 border-t border-[#F0F2FA] bg-[#FAFBFD] space-y-3">
+                <div className="flex items-center justify-between bg-white border border-[#E2E5F3] p-3 rounded-2xl shadow-sm">
+                  <span className="text-xs font-extrabold text-[#1E244B]">
+                    {isAr ? "تغيير اللغة" : "Select Language"}
+                  </span>
                   <LanguageToggle language={language} setLanguage={setLanguage} />
                 </div>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full bg-[#5B43D6] hover:bg-[#4A35C0] text-white font-semibold text-[15px] py-3.5 px-6 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_4px_16px_rgba(91,67,214,0.3)]"
+                  className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] text-white font-extrabold text-xs uppercase tracking-wider py-3.5 px-6 rounded-2xl shadow-[0_4px_20px_rgba(91,67,214,0.35)] active:scale-[0.98]"
                 >
-                  {t("contactUs")}
-                  <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
+                  <span>{t("contactUs")}</span>
+                  <ArrowRight
+                    className={cn("w-4 h-4", dir === "rtl" && "rotate-180")}
+                  />
                 </Link>
                 <a
                   href="tel:+249111909092"
-                  className="flex items-center justify-center gap-2 w-full text-[14px] font-medium text-[#5B6790] hover:text-[#5B43D6] transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full text-[13px] font-bold text-[#5E647A] hover:text-[#5B43D6] transition-colors py-1"
                 >
-                  <Phone className="w-3.5 h-3.5" />
+                  <Phone className="w-3.5 h-3.5 text-[#5B43D6]" />
                   <span>{t("nav.touch")}</span>
                 </a>
-              </motion.div>
+              </div>
             </motion.aside>
           </>
         )}
