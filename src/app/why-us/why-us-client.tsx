@@ -45,7 +45,7 @@ export function WhyUsClientPage() {
           title={titleNode}
           description={language === "en" ? "Discover how our global partnerships, full compliance, and professional management make us the trusted distributor in healthcare." : "اكتشف كيف تجعلنا شراكاتنا العالمية والامتثال الكامل والإدارة المهنية الموزع الموثوق به في مجال الرعاية الصحية."}
           tag={language === "en" ? "Our Advantages" : "مميزاتنا"}
-          bgImage="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1400"
+          bgImage="/advanced-research.png"
           breadcrumbLabel={language === "en" ? "Why Zybiov" : "لماذا زيبوف"}
         />
 

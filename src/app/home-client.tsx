@@ -477,7 +477,7 @@ export function HomeClientPage() {
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <Image
-                    src="https://images.pexels.com/photos/256262/pexels-photo-256262.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    src="/advanced-research.png"
                     alt="Advanced Research Laboratory"
                     fill
                     className="object-cover"

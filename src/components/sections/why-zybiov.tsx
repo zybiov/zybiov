@@ -154,8 +154,8 @@ export function WhyZybiovSection() {
               {/* Large top */}
               <div className="relative rounded-3xl overflow-hidden col-span-2" style={{ aspectRatio: "16/9" }}>
                 <Image
-                  src="/team-research.png"
-                  alt="Research team collaboration"
+                  src="/advanced-research.png"
+                  alt="Advanced Research Laboratory & Scientists"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
