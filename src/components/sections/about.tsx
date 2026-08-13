@@ -72,7 +72,7 @@ export function AboutSection() {
               {/* Inner wrapper for image scaling */}
               <div className="relative w-full" style={{ aspectRatio: "4/5", transform: "translateZ(30px)" }}>
                 <Image
-                  src="/about-pharmacist.png"
+                  src="/about-us.png"
                   alt="Zybiov state-of-the-art pharmaceutical distribution and medical logistics center"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
