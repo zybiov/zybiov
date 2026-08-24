@@ -141,24 +141,24 @@ export function AspirationsSection() {
                   {pillars.map((pillar, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl p-6 sm:p-7 text-center"
+                      className="rounded-2xl p-6 sm:p-7 text-center group transition-all duration-300 hover:-translate-y-1.5 hover:border-white/30 hover:bg-white/[0.12] cursor-default"
                       style={{
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                        backdropFilter: "blur(10px)",
+                        background: "rgba(255,255,255,0.07)",
+                        border: "1px solid rgba(255,255,255,0.14)",
+                        backdropFilter: "blur(12px)",
                       }}
                     >
                       {/* Icon */}
                       <div
-                        className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300"
                         style={{ background: pillar.gradient }}
                       >
                         <pillar.Icon className="w-6 h-6 text-white" />
                       </div>
-                      <p className="text-white font-bold text-sm sm:text-base mb-2">
+                      <p className="text-white font-bold text-sm sm:text-base mb-2 group-hover:text-[#28B7C7] transition-colors">
                         {pillar.label}
                       </p>
-                      <p className="text-white/60 text-xs sm:text-sm leading-relaxed">
+                      <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
                         {pillar.sub}
                       </p>
                     </div>
@@ -170,7 +170,7 @@ export function AspirationsSection() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="btn-primary"
+                    className="btn-primary active:scale-[0.98] transition-transform"
                     style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}
                   >
                     {t("aspirations.ctaGetInTouch")}
@@ -178,7 +178,7 @@ export function AspirationsSection() {
                   </Link>
                   <Link
                     href="/expertise"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:bg-white/10"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:bg-white/10 active:scale-[0.98]"
                     style={{
                       border: "2px solid rgba(255,255,255,0.3)",
                       fontSize: "0.9375rem",

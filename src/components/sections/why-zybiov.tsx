@@ -5,6 +5,7 @@ import { Reveal, StaggerContainer, fadeUpItem } from "@/components/animations/re
 import { motion } from "framer-motion";
 import { Globe2, Settings2, TrendingUp, FileCheck, Snowflake, Award, ShieldCheck, FileHeart } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 const reasons = [
   {
@@ -121,24 +122,19 @@ export function WhyZybiovSection() {
                     variants={fadeUpItem}
                     whileHover={{ x: dir === "rtl" ? -4 : 4 }}
                     transition={{ duration: 0.25 }}
-                    className="flex items-start gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl border"
-                    style={{
-                      background: "#FAFBFD",
-                      borderColor: "#E4E7F2",
-                      boxShadow: "0 2px 12px rgba(0,0,0,0.03)",
-                    }}
+                    className="flex items-start gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl border border-[#E4E7F2] bg-[#FAFBFD] hover:bg-white hover:border-[#2B7DDC]/30 hover:shadow-lg transition-all duration-300 group"
                   >
                     <div
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300"
                       style={{ background: reason.gradient }}
                     >
                       <reason.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-[15px] sm:text-[16px] font-bold mb-1.5" style={{ color: "#1E244B" }}>
+                      <h3 className="text-[15px] sm:text-[16px] font-bold mb-1.5 text-[#1E244B] group-hover:text-[#5B43D6] transition-colors">
                         {t(reason.titleKey)}
                       </h3>
-                      <p className="text-sm leading-relaxed" style={{ color: "#5E647A" }}>
+                      <p className="text-sm leading-relaxed text-[#5E647A]">
                         {t(reason.descKey)}
                       </p>
                     </div>
@@ -152,53 +148,53 @@ export function WhyZybiovSection() {
           <Reveal direction="right">
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {/* Large top */}
-              <div className="relative rounded-3xl overflow-hidden col-span-2" style={{ aspectRatio: "16/9" }}>
+              <div className="relative rounded-3xl overflow-hidden col-span-2 group" style={{ aspectRatio: "16/9" }}>
                 <Image
                   src="/team-research.webp"
                   alt="Zybiov Multidisciplinary Pharmaceutical Research Team"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0" style={{
-                  background: "linear-gradient(180deg, transparent 50%, rgba(30,36,75,0.5) 100%)"
-                }} />
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                  <span className="text-white font-semibold text-xs sm:text-sm">{t("why.collageTeam")}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/65 via-[#0B0F28]/15 to-transparent" />
+                <div className={cn("absolute bottom-3 sm:bottom-4", dir === "rtl" ? "right-3 sm:right-4" : "left-3 sm:left-4")}>
+                  <span className="inline-flex items-center px-3 py-1.5 rounded-xl text-white font-semibold text-xs sm:text-sm backdrop-blur-md bg-[#0F142D]/75 border border-white/15 shadow-sm">
+                    {t("why.collageTeam")}
+                  </span>
                 </div>
               </div>
 
               {/* Bottom-left */}
-              <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              <div className="relative rounded-2xl overflow-hidden group" style={{ aspectRatio: "4/3" }}>
                 <Image
                   src="/gmp-facilities.webp"
                   alt="GMP Certified Pharmaceutical Production Facility"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0" style={{
-                  background: "linear-gradient(180deg, transparent 40%, rgba(30,36,75,0.55) 100%)"
-                }} />
-                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
-                  <span className="text-white font-semibold text-[10px] sm:text-xs">{t("why.collageGmp")}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/60 via-[#0B0F28]/10 to-transparent" />
+                <div className={cn("absolute bottom-2.5 sm:bottom-3", dir === "rtl" ? "right-2.5 sm:right-3" : "left-2.5 sm:left-3")}>
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-white font-semibold text-[10px] sm:text-xs backdrop-blur-md bg-[#0F142D]/75 border border-white/15 shadow-sm">
+                    {t("why.collageGmp")}
+                  </span>
                 </div>
               </div>
 
               {/* Bottom-right */}
-              <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              <div className="relative rounded-2xl overflow-hidden group" style={{ aspectRatio: "4/3" }}>
                 <Image
                   src="/lab-digital.webp"
-                  alt="Digital health lab"
+                  alt="Digital health lab operations"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0" style={{
-                  background: "linear-gradient(180deg, transparent 40%, rgba(30,36,75,0.55) 100%)"
-                }} />
-                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
-                  <span className="text-white font-semibold text-[10px] sm:text-xs">{t("why.collageDigital")}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/60 via-[#0B0F28]/10 to-transparent" />
+                <div className={cn("absolute bottom-2.5 sm:bottom-3", dir === "rtl" ? "right-2.5 sm:right-3" : "left-2.5 sm:left-3")}>
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-white font-semibold text-[10px] sm:text-xs backdrop-blur-md bg-[#0F142D]/75 border border-white/15 shadow-sm">
+                    {t("why.collageDigital")}
+                  </span>
                 </div>
               </div>
 
