@@ -11,11 +11,41 @@ import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const socialLinks = [
-  { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", handle: "www.zybiov.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/zybiov/", handle: "company/zybiov" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov", handle: "@zybiov" },
-  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/", handle: "Facebook Page" },
-  { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov", handle: "YouTube Channel" },
+  {
+    icon: GlobeIcon,
+    label: "Website",
+    href: "https://www.zybiov.com",
+    handle: "www.zybiov.com",
+    bg: "linear-gradient(135deg, #1E244B, #2B7DDC)",
+  },
+  {
+    icon: LinkedinIcon,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/zybiov/",
+    handle: "company/zybiov",
+    bg: "#0A66C2",
+  },
+  {
+    icon: InstagramIcon,
+    label: "Instagram",
+    href: "https://www.instagram.com/zybiov",
+    handle: "@zybiov",
+    bg: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
+  },
+  {
+    icon: FacebookIcon,
+    label: "Facebook",
+    href: "https://www.facebook.com/share/176TZy5JGM/",
+    handle: "Facebook Page",
+    bg: "#1877F2",
+  },
+  {
+    icon: YoutubeIcon,
+    label: "YouTube",
+    href: "https://www.youtube.com/@Zybiov",
+    handle: "YouTube Channel",
+    bg: "#FF0000",
+  },
 ];
 
 export function ContactSection() {
@@ -327,15 +357,17 @@ export function ContactSection() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 sm:gap-4 group"
+                      className="flex items-center gap-3.5 sm:gap-4 p-2 -mx-2 rounded-2xl hover:bg-white hover:shadow-sm border border-transparent hover:border-[#E4E7F2] transition-all duration-200 group"
                     >
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-110"
-                        style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}>
-                        <s.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                      <div
+                        className="w-10 h-10 rounded-2xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-sm flex-shrink-0"
+                        style={{ background: s.bg }}
+                      >
+                        <s.icon className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <p className="text-xs font-semibold" style={{ color: "#1E244B" }}>{s.label}</p>
-                        <p className="text-[10px] sm:text-xs" style={{ color: "#8892A4" }}>{s.handle}</p>
+                        <p className="text-xs sm:text-sm font-bold text-[#1E244B] group-hover:text-[#5B43D6] transition-colors">{s.label}</p>
+                        <p className="text-[11px] sm:text-xs text-[#8892A4] font-medium">{s.handle}</p>
                       </div>
                     </a>
                   ))}

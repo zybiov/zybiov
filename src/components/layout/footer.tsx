@@ -17,11 +17,11 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/zybiov/" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov" },
-  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/" },
-  { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov" },
+  { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", hoverBg: "hover:bg-[#2B7DDC]" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/zybiov/", hoverBg: "hover:bg-[#0A66C2]" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov", hoverBg: "hover:bg-[#E1306C]" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/", hoverBg: "hover:bg-[#1877F2]" },
+  { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov", hoverBg: "hover:bg-[#FF0000]" },
 ];
 
 export function Footer() {
@@ -165,7 +165,10 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#5B43D6] hover:border-transparent transition-all duration-200 hover:scale-105"
+                className={cn(
+                  "w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:border-transparent transition-all duration-200 hover:scale-105",
+                  s.hoverBg
+                )}
               >
                 <s.icon className="w-4 h-4 text-white" />
               </a>
