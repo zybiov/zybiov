@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
@@ -53,23 +52,12 @@ export function HeroSection() {
   const { language, t } = useLanguage();
 
   const [current, setCurrent] = useState(0);
-  const [videoEnabled, setVideoEnabled] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const prev = useCallback(() => setCurrent((c) => (c - 1 + SLIDES.length) % SLIDES.length), []);
   const next = useCallback(() => setCurrent((c) => (c + 1) % SLIDES.length), []);
   const goTo = useCallback((i: number) => setCurrent(i), []);
-
-  // Delay video loading to ensure initial LCP paints instantly without network congestion
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      const timer = setTimeout(() => {
-        setVideoEnabled(true);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   // Auto-advance timer
   useEffect(() => {
@@ -82,13 +70,13 @@ export function HeroSection() {
     };
   }, [current]);
 
-  // Play active video when available
+  // Ensure active video is playing
   useEffect(() => {
-    if (videoRef.current && videoEnabled) {
+    if (videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {});
     }
-  }, [current, videoEnabled]);
+  }, [current]);
 
   const sloganText =
     language === "en"
@@ -100,36 +88,23 @@ export function HeroSection() {
       id="home"
       className="relative w-full min-h-screen overflow-hidden bg-[#0F142D]"
     >
-      {/* ── Background Layer: Priority High-Performance LCP Image ── */}
+      {/* ── Background Video Layer ── */}
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <Image
-          src="/hero-lab.webp"
-          alt="Precision Pharmaceutical Research Laboratory"
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-          className="object-cover"
-        />
-
-        {/* ── Lazy-mounted Single Video Layer (Only loads active slide) ── */}
-        {videoEnabled && (
-          <video
-            key={SLIDES[current].src}
-            ref={videoRef}
-            src={SLIDES[current].src}
-            poster="/hero-lab.webp"
-            loop
-            muted
-            playsInline
-            preload="none"
-            tabIndex={-1}
-            onError={() => next()}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-          >
-            <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="Captions" default />
-          </video>
-        )}
+        <video
+          key={SLIDES[current].src}
+          ref={videoRef}
+          src={SLIDES[current].src}
+          autoPlay
+          muted
+          playsInline
+          loop
+          preload="auto"
+          tabIndex={-1}
+          onError={() => next()}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+        >
+          <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="Captions" default />
+        </video>
 
         {/* Darkening Overlay for Text Contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/60 via-[#0B0F28]/25 to-[#0B0F28]/35" />

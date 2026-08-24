@@ -464,28 +464,28 @@ export function HomeClientPage() {
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <Image
-                    src="/lab-digital.webp"
-                    alt="Digital laboratory"
+                    src="/production.webp"
+                    alt="GMP Certified Pharmaceutical Production Facility"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 to-transparent" />
                   <div className={cn("absolute bottom-2 sm:bottom-3", dir === "rtl" ? "right-2 sm:right-3" : "left-2 sm:left-3")}>
-                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("whyChooseUs.innovation")}</span>
+                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("why.collageGmp")}</span>
                   </div>
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <Image
-                    src="/advanced-research.webp"
-                    alt="Advanced Research Laboratory"
+                    src="/lab-digital.webp"
+                    alt="Digital laboratory operations"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 to-transparent" />
                   <div className={cn("absolute bottom-2 sm:bottom-3", dir === "rtl" ? "right-2 sm:right-3" : "left-2 sm:left-3")}>
-                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("whyChooseUs.research")}</span>
+                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("why.collageDigital")}</span>
                   </div>
                 </div>
               </Reveal>

@@ -144,7 +144,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable} ${manrope.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
         <JsonLd />
-        <link rel="preload" as="image" href="/hero-lab.webp" type="image/webp" fetchPriority="high" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <script
           type="speculationrules"
