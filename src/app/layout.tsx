@@ -144,6 +144,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable} ${manrope.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
         <JsonLd />
+        <link rel="preload" as="image" href="/hero-lab.webp" type="image/webp" fetchPriority="high" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <script
           type="speculationrules"
@@ -153,11 +154,11 @@ export default function RootLayout({
                 {
                   source: "list",
                   urls: [
-                    "https://www.zybiov.com/",
-                    "https://www.zybiov.com/about",
-                    "https://www.zybiov.com/expertise",
-                    "https://www.zybiov.com/why-us",
-                    "https://www.zybiov.com/contact"
+                    "https://zybiov.com/",
+                    "https://zybiov.com/about",
+                    "https://zybiov.com/expertise",
+                    "https://zybiov.com/why-us",
+                    "https://zybiov.com/contact"
                   ],
                   eagerness: "moderate"
                 }
@@ -167,14 +168,14 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {/* Google Tag Manager / GA4 (gtag.js) */}
+        {/* Google Tag Manager / GA4 (gtag.js) - Loaded with lazyOnload to protect mobile LCP & TBT */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
           id="google-analytics"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

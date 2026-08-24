@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
@@ -52,12 +53,21 @@ export function HeroSection() {
   const { language, t } = useLanguage();
 
   const [current, setCurrent] = useState(0);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [videoEnabled, setVideoEnabled] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const prev = useCallback(() => setCurrent((c) => (c - 1 + SLIDES.length) % SLIDES.length), []);
   const next = useCallback(() => setCurrent((c) => (c + 1) % SLIDES.length), []);
   const goTo = useCallback((i: number) => setCurrent(i), []);
+
+  // Delay video loading to ensure initial LCP paints instantly without network congestion
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVideoEnabled(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Auto-advance timer
   useEffect(() => {
@@ -70,18 +80,13 @@ export function HeroSection() {
     };
   }, [current]);
 
-  // Play active video, pause inactive
+  // Play active video when available
   useEffect(() => {
-    videoRefs.current.forEach((vid, i) => {
-      if (!vid) return;
-      if (i === current) {
-        vid.currentTime = 0;
-        vid.play().catch(() => {});
-      } else {
-        vid.pause();
-      }
-    });
-  }, [current]);
+    if (videoRef.current && videoEnabled) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [current, videoEnabled]);
 
   const sloganText =
     language === "en"
@@ -93,36 +98,38 @@ export function HeroSection() {
       id="home"
       className="relative w-full min-h-screen overflow-hidden bg-[#0F142D]"
     >
-      {/* ── Background Video Layers ── */}
+      {/* ── Background Layer: Priority High-Performance LCP Image ── */}
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        {SLIDES.map((slide, i) => (
-          <div
-            key={slide.id}
-            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-            style={{ opacity: i === current ? 1 : 0 }}
-            aria-hidden={i !== current}
-          >
-            <video
-              ref={(el) => {
-                videoRefs.current[i] = el;
-              }}
-              src={slide.src}
-              poster={slide.poster}
-              loop
-              muted
-              playsInline
-              preload="none"
-              tabIndex={-1}
-              onError={() => next()}
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="Captions" default />
-            </video>
-          </div>
-        ))}
+        <Image
+          src="/hero-lab.webp"
+          alt="Precision Pharmaceutical Research Laboratory"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
 
-        {/* Lightened Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/40 via-[#0B0F28]/15 to-[#0B0F28]/25" />
+        {/* ── Lazy-mounted Single Video Layer (Only loads active slide) ── */}
+        {videoEnabled && (
+          <video
+            key={SLIDES[current].src}
+            ref={videoRef}
+            src={SLIDES[current].src}
+            poster="/hero-lab.webp"
+            loop
+            muted
+            playsInline
+            preload="none"
+            tabIndex={-1}
+            onError={() => next()}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          >
+            <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="Captions" default />
+          </video>
+        )}
+
+        {/* Darkening Overlay for Text Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/60 via-[#0B0F28]/25 to-[#0B0F28]/35" />
       </div>
 
       {/* ── Foreground Content ── */}
@@ -205,7 +212,7 @@ export function HeroSection() {
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          {/* Indicator Dots with min 44x44px touch targets */}
+          {/* Indicator Dots with min 44x44px touch targets and GPU-composited scaleX */}
           <div className="flex items-center">
             {SLIDES.map((_, i) => (
               <button
@@ -215,10 +222,12 @@ export function HeroSection() {
                 className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full focus:outline-none cursor-pointer"
               >
                 <span
-                  className="transition-all duration-300 rounded-full inline-block"
+                  className="transition-transform duration-300 rounded-full inline-block"
                   style={{
-                    width: i === current ? "22px" : "8px",
+                    width: "8px",
                     height: "8px",
+                    transform: i === current ? "scaleX(2.75)" : "scaleX(1)",
+                    transformOrigin: "center",
                     background: i === current ? "#28B7C7" : "rgba(255,255,255,0.45)",
                     boxShadow:
                       i === current ? "0 0 10px rgba(40,183,199,0.8)" : "none",
@@ -258,17 +267,18 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* ── Bottom Progress Bar ── */}
+      {/* ── Bottom Progress Bar (GPU Composited scaleX) ── */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[3px] z-20"
+        className="absolute bottom-0 left-0 right-0 h-[3px] z-20 origin-left"
         style={{ background: "rgba(255,255,255,0.12)" }}
       >
         <motion.div
           key={current}
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
           transition={{ duration: INTERVAL_MS / 1000, ease: "linear" }}
-          className="h-full bg-gradient-to-r from-[#5B43D6] via-[#28B7C7] to-[#7B64E0]"
+          style={{ transformOrigin: "left" }}
+          className="h-full w-full bg-gradient-to-r from-[#5B43D6] via-[#28B7C7] to-[#7B64E0]"
         />
       </div>
     </section>
