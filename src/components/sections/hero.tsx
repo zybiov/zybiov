@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 
@@ -170,78 +170,6 @@ export function HeroSection() {
           >
             {t("contactUs")}
           </Link>
-        </div>
-
-        {/* ── Background Video Controls (Dots & Arrows with 44px tap targets) ── */}
-        <div
-          className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/20 shadow-xl"
-          style={{
-            background: "rgba(30,36,75,0.55)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-          }}
-        >
-          {/* Prev */}
-          <button
-            onClick={prev}
-            aria-label="Previous video background"
-            className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full text-white transition-all duration-200 hover:bg-white/20 active:scale-95 cursor-pointer"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          {/* Indicator Dots with min 44x44px touch targets and GPU-composited scaleX */}
-          <div className="flex items-center">
-            {SLIDES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                aria-label={`Go to background video ${i + 1}`}
-                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full focus:outline-none cursor-pointer"
-              >
-                <span
-                  className="transition-transform duration-300 rounded-full inline-block"
-                  style={{
-                    width: "8px",
-                    height: "8px",
-                    transform: i === current ? "scaleX(2.75)" : "scaleX(1)",
-                    transformOrigin: "center",
-                    background: i === current ? "#28B7C7" : "rgba(255,255,255,0.45)",
-                    boxShadow:
-                      i === current ? "0 0 10px rgba(40,183,199,0.8)" : "none",
-                  }}
-                />
-              </button>
-            ))}
-          </div>
-
-          {/* Next */}
-          <button
-            onClick={next}
-            aria-label="Next video background"
-            className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full text-white transition-all duration-200 hover:bg-white/20 active:scale-95 cursor-pointer"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Current Background Video Scene Title */}
-        <div className="mt-3 h-6 flex items-center">
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={current}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.3 }}
-              className="text-xs font-semibold text-white/70 tracking-widest uppercase"
-              style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
-            >
-              {language === "ar"
-                ? SLIDES[current].labelAr
-                : SLIDES[current].label}
-            </motion.span>
-          </AnimatePresence>
         </div>
       </div>
 

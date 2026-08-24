@@ -141,17 +141,6 @@ export function ExpertiseSection() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />
-
-                    {/* Floating Stat Badge */}
-                    <div
-                      className={cn(
-                        "absolute bottom-4 sm:bottom-6 px-4 py-2 rounded-full text-white text-xs font-bold shadow-md bg-gradient-to-r",
-                        sec.gradient
-                      )}
-                    >
-                      {sec.stat}
-                    </div>
                   </div>
                 </Reveal>
 

@@ -288,14 +288,6 @@ export function HomeClientPage() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 via-transparent to-transparent" />
-                      {/* Stat badge */}
-                      <div
-                        className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-white text-[11px] font-bold"
-                        style={{ background: sector.iconGradient }}
-                      >
-                        {sector.stat}
-                      </div>
                     </div>
 
                     {/* Content */}
