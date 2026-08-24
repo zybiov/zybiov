@@ -47,7 +47,7 @@ export function AboutClientPage() {
           title={titleNode}
           description={t("aboutPage.desc")}
           tag={t("aboutPage.tag")}
-          bgImage="/about-us.webp"
+          bgImage="/about-pharmacist.webp"
           breadcrumbLabel={language === "en" ? "About Us" : "من نحن"}
         />
 

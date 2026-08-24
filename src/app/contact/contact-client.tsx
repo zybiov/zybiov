@@ -44,7 +44,7 @@ export function ContactClientPage() {
           title={titleNode}
           description={t("contactPage.desc")}
           tag={t("contactPage.tag")}
-          bgImage="/lab-digital.webp"
+          bgImage="/molecule.webp"
           breadcrumbLabel={language === "en" ? "Contact Us" : "تواصل معنا"}
         />
 
