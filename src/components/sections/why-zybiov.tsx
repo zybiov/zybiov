@@ -154,10 +154,10 @@ export function WhyZybiovSection() {
               {/* Large top */}
               <div className="relative rounded-3xl overflow-hidden col-span-2" style={{ aspectRatio: "16/9" }}>
                 <Image
-                  src="/team-research.webp"
+                  src="/expert-team.webp"
                   alt="Zybiov Multidisciplinary Pharmaceutical Research Team"
                   fill
-                  className="object-cover"
+                  className="object-cover object-[center_35%]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0" style={{

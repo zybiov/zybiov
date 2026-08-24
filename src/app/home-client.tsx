@@ -451,10 +451,10 @@ export function HomeClientPage() {
               <Reveal direction="right" className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden col-span-2" style={{ aspectRatio: "16/9" }}>
                   <Image
-                    src="/team-research.webp"
+                    src="/expert-team.webp"
                     alt="Zybiov research team"
                     fill
-                    className="object-cover"
+                    className="object-cover object-[center_35%]"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 to-transparent" />
