@@ -116,8 +116,8 @@ export function Navbar() {
       icon: Building2,
       title: isAr ? "عن زيبوف للأنشطة المتعددة" : "Corporate Overview",
       desc: isAr
-        ? "شركة رائدة في استيراد وتوزيع المستلزمات الطبية في السودان"
-        : "Leading pharmaceutical & medical supply operator in Sudan",
+        ? "شركة رائدة في استيراد وتوزيع الأدوية والمستلزمات الطبية إقليمياً ودولياً"
+        : "Leading pharmaceutical & medical supply operator with global reach",
       href: "/about",
       gradient: "from-[#5B43D6] to-[#6E56E8]",
     },
