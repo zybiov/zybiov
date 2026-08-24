@@ -212,13 +212,14 @@ export function Navbar() {
           "transition-all duration-300 ease-out"
         )}
       >
-        <div className="flex items-center justify-between w-full gap-x-2 sm:gap-x-6 h-[36px] sm:h-[42px]">
+        <div className="flex items-center justify-between w-full gap-x-2 sm:gap-x-6 h-[38px] sm:h-[42px]">
           {/* Logo */}
           <Link
             href="/"
             className="flex items-center group flex-shrink-0 relative"
+            aria-label="Zybiov Home"
           >
-            <div className="relative w-[115px] h-[34px] sm:w-[155px] sm:h-[40px] md:w-[175px] md:h-[42px] transition-transform duration-300 group-hover:scale-[1.03]">
+            <div className="relative w-[110px] h-[36px] sm:w-[135px] sm:h-[40px] md:w-[155px] md:h-[42px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
                 src="/logo.webp"
                 alt={t("brandName")}
@@ -228,7 +229,7 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 115px, (max-width: 768px) 155px, 175px"
+                sizes="(max-width: 640px) 110px, 155px"
               />
             </div>
           </Link>
