@@ -1,7 +1,7 @@
 "use client";
 
 import { Counter } from "@/components/ui/counter";
-import { Award, Package, MapPin, Users } from "lucide-react";
+import { Award, Package, MapPin, Users, Sparkles, Building2, Globe2 } from "lucide-react";
 import { StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
 import { useLanguage } from "../layout/language-context";
@@ -14,7 +14,8 @@ const stats = [
     suffix: "+",
     labelKey: "stats.expLabel",
     subKey: "stats.expSub",
-    gradient: "linear-gradient(135deg, #5B43D6, #2B7DDC)",
+    iconBg: "bg-[#EEECFC] text-[#5B43D6] ring-1 ring-[#5B43D6]/20",
+    glowColor: "rgba(91,67,214,0.15)",
   },
   {
     icon: Package,
@@ -22,23 +23,26 @@ const stats = [
     suffix: "+",
     labelKey: "stats.prodLabel",
     subKey: "stats.prodSub",
-    gradient: "linear-gradient(135deg, #2B7DDC, #28B7C7)",
+    iconBg: "bg-[#EBF5FF] text-[#2B7DDC] ring-1 ring-[#2B7DDC]/20",
+    glowColor: "rgba(43,125,220,0.15)",
   },
   {
-    icon: MapPin,
+    icon: Globe2,
     valueKey: "stats.covValue",
     isText: true,
     labelKey: "stats.covLabel",
     subKey: "stats.covSub",
-    gradient: "linear-gradient(135deg, #28B7C7, #5B43D6)",
+    iconBg: "bg-[#E6F9FB] text-[#0E95A4] ring-1 ring-[#28B7C7]/20",
+    glowColor: "rgba(40,183,199,0.15)",
   },
   {
-    icon: Users,
+    icon: Building2,
     value: 100,
     suffix: "+",
     labelKey: "stats.partnerLabel",
     subKey: "stats.partnerSub",
-    gradient: "linear-gradient(135deg, #5B43D6, #28B7C7)",
+    iconBg: "bg-[#F5EEFC] text-[#7C3AED] ring-1 ring-[#7C3AED]/20",
+    glowColor: "rgba(124,58,237,0.15)",
   },
 ];
 
@@ -46,46 +50,67 @@ export function StatsStrip() {
   const { language, t, dir } = useLanguage();
 
   return (
-    <section className="relative py-10 sm:py-12 border-y border-[#E4E7F2]" style={{ background: "#FAFBFD" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {stats.map((stat, i) => (
+    <section className="relative py-8 sm:py-12 lg:py-14 border-y border-[#E4E7F2]/80 bg-gradient-to-b from-[#F8FAFF] via-white to-[#F8FAFF] overflow-hidden">
+      {/* Background Soft Glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-24 left-1/4 w-72 h-72 rounded-full bg-[#5B43D6]/5 blur-3xl" />
+        <div className="absolute -bottom-24 right-1/4 w-72 h-72 rounded-full bg-[#28B7C7]/5 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <StaggerContainer
+          staggerDelay={0.08}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
+        >
+          {stats.map((stat) => (
             <motion.div
               key={stat.labelKey}
               variants={fadeUpItem}
-              className="flex items-center gap-3 sm:gap-5 relative"
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative p-4 sm:p-5 lg:p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-[#E8ECF6] shadow-[0_4px_20px_rgba(30,36,75,0.03)] hover:shadow-[0_12px_36px_rgba(91,67,214,0.09)] hover:border-[#5B43D6]/30 transition-all duration-300 group flex flex-col justify-between"
             >
-              {/* Icon Container */}
-              <div
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm"
-                style={{ background: stat.gradient }}
-              >
-                <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white stroke-[2px]" />
-              </div>
-
-              {/* Text Info */}
-              <div className="flex-1 min-w-0">
+              {/* Top Row: Icon Badge */}
+              <div className="flex items-center justify-between mb-3">
                 <div
-                  className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1E244B] leading-none mb-1 flex items-center"
-                  style={{ fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}
-                >
-                  {stat.isText ? (
-                    <span className="text-base sm:text-xl font-bold">{t(stat.valueKey!)}</span>
-                  ) : (
-                    <Counter value={Number(stat.value)} suffix={stat.suffix} />
+                  className={cn(
+                    "w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-xs",
+                    stat.iconBg
                   )}
+                >
+                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2px]" />
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-[#1E244B] mb-0.5 leading-tight">{t(stat.labelKey)}</div>
-                <div className="text-[10px] sm:text-xs text-[#5E647A] leading-tight hidden sm:block">{t(stat.subKey)}</div>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E2E5F3] group-hover:bg-[#5B43D6] transition-colors" />
               </div>
 
-              {/* Vertical Divider */}
-              {i < stats.length - 1 && (
-                <div className={cn(
-                  "hidden lg:block absolute top-1/2 -translate-y-1/2 w-[1px] h-10 bg-[#E4E7F2]",
-                  dir === "rtl" ? "left-0" : "right-0"
-                )} />
-              )}
+              {/* Metric Number */}
+              <div
+                className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1E244B] tracking-tight mb-1 group-hover:text-[#5B43D6] transition-colors"
+                style={{
+                  fontFamily:
+                    language === "ar"
+                      ? "Cairo, sans-serif"
+                      : "Manrope, sans-serif",
+                }}
+              >
+                {stat.isText ? (
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold">
+                    {t(stat.valueKey!)}
+                  </span>
+                ) : (
+                  <Counter value={Number(stat.value)} suffix={stat.suffix} />
+                )}
+              </div>
+
+              {/* Metric Label & Subtitle */}
+              <div>
+                <div className="text-xs sm:text-sm font-bold text-[#1E244B] leading-snug line-clamp-1">
+                  {t(stat.labelKey)}
+                </div>
+                <div className="text-[11px] sm:text-xs text-[#5E647A] leading-tight mt-0.5 hidden xs:block sm:block line-clamp-1">
+                  {t(stat.subKey)}
+                </div>
+              </div>
             </motion.div>
           ))}
         </StaggerContainer>
