@@ -133,21 +133,20 @@ export function ExpertiseSection() {
               >
                 {/* Visual Side */}
                 <Reveal direction={isEven ? "left" : "right"} className="w-full lg:w-1/2">
-                  <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(30,36,75,0.08)] border border-[#E4E7F2] group hover:shadow-[0_25px_60px_rgba(43,125,220,0.14)] transition-all duration-500">
+                  <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(30,36,75,0.08)] border border-[#E4E7F2] group">
                     <Image
                       src={sec.image}
                       alt={sec.title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/50 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />
 
                     {/* Floating Stat Badge */}
                     <div
                       className={cn(
-                        "absolute bottom-4 sm:bottom-6 px-4 py-2 rounded-full text-white text-xs font-bold shadow-md bg-gradient-to-r backdrop-blur-md border border-white/20",
-                        dir === "rtl" ? "right-4 sm:right-6" : "left-4 sm:left-6",
+                        "absolute bottom-4 sm:bottom-6 px-4 py-2 rounded-full text-white text-xs font-bold shadow-md bg-gradient-to-r",
                         sec.gradient
                       )}
                     >
@@ -176,7 +175,7 @@ export function ExpertiseSection() {
                   {/* Features Bullet List */}
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                     {sec.features.map((feat) => (
-                      <li key={feat} className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-[#F8FAFD] transition-colors">
+                      <li key={feat} className="flex items-center gap-2.5">
                         <CheckCircle2 className="w-4 h-4 text-[#28B7C7] flex-shrink-0" />
                         <span className="text-xs sm:text-sm font-semibold text-[#1E244B]">{feat}</span>
                       </li>
@@ -188,7 +187,7 @@ export function ExpertiseSection() {
                     {sec.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 rounded-full text-[11px] font-bold transition-colors"
+                        className="px-3 py-1 rounded-full text-[11px] font-bold"
                         style={{
                           background: "rgba(91,67,214,0.06)",
                           color: "#5B43D6",

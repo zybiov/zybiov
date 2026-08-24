@@ -278,23 +278,20 @@ export function HomeClientPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
               {expertiseSectors.map((sector, idx) => (
                 <Reveal key={sector.key} delay={idx * 0.1}>
-                  <div className="premium-card rounded-[24px] overflow-hidden bg-white border border-[#E4E7F2] h-full flex flex-col group hover:-translate-y-1.5 hover:shadow-[0_22px_65px_rgba(91,67,214,0.14)] transition-all duration-500 ease-out">
+                  <div className="premium-card rounded-[22px] overflow-hidden bg-white border border-[#E4E7F2] h-full flex flex-col group hover:shadow-[0_20px_60px_rgba(91,67,214,0.12)] transition-all duration-300">
                     {/* Photo */}
                     <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
                       <Image
                         src={sector.image}
                         alt={sector.title}
                         fill
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F28]/60 via-[#0B0F28]/10 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 via-transparent to-transparent" />
                       {/* Stat badge */}
                       <div
-                        className={cn(
-                          "absolute bottom-3.5 px-3.5 py-1.5 rounded-full text-white text-[11px] font-bold backdrop-blur-md border border-white/20 shadow-sm",
-                          dir === "rtl" ? "right-3.5" : "left-3.5"
-                        )}
+                        className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-white text-[11px] font-bold"
                         style={{ background: sector.iconGradient }}
                       >
                         {sector.stat}
@@ -304,7 +301,7 @@ export function HomeClientPage() {
                     {/* Content */}
                     <div className="p-6 sm:p-7 flex flex-col flex-1">
                       <h3
-                        className="text-lg sm:text-xl font-bold text-[#1E244B] mb-3 group-hover:text-[#5B43D6] transition-colors duration-300"
+                        className="text-lg sm:text-xl font-bold text-[#1E244B] mb-3"
                         style={{ fontFamily: "Manrope, sans-serif" }}
                       >
                         {sector.title}
@@ -317,9 +314,9 @@ export function HomeClientPage() {
                         {sector.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors duration-200"
+                            className="px-2.5 py-1 rounded-full text-[11px] font-semibold"
                             style={{
-                              background: "rgba(91,67,214,0.06)",
+                              background: "rgba(91,67,214,0.07)",
                               color: "#5B43D6",
                             }}
                           >
@@ -334,7 +331,7 @@ export function HomeClientPage() {
             </div>
 
             <Reveal className="text-center">
-              <Link href="/expertise" className="btn-primary active:scale-[0.98] transition-transform">
+              <Link href="/expertise" className="btn-primary">
                 {t("expertise.cta")}
                 <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
               </Link>
@@ -353,37 +350,39 @@ export function HomeClientPage() {
               <div className="h-px flex-1 bg-[#E4E7F2]" />
             </Reveal>
           </div>
-          <div className="relative overflow-hidden py-2">
-            <div className="flex gap-6 sm:gap-8 animate-marquee whitespace-nowrap" style={{ width: "max-content" }}>
-              {[...partners, ...partners].map((partner, i) => (
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(90deg, white 0%, transparent 100%)" }} />
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(270deg, white 0%, transparent 100%)" }} />
+            <div className="marquee-track">
+              {[...partners, ...partners].map((p, i) => (
                 <div
-                  key={`${partner.name}-${i}`}
-                  className="flex items-center gap-3 px-5 py-3 rounded-xl border border-[#E4E7F2] bg-[#FAFBFD] hover:bg-white hover:border-[#5B43D6]/30 hover:shadow-md transition-all duration-300 flex-shrink-0 group cursor-default"
+                  key={`${p.name}-${i}`}
+                  className="flex items-center justify-center mx-10 sm:mx-14 text-[#8892A4] hover:text-[#1E244B] transition-colors duration-300 select-none"
+                  title={p.name}
                 >
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs text-white flex-shrink-0 group-hover:scale-105 transition-transform duration-300" style={{ background: "#5B43D6" }}>
-                    {partner.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-[#1E244B] text-xs sm:text-sm group-hover:text-[#5B43D6] transition-colors">
-                      {partner.name}
-                    </p>
-                  </div>
+                  {p.svg}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── Why Choose Zybiov Teaser Section ── */}
-        <section className="py-16 sm:py-24 lg:py-32 bg-[#F8FAFD]">
+        {/* ── Why Choose Zybiov ── */}
+        <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-white">
+          <div className="absolute top-1/2 right-0 w-96 h-96 rounded-full opacity-[0.03] pointer-events-none"
+            style={{ background: "radial-gradient(circle, #5B43D6 0%, transparent 70%)" }} />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Left: Text & Features */}
-              <div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              {/* Left: Text */}
+              <div className="flex flex-col">
                 <Reveal>
-                  <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("whyChooseUs.tag")}</span>
+                  <span className="section-tag mb-4 sm:mb-5">{t("whyChooseUs.tag")}</span>
+                </Reveal>
+                <Reveal delay={0.1}>
                   <h2
-                    className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1E244B] mb-5 sm:mb-6"
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E244B] leading-tight mb-5 sm:mb-6"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     {language === "en" ? (
@@ -423,28 +422,25 @@ export function HomeClientPage() {
                   </p>
                 </Reveal>
                 <Reveal delay={0.3}>
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-5 mb-8">
                     {whyFeatures.map((feat) => (
-                      <div
-                        key={feat.title}
-                        className="flex items-start gap-4 rounded-2xl p-4 sm:p-4.5 border border-[#E4E7F2] bg-white hover:border-[#2B7DDC]/30 hover:shadow-md transition-all duration-300 group"
-                      >
+                      <div key={feat.title} className="flex items-start gap-4 rounded-xl p-4 border border-[#E4E7F2] bg-[#FAFBFD]">
                         <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                           style={{ background: "linear-gradient(135deg, rgba(91,67,214,0.1), rgba(43,125,220,0.1))" }}
                         >
                           <feat.icon className="w-5 h-5 text-[#5B43D6]" />
                         </div>
                         <div>
-                          <p className="font-bold text-[#1E244B] text-sm mb-0.5 group-hover:text-[#5B43D6] transition-colors">{feat.title}</p>
-                          <p className="text-xs text-[#5E647A] leading-relaxed">{feat.desc}</p>
+                          <p className="font-bold text-[#1E244B] text-sm mb-0.5">{feat.title}</p>
+                          <p className="text-xs text-[#5E647A]">{feat.desc}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                 </Reveal>
                 <Reveal delay={0.4}>
-                  <Link href="/why-us" className="btn-primary active:scale-[0.98] transition-transform">
+                  <Link href="/reviews" className="btn-primary">
                     {t("whyChooseUs.cta")}
                     <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                   </Link>
