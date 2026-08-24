@@ -45,7 +45,7 @@ export function ExpertiseClientPage() {
           title={titleNode}
           description={t("expertisePage.desc")}
           tag={t("expertisePage.tag")}
-          bgImage="/production.png"
+          bgImage="/production.webp"
           breadcrumbLabel={language === "en" ? "Expertise" : "مجالات الخبرة"}
         />
 

@@ -15,18 +15,18 @@ export const metadata: Metadata = {
     "Mumbai liaison sourcing standards",
   ],
   alternates: {
-    canonical: "https://www.zybiov.com/why-us",
+    canonical: "https://zybiov.com/why-us",
     languages: {
-      "en": "https://www.zybiov.com/why-us",
-      "ar": "https://www.zybiov.com/why-us",
-      "x-default": "https://www.zybiov.com/why-us",
+      "en": "https://zybiov.com/why-us",
+      "ar": "https://zybiov.com/why-us",
+      "x-default": "https://zybiov.com/why-us",
     },
   },
   openGraph: {
     title: "Why Zybiov | Zybiov Multi-Activities Limited",
     description:
       "Discover why Zybiov is the preferred pharmaceutical distributor bridging global manufacturing in India (Mumbai) and Sudan.",
-    url: "https://www.zybiov.com/why-us",
+    url: "https://zybiov.com/why-us",
     type: "website",
   },
   twitter: {

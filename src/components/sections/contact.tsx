@@ -12,8 +12,8 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const socialLinks = [
   { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", handle: "www.zybiov.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421", handle: "LinkedIn Profile" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd", handle: "@zybiov.ltd" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/zybiov/", handle: "company/zybiov" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov", handle: "@zybiov" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/", handle: "Facebook Page" },
   { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov", handle: "YouTube Channel" },
 ];
@@ -152,32 +152,16 @@ export function ContactSection() {
       status: "new",
     };
 
-    console.log("[Firestore] Attempting to save inquiry payload to 'inquiries' collection...", payload);
-
-    try {
-      const docRef = await addDoc(collection(db, "inquiries"), payload);
-      console.log(`%c[Firestore Success] Document written successfully! Document ID: ${docRef.id}`, "color: #10B981; font-weight: bold;");
-    } catch (err: any) {
-      console.error(
-        `%c[Firestore Connection Error] Failed to write inquiry to Cloud Firestore database!`,
-        "color: #EF4444; font-weight: bold;",
-        {
-          errorCode: err?.code || "unknown",
-          errorMessage: err?.message || String(err),
-          errorStack: err?.stack,
-          targetCollection: "inquiries",
-          payload,
-        }
-      );
-      setServerError(
-        language === "en"
-          ? "There was a network or server issue submitting your message. Please check your connection or send us an email directly."
-          : "حدثت مشكلة في الاتصال بالخادم. يرجى التحقق من الاتصال بالإنترنت أو مراسلتنا مباشرة."
-      );
-    } finally {
-      setIsSubmitting(false);
-      setSubmitted(true);
+    if (db) {
+      try {
+        const docRef = await addDoc(collection(db, "inquiries"), payload);
+        console.log(`%c[Firestore Success] Document written successfully! Document ID: ${docRef.id}`, "color: #10B981; font-weight: bold;");
+      } catch (err: any) {
+        console.warn("[Firestore] Failed to write inquiry:", err?.message || err);
+      }
     }
+    setIsSubmitting(false);
+    setSubmitted(true);
 
     const subject = encodeURIComponent(`[${prefix}] from ${formData.name} (${formData.company || "Individual"})`);
     const body = encodeURIComponent(
@@ -312,8 +296,8 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">{language === "en" ? "Email" : "البريد الإلكتروني"}</p>
-                      <a href="mailto:zybiov.ltd88@gmail.com" className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
-                        zybiov.ltd88@gmail.com
+                      <a href="mailto:zybiovofficial@gmail.com" className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
+                        zybiovofficial@gmail.com
                       </a>
                     </div>
                   </div>

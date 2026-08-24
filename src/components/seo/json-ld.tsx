@@ -2,7 +2,7 @@ export function JsonLd() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Corporation",
-    "@id": "https://www.zybiov.com/#organization",
+    "@id": "https://zybiov.com/#organization",
     "name": "Zybiov Multi-Activities Limited",
     "legalName": "Zybiov Multi-Activities Limited",
     "alternateName": [
@@ -15,12 +15,13 @@ export function JsonLd() {
       "Zybiov Pharma",
       "Zybiov Multi-Activities"
     ],
-    "url": "https://www.zybiov.com",
-    "logo": "https://www.zybiov.com/logo.webp",
-    "image": "https://www.zybiov.com/og-image.png",
+    "url": "https://zybiov.com",
+    "logo": "https://zybiov.com/logo.webp",
+    "image": "https://zybiov.com/og-image.png",
+    "email": "zybiovofficial@gmail.com",
     "sameAs": [
-      "https://www.linkedin.com/in/zybiov-co-ltd-976298421",
-      "https://www.instagram.com/zybiov.ltd",
+      "https://www.linkedin.com/company/zybiov/",
+      "https://www.instagram.com/zybiov",
       "https://www.facebook.com/share/176TZy5JGM/",
       "https://www.youtube.com/@Zybiov"
     ],
@@ -29,6 +30,7 @@ export function JsonLd() {
       {
         "@type": "ContactPoint",
         "telephone": "+249-111-909-092",
+        "email": "zybiovofficial@gmail.com",
         "contactType": "customer service",
         "areaServed": ["SD", "IN", "Global"],
         "availableLanguage": ["Arabic", "English"]
@@ -54,13 +56,13 @@ export function JsonLd() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "WholesaleStore",
-    "@id": "https://www.zybiov.com/#localbusiness",
+    "@id": "https://zybiov.com/#localbusiness",
     "name": "Zybiov Multi-Activities Limited",
     "alternateName": "Zybiov",
-    "logo": "https://www.zybiov.com/logo.webp",
-    "image": "https://www.zybiov.com/og-image.png",
+    "logo": "https://zybiov.com/logo.webp",
+    "image": "https://zybiov.com/og-image.png",
     "telephone": "+249-111-909-092",
-    "url": "https://www.zybiov.com",
+    "url": "https://zybiov.com",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -90,13 +92,13 @@ export function JsonLd() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://www.zybiov.com/#website",
-    "url": "https://www.zybiov.com",
+    "@id": "https://zybiov.com/#website",
+    "url": "https://zybiov.com",
     "name": "Zybiov Multi-Activities Limited",
     "alternateName": "Zybiov",
     "description": "Zybiov — Global Pharmaceutical & Medical Supplies Distribution — Sudan & India",
     "publisher": {
-      "@id": "https://www.zybiov.com/#organization"
+      "@id": "https://zybiov.com/#organization"
     },
     "inLanguage": ["en", "ar"]
   };
@@ -109,31 +111,31 @@ export function JsonLd() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.zybiov.com"
+        "item": "https://zybiov.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "About Us",
-        "item": "https://www.zybiov.com/about"
+        "item": "https://zybiov.com/about"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Expertise",
-        "item": "https://www.zybiov.com/expertise"
+        "item": "https://zybiov.com/expertise"
       },
       {
         "@type": "ListItem",
         "position": 4,
         "name": "Why Us",
-        "item": "https://www.zybiov.com/why-us"
+        "item": "https://zybiov.com/why-us"
       },
       {
         "@type": "ListItem",
         "position": 5,
         "name": "Contact",
-        "item": "https://www.zybiov.com/contact"
+        "item": "https://zybiov.com/contact"
       }
     ]
   };
@@ -141,12 +143,12 @@ export function JsonLd() {
   const medicalBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": "https://www.zybiov.com/#medicalbusiness",
+    "@id": "https://zybiov.com/#medicalbusiness",
     "name": "Zybiov Multi-Activities Limited",
     "alternateName": ["Zybiov Pharma", "Zybiov Medical Supplies"],
-    "url": "https://www.zybiov.com",
-    "logo": "https://www.zybiov.com/logo.webp",
-    "image": "https://www.zybiov.com/og-image.png",
+    "url": "https://zybiov.com",
+    "logo": "https://zybiov.com/logo.webp",
+    "image": "https://zybiov.com/og-image.png",
     "telephone": "+249-111-909-092",
     "priceRange": "$$",
     "knowsAbout": [
@@ -178,13 +180,13 @@ export function JsonLd() {
   const indiaOfficeSchema = {
     "@context": "https://schema.org",
     "@type": "WholesaleStore",
-    "@id": "https://www.zybiov.com/#mumbaioffice",
+    "@id": "https://zybiov.com/#mumbaioffice",
     "name": "Zybiov Multi-Activities Limited — Mumbai Liaison & Sourcing Office",
     "alternateName": ["Zybiov Mumbai", "Zybiov India Sourcing Hub", "Zybiov Dava Bazar"],
-    "logo": "https://www.zybiov.com/logo.webp",
-    "image": "https://www.zybiov.com/og-image.png",
+    "logo": "https://zybiov.com/logo.webp",
+    "image": "https://zybiov.com/og-image.png",
     "telephone": "+249-111-909-092",
-    "url": "https://www.zybiov.com",
+    "url": "https://zybiov.com",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",

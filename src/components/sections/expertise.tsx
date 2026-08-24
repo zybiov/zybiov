@@ -16,7 +16,7 @@ export function ExpertiseSection() {
   const sectors = [
     {
       key: "pharma",
-      image: "/production.png",
+      image: "/production.webp",
       title: t("expertise.sector1Title"),
       desc: t("expertise.sector1Desc"),
       stat: t("expertise.sector1Stat"),
@@ -32,7 +32,7 @@ export function ExpertiseSection() {
     },
     {
       key: "equipment",
-      image: "/medical-equipment.png",
+      image: "/medical-equipment.webp",
       title: t("expertise.sector2Title"),
       desc: t("expertise.sector2Desc"),
       stat: t("expertise.sector2Stat"),
@@ -48,7 +48,7 @@ export function ExpertiseSection() {
     },
     {
       key: "supplements",
-      image: "/supplements.png",
+      image: "/supplements.webp",
       title: t("expertise.sector3Title"),
       desc: t("expertise.sector3Desc"),
       stat: t("expertise.sector3Stat"),

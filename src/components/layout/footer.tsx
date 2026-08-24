@@ -18,8 +18,8 @@ const footerLinks = [
 
 const socialLinks = [
   { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/zybiov/" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/" },
   { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov" },
 ];
@@ -137,8 +137,8 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-white/55 text-sm">
                 <Mail className="w-4 h-4 text-[#5B43D6] flex-shrink-0 mt-0.5" />
-                <a href="mailto:zybiov.ltd88@gmail.com" className="hover:text-white transition-colors break-all">
-                  zybiov.ltd88@gmail.com
+                <a href="mailto:zybiovofficial@gmail.com" className="hover:text-white transition-colors break-all">
+                  zybiovofficial@gmail.com
                 </a>
               </li>
             </ul>

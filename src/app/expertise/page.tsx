@@ -15,18 +15,18 @@ export const metadata: Metadata = {
     "International pharma imports Sudan",
   ],
   alternates: {
-    canonical: "https://www.zybiov.com/expertise",
+    canonical: "https://zybiov.com/expertise",
     languages: {
-      "en": "https://www.zybiov.com/expertise",
-      "ar": "https://www.zybiov.com/expertise",
-      "x-default": "https://www.zybiov.com/expertise",
+      "en": "https://zybiov.com/expertise",
+      "ar": "https://zybiov.com/expertise",
+      "x-default": "https://zybiov.com/expertise",
     },
   },
   openGraph: {
     title: "Areas of Expertise | Zybiov Multi-Activities Limited",
     description:
       "Explore Zybiov's core areas of expertise in Sudan & India: Sourcing and importation of pharmaceuticals, medical equipment, and premium supplements.",
-    url: "https://www.zybiov.com/expertise",
+    url: "https://zybiov.com/expertise",
     type: "website",
   },
   twitter: {

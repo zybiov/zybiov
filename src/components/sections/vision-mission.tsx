@@ -82,7 +82,7 @@ export function VisionMissionSection() {
           <Reveal delay={0.2} className="lg:col-span-1">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[300px]" style={{ aspectRatio: "3/4" }}>
               <Image
-                src="/patient-care.png"
+                src="/patient-care.webp"
                 alt="Zybiov delivering healthcare to Sudanese communities"
                 fill
                 className="object-cover"

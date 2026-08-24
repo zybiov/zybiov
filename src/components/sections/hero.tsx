@@ -88,32 +88,13 @@ export function HeroSection() {
       ? "Quality in Every Step Toward Better Healthcare."
       : "الجودة في كل خطوة نحو رعاية صحية أفضل.";
 
-  const words = sloganText.split(" ");
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12 },
-    },
-  };
-
-  const wordVariants: Variants = {
-    hidden: { opacity: 0, y: 18 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] },
-    },
-  };
-
   return (
     <section
       id="home"
       className="relative w-full min-h-screen overflow-hidden bg-[#0F142D]"
     >
       {/* ── Background Video Layers ── */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         {SLIDES.map((slide, i) => (
           <div
             key={slide.id}
@@ -127,14 +108,16 @@ export function HeroSection() {
               }}
               src={slide.src}
               poster={slide.poster}
-              autoPlay={i === 0}
               loop
               muted
               playsInline
-              preload={i === 0 ? "auto" : "none"}
+              preload="none"
+              tabIndex={-1}
               onError={() => next()}
               className="absolute inset-0 w-full h-full object-cover"
-            />
+            >
+              <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="Captions" default />
+            </video>
           </div>
         ))}
 
@@ -147,12 +130,7 @@ export function HeroSection() {
         className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-20 sm:pb-24 min-h-screen"
       >
         {/* Brand badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
+        <div className="mb-6">
           <span
             className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-white rounded-full shadow-lg border border-white/20"
             style={{
@@ -166,13 +144,10 @@ export function HeroSection() {
               ? "Zybiov Multi-Activities Limited"
               : "شركة زيبوف للأنشطة المتعددة المحدودة"}
           </span>
-        </motion.div>
+        </div>
 
         {/* Headline */}
-        <motion.h1
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+        <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight max-w-4xl mb-6 leading-[1.12]"
           style={{
             fontFamily:
@@ -180,35 +155,19 @@ export function HeroSection() {
             textShadow: "0 2px 10px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)",
           }}
         >
-          {words.map((word, index) => (
-            <motion.span
-              key={index}
-              variants={wordVariants}
-              className="inline-block mr-[0.25em] rtl:ml-[0.25em] rtl:mr-0"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.h1>
+          {sloganText}
+        </h1>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 0.7 }}
+        {/* Description - LCP element painted immediately without JS opacity delay */}
+        <p
           className="text-base sm:text-lg md:text-xl leading-relaxed text-white max-w-2xl mb-10 font-normal"
           style={{ textShadow: "0 2px 12px rgba(0,0,0,0.85)" }}
         >
           {t("hero.desc")}
-        </motion.p>
+        </p>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.95, duration: 0.6 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-14"
-        >
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-14">
           <Link href="/expertise" className="btn-primary text-sm sm:text-base">
             {t("hero.btnExpertise")}
             <ArrowRight
@@ -226,14 +185,11 @@ export function HeroSection() {
           >
             {t("contactUs")}
           </Link>
-        </motion.div>
+        </div>
 
-        {/* ── Background Video Controls (Dots & Arrows) ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.15, duration: 0.6 }}
-          className="flex items-center gap-4 px-4 py-2 rounded-full border border-white/20 shadow-xl"
+        {/* ── Background Video Controls (Dots & Arrows with 44px tap targets) ── */}
+        <div
+          className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/20 shadow-xl"
           style={{
             background: "rgba(30,36,75,0.55)",
             backdropFilter: "blur(12px)",
@@ -244,27 +200,31 @@ export function HeroSection() {
           <button
             onClick={prev}
             aria-label="Previous video background"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-white transition-all duration-200 hover:bg-white/20 active:scale-95 cursor-pointer"
+            className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full text-white transition-all duration-200 hover:bg-white/20 active:scale-95 cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          {/* Indicator Dots */}
-          <div className="flex items-center gap-2">
+          {/* Indicator Dots with min 44x44px touch targets */}
+          <div className="flex items-center">
             {SLIDES.map((_, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
                 aria-label={`Go to background video ${i + 1}`}
-                className="transition-all duration-300 rounded-full focus:outline-none cursor-pointer"
-                style={{
-                  width: i === current ? "22px" : "8px",
-                  height: "8px",
-                  background: i === current ? "#28B7C7" : "rgba(255,255,255,0.45)",
-                  boxShadow:
-                    i === current ? "0 0 10px rgba(40,183,199,0.8)" : "none",
-                }}
-              />
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full focus:outline-none cursor-pointer"
+              >
+                <span
+                  className="transition-all duration-300 rounded-full inline-block"
+                  style={{
+                    width: i === current ? "22px" : "8px",
+                    height: "8px",
+                    background: i === current ? "#28B7C7" : "rgba(255,255,255,0.45)",
+                    boxShadow:
+                      i === current ? "0 0 10px rgba(40,183,199,0.8)" : "none",
+                  }}
+                />
+              </button>
             ))}
           </div>
 
@@ -272,11 +232,11 @@ export function HeroSection() {
           <button
             onClick={next}
             aria-label="Next video background"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-white transition-all duration-200 hover:bg-white/20 active:scale-95 cursor-pointer"
+            className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full text-white transition-all duration-200 hover:bg-white/20 active:scale-95 cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
-        </motion.div>
+        </div>
 
         {/* Current Background Video Scene Title */}
         <div className="mt-3 h-6 flex items-center">

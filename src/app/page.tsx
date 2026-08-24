@@ -18,18 +18,18 @@ export const metadata: Metadata = {
     "Sudan medical supply chain",
   ],
   alternates: {
-    canonical: "https://www.zybiov.com",
+    canonical: "https://zybiov.com",
     languages: {
-      "en": "https://www.zybiov.com",
-      "ar": "https://www.zybiov.com",
-      "x-default": "https://www.zybiov.com",
+      "en": "https://zybiov.com",
+      "ar": "https://zybiov.com",
+      "x-default": "https://zybiov.com",
     },
   },
   openGraph: {
     title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     description:
       "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
-    url: "https://www.zybiov.com",
+    url: "https://zybiov.com",
     type: "website",
   },
   twitter: {

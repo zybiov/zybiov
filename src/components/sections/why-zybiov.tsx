@@ -154,7 +154,7 @@ export function WhyZybiovSection() {
               {/* Large top */}
               <div className="relative rounded-3xl overflow-hidden col-span-2" style={{ aspectRatio: "16/9" }}>
                 <Image
-                  src="/advanced-research.png"
+                  src="/advanced-research.webp"
                   alt="Advanced Research Laboratory & Scientists"
                   fill
                   className="object-cover"
@@ -171,7 +171,7 @@ export function WhyZybiovSection() {
               {/* Bottom-left */}
               <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                 <Image
-                  src="/production.png"
+                  src="/production.webp"
                   alt="Pharmaceutical production"
                   fill
                   className="object-cover"
@@ -188,7 +188,7 @@ export function WhyZybiovSection() {
               {/* Bottom-right */}
               <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                 <Image
-                  src="/lab-digital.png"
+                  src="/lab-digital.webp"
                   alt="Digital health lab"
                   fill
                   className="object-cover"

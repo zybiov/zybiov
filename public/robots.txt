@@ -3,4 +3,5 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.zybiov.com/sitemap.xml
+Sitemap: https://zybiov.com/sitemap.xml
+

@@ -12,18 +12,18 @@ export const metadata: Metadata = {
     "Zybiov Multi-Activities Limited privacy",
   ],
   alternates: {
-    canonical: "https://www.zybiov.com/privacy-policy",
+    canonical: "https://zybiov.com/privacy-policy",
     languages: {
-      "en": "https://www.zybiov.com/privacy-policy",
-      "ar": "https://www.zybiov.com/privacy-policy",
-      "x-default": "https://www.zybiov.com/privacy-policy",
+      "en": "https://zybiov.com/privacy-policy",
+      "ar": "https://zybiov.com/privacy-policy",
+      "x-default": "https://zybiov.com/privacy-policy",
     },
   },
   openGraph: {
     title: "Privacy Policy | Zybiov Multi-Activities Limited",
     description:
       "Read the Privacy Policy and Terms of Service for Zybiov Multi-Activities Limited.",
-    url: "https://www.zybiov.com/privacy-policy",
+    url: "https://zybiov.com/privacy-policy",
     type: "website",
   },
   twitter: {

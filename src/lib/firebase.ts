@@ -1,6 +1,6 @@
-import { getApp, getApps, initializeApp } from "firebase/app";
-import { Analytics, getAnalytics, isSupported } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getApp, getApps, initializeApp, type FirebaseApp } from "firebase/app";
+import { type Analytics, getAnalytics, isSupported } from "firebase/analytics";
+import { getFirestore, type Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,17 +12,29 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Guard against re-initialization in Next.js hot module reloads
-const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const isFirebaseConfigured = Boolean(
+  firebaseConfig.apiKey && firebaseConfig.projectId
+);
 
+let app: FirebaseApp | null = null;
+let db: Firestore | null = null;
 let analyticsPromise: Promise<Analytics | null> = Promise.resolve(null);
 
-if (typeof window !== "undefined") {
-  analyticsPromise = isSupported().then((supported) =>
-    supported ? getAnalytics(app) : null
-  );
+if (isFirebaseConfigured) {
+  try {
+    app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+    db = getFirestore(app);
+
+    if (typeof window !== "undefined") {
+      analyticsPromise = isSupported()
+        .then((supported) => (supported && app ? getAnalytics(app) : null))
+        .catch(() => null);
+    }
+  } catch {
+    // Graceful fallback if config is invalid
+  }
 }
 
-export { app, db, analyticsPromise, firebaseConfig };
+export { app, db, analyticsPromise, firebaseConfig, isFirebaseConfigured };
+
 

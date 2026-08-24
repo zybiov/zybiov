@@ -15,18 +15,18 @@ export const metadata: Metadata = {
     "Global pharmaceutical trade",
   ],
   alternates: {
-    canonical: "https://www.zybiov.com/contact",
+    canonical: "https://zybiov.com/contact",
     languages: {
-      "en": "https://www.zybiov.com/contact",
-      "ar": "https://www.zybiov.com/contact",
-      "x-default": "https://www.zybiov.com/contact",
+      "en": "https://zybiov.com/contact",
+      "ar": "https://zybiov.com/contact",
+      "x-default": "https://zybiov.com/contact",
     },
   },
   openGraph: {
     title: "Contact Us | Zybiov Multi-Activities Limited",
     description:
       "Get in touch with Zybiov Multi-Activities Limited. Contact our offices in Khartoum, Sudan, and Mumbai, India, for global trade partnership inquiries.",
-    url: "https://www.zybiov.com/contact",
+    url: "https://zybiov.com/contact",
     type: "website",
   },
   twitter: {

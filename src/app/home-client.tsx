@@ -144,7 +144,7 @@ export function HomeClientPage() {
   const expertiseSectors = [
     {
       key: "1",
-      image: "/production.png",
+      image: "/production.webp",
       title: t("expertise.sector1Title"),
       desc: t("expertise.sector1Desc"),
       stat: t("expertise.sector1Stat"),
@@ -156,7 +156,7 @@ export function HomeClientPage() {
     },
     {
       key: "2",
-      image: "/medical-equipment.png",
+      image: "/medical-equipment.webp",
       title: t("expertise.sector2Title"),
       desc: t("expertise.sector2Desc"),
       stat: t("expertise.sector2Stat"),
@@ -168,7 +168,7 @@ export function HomeClientPage() {
     },
     {
       key: "3",
-      image: "/supplements.png",
+      image: "/supplements.webp",
       title: t("expertise.sector3Title"),
       desc: t("expertise.sector3Desc"),
       stat: t("expertise.sector3Stat"),
@@ -451,7 +451,7 @@ export function HomeClientPage() {
               <Reveal direction="right" className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden col-span-2" style={{ aspectRatio: "16/9" }}>
                   <Image
-                    src="/team-research.png"
+                    src="/team-research.webp"
                     alt="Zybiov research team"
                     fill
                     className="object-cover"
@@ -464,7 +464,7 @@ export function HomeClientPage() {
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <Image
-                    src="/lab-digital.png"
+                    src="/lab-digital.webp"
                     alt="Digital laboratory"
                     fill
                     className="object-cover"
@@ -477,7 +477,7 @@ export function HomeClientPage() {
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <Image
-                    src="/advanced-research.png"
+                    src="/advanced-research.webp"
                     alt="Advanced Research Laboratory"
                     fill
                     className="object-cover"

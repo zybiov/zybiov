@@ -56,7 +56,7 @@ export function AspirationsSection() {
           {/* Background image overlay */}
           <div className="absolute inset-0">
             <Image
-              src="/lab-digital.png"
+              src="/lab-digital.webp"
               alt="Future of healthcare innovation"
               fill
               className="object-cover opacity-10"

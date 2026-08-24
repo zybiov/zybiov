@@ -2,13 +2,11 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { LanguageProvider } from "@/components/layout/language-context";
-import { PageLoader } from "@/components/ui/loader";
 import { CookieBanner } from "@/components/ui/cookie-banner";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
 import { JsonLd } from "@/components/seo/json-ld";
 import { FloatingChatbot } from "@/components/ui/floating-chatbot";
-import { FirebaseAnalytics } from "@/components/analytics/firebase-analytics";
 import { Plus_Jakarta_Sans, Manrope, Cairo, Tajawal } from "next/font/google";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "G-28GVLEF2K7";
@@ -20,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.zybiov.com"),
+  metadataBase: new URL("https://zybiov.com"),
   title: {
     default: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution — Sudan & India",
     template: "%s | Zybiov Multi-Activities Limited",
@@ -53,16 +51,16 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   category: "Pharmaceutical & Healthcare Distribution",
   alternates: {
-    canonical: "https://www.zybiov.com",
+    canonical: "https://zybiov.com",
     languages: {
-      "en": "https://www.zybiov.com",
-      "ar": "https://www.zybiov.com",
-      "x-default": "https://www.zybiov.com",
+      "en": "https://zybiov.com",
+      "ar": "https://zybiov.com",
+      "x-default": "https://zybiov.com",
     },
   },
   openGraph: {
     type: "website",
-    url: "https://www.zybiov.com",
+    url: "https://zybiov.com",
     title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     description:
       "Zybiov Multi-Activities Limited bridges global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa. Quality in Every Step.",
@@ -71,7 +69,7 @@ export const metadata: Metadata = {
     alternateLocale: ["ar_SD"],
     images: [
       {
-        url: "https://www.zybiov.com/og-image.png",
+        url: "https://zybiov.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Zybiov Multi-Activities Limited — Global Pharmaceutical Distribution",
@@ -83,7 +81,7 @@ export const metadata: Metadata = {
     title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Sourcing",
     description:
       "Zybiov Multi-Activities Limited bridges global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
-    images: ["https://www.zybiov.com/og-image.png"],
+    images: ["https://zybiov.com/og-image.png"],
   },
   robots: {
     index: true,
@@ -126,14 +124,14 @@ const manrope = Manrope({
 const cairo = Cairo({
   subsets: ["arabic"],
   variable: "--font-cairo",
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "800"],
   display: "swap",
 });
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
   variable: "--font-tajawal",
-  weight: ["200", "300", "400", "500", "700", "800", "900"],
+  weight: ["400", "500", "700", "800"],
   display: "swap",
 });
 
@@ -146,8 +144,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable} ${manrope.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
         <JsonLd />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <script
           type="speculationrules"
           dangerouslySetInnerHTML={{
@@ -189,9 +186,7 @@ export default function RootLayout({
             `,
           }}
         />
-        <FirebaseAnalytics />
         <ScrollProgressBar />
-        <PageLoader />
         <LanguageProvider>
           <ScrollToTop />
           {children}

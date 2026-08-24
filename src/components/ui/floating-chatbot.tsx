@@ -328,6 +328,7 @@ export function FloatingChatbot() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
+              aria-label={isAr ? "إغلاق نافذة المحادثة" : "Close chat window"}
               className="text-white/60 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10"
             >
               <ChevronDown className="w-5 h-5" />
@@ -399,6 +400,7 @@ export function FloatingChatbot() {
             <button
               type="submit"
               disabled={!input.trim()}
+              aria-label={isAr ? "إرسال الرسالة" : "Send message"}
               className="w-9 h-9 rounded-xl bg-[#5B43D6] text-white flex items-center justify-center flex-shrink-0 hover:bg-[#4A31C0] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
             >
               <Send className={cn("w-4 h-4", isAr && "rotate-180")} />

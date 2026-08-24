@@ -15,18 +15,18 @@ export const metadata: Metadata = {
     "India Sudan pharma sourcing",
   ],
   alternates: {
-    canonical: "https://www.zybiov.com/about",
+    canonical: "https://zybiov.com/about",
     languages: {
-      "en": "https://www.zybiov.com/about",
-      "ar": "https://www.zybiov.com/about",
-      "x-default": "https://www.zybiov.com/about",
+      "en": "https://zybiov.com/about",
+      "ar": "https://zybiov.com/about",
+      "x-default": "https://zybiov.com/about",
     },
   },
   openGraph: {
     title: "About Us | Zybiov Multi-Activities Limited",
     description:
       "Discover Zybiov Multi-Activities Limited, a premier pharmaceutical importer and distributor bridging India and Sudan.",
-    url: "https://www.zybiov.com/about",
+    url: "https://zybiov.com/about",
     type: "website",
   },
   twitter: {
