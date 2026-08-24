@@ -499,53 +499,63 @@ export function HomeClientPage() {
         {/* ── CTA Buttons & Mini Stats (Moved Down) ── */}
         <QuickActionsSection />
 
-        {/* ── Contact Teaser Banner ── */}
-        <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden bg-[#1E244B] text-white">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full opacity-10 bg-gradient-to-br from-[#5B43D6] to-[#28B7C7] blur-3xl translate-x-1/3 -translate-y-1/3" />
-            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-          </div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center z-10">
-            <Reveal>
-              <span
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-5 sm:mb-6"
-                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.15)" }}
-              >
-                {t("contactTeaser.tag")}
-              </span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2
-                className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-5 sm:mb-6"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                {t("contactTeaser.title")}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-                {t("contactTeaser.desc")}
-              </p>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="btn-primary"
-                  style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}
-                >
-                  {t("contactTeaser.ctaContact")}
-                  <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
-                </Link>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:bg-white/10"
-                  style={{ border: "2px solid rgba(255,255,255,0.3)", fontSize: "0.9375rem" }}
-                >
-                  {t("contactTeaser.ctaAbout")}
-                </Link>
+        {/* ── Contact Teaser Showcase (Elevated Floating Card on Light Canvas) ── */}
+        <section className="relative py-16 sm:py-24 overflow-hidden bg-[#F4F6FC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+              className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden p-8 sm:p-14 lg:p-20 text-center shadow-[0_30px_90px_rgba(15,20,45,0.25)] border border-white/20"
+              style={{
+                background: "linear-gradient(135deg, #0D122B 0%, #161D42 45%, #0E1430 100%)",
+              }}
+            >
+              {/* Internal glowing ambient lights */}
+              <div className="absolute top-0 right-0 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full opacity-25 bg-gradient-to-br from-[#5B43D6] to-[#28B7C7] blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] rounded-full opacity-20 bg-gradient-to-tr from-[#2B7DDC] to-[#5B43D6] blur-3xl -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+              <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+
+              <div className="relative z-10 max-w-3xl mx-auto">
+                <Reveal>
+                  <span
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6"
+                    style={{ background: "rgba(255,255,255,0.08)", color: "#28B7C7", border: "1px solid rgba(40,183,199,0.3)" }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#28B7C7] animate-pulse" />
+                    {t("contactTeaser.tag")}
+                  </span>
+                </Reveal>
+                <Reveal delay={0.1}>
+                  <h2
+                    className="text-2xl sm:text-3xl lg:text-5xl font-extrabold text-white mb-5 sm:mb-6 leading-tight"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    {t("contactTeaser.title")}
+                  </h2>
+                </Reveal>
+                <Reveal delay={0.2}>
+                  <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-normal">
+                    {t("contactTeaser.desc")}
+                  </p>
+                </Reveal>
+                <Reveal delay={0.3}>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <Link
+                      href="/contact"
+                      className="btn-primary py-3.5 px-8 text-sm sm:text-base font-semibold shadow-[0_10px_30px_rgba(91,67,214,0.4)]"
+                      style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}
+                    >
+                      {t("contactTeaser.ctaContact")}
+                      <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
+                    </Link>
+                    <Link
+                      href="/about"
+                      className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 bg-white/10 hover:bg-white/20 border border-white/20 text-sm sm:text-base backdrop-blur-sm"
+                    >
+                      {t("contactTeaser.ctaAbout")}
+                    </Link>
+                  </div>
+                </Reveal>
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
       </main>

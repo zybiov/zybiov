@@ -28,7 +28,7 @@ export function Footer() {
   const { language, t, dir } = useLanguage();
 
   return (
-    <footer className="bg-[#1E244B] text-white relative overflow-hidden">
+    <footer className="bg-[#1E244B] text-white relative overflow-hidden border-t border-white/10">
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-[#5B43D6]/10 blur-3xl -translate-x-1/2 -translate-y-1/2" />

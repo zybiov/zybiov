@@ -53,23 +53,30 @@ export function AspirationsSection() {
             boxShadow: "0 40px 100px rgba(30,36,75,0.3)",
           }}
         >
-          {/* Background image overlay */}
+          {/* Background image with cinematic depth */}
           <div className="absolute inset-0">
             <Image
-              src="/molecule.webp"
+              src="/vision-future.webp"
               alt="Future of healthcare innovation and pharmaceutical networks"
               fill
-              className="object-cover opacity-10"
+              className="object-cover opacity-35"
               sizes="100vw"
             />
           </div>
 
-          {/* Gradient overlays */}
+          {/* Cinematic lighting & contrast overlay */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, rgba(91,67,214,0.35) 0%, rgba(43,125,220,0.2) 50%, rgba(40,183,199,0.15) 100%)",
+                "radial-gradient(ellipse at center, rgba(30,36,75,0.3) 0%, rgba(14,18,48,0.85) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(91,67,214,0.4) 0%, rgba(43,125,220,0.25) 50%, rgba(40,183,199,0.2) 100%)",
             }}
           />
 
