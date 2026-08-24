@@ -63,10 +63,12 @@ export function HeroSection() {
 
   // Delay video loading to ensure initial LCP paints instantly without network congestion
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setVideoEnabled(true);
-    }, 1000);
-    return () => clearTimeout(timer);
+    if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      const timer = setTimeout(() => {
+        setVideoEnabled(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Auto-advance timer
@@ -105,6 +107,7 @@ export function HeroSection() {
           alt="Precision Pharmaceutical Research Laboratory"
           fill
           priority
+          unoptimized
           sizes="100vw"
           className="object-cover"
         />
