@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import React from "react";
 import { Counter } from "@/components/ui/counter";
-import { Award, Package, Globe2, Building2, Sparkles, TrendingUp, ShieldCheck } from "lucide-react";
+import { Award, Package, Globe2, Building2 } from "lucide-react";
 import { StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 
@@ -19,8 +19,10 @@ interface StatItem {
   tag: string;
   tagAr: string;
   color: string;
+  cardBorderHover: string;
+  cardShadowHover: string;
   beamGradient: string;
-  spotlightColor: string;
+  radialGlow: string;
   badgeBg: string;
   badgeText: string;
   badgeBorder: string;
@@ -37,11 +39,13 @@ const stats: StatItem[] = [
     tag: "Excellence",
     tagAr: "التميز",
     color: "#5B43D6",
+    cardBorderHover: "hover:border-[#5B43D6]/40",
+    cardShadowHover: "hover:shadow-[0_16px_40px_rgba(91,67,214,0.12)]",
     beamGradient: "from-transparent via-[#5B43D6] to-transparent",
-    spotlightColor: "rgba(91, 67, 214, 0.18)",
+    radialGlow: "radial-gradient(circle at top right, rgba(91, 67, 214, 0.12), transparent 70%)",
     badgeBg: "bg-[#EEECFC]",
     badgeText: "text-[#5B43D6]",
-    badgeBorder: "border-[#5B43D6]/25",
+    badgeBorder: "border-[#5B43D6]/20",
     beaconColor: "bg-[#5B43D6]",
   },
   {
@@ -53,11 +57,13 @@ const stats: StatItem[] = [
     tag: "Catalog",
     tagAr: "المنتجات",
     color: "#2B7DDC",
+    cardBorderHover: "hover:border-[#2B7DDC]/40",
+    cardShadowHover: "hover:shadow-[0_16px_40px_rgba(43,125,220,0.12)]",
     beamGradient: "from-transparent via-[#2B7DDC] to-transparent",
-    spotlightColor: "rgba(43, 125, 220, 0.18)",
+    radialGlow: "radial-gradient(circle at top right, rgba(43, 125, 220, 0.12), transparent 70%)",
     badgeBg: "bg-[#EBF5FF]",
     badgeText: "text-[#2B7DDC]",
-    badgeBorder: "border-[#2B7DDC]/25",
+    badgeBorder: "border-[#2B7DDC]/20",
     beaconColor: "bg-[#28B7C7]",
   },
   {
@@ -69,11 +75,13 @@ const stats: StatItem[] = [
     tag: "Nationwide",
     tagAr: "سودانياً",
     color: "#0E95A4",
+    cardBorderHover: "hover:border-[#0E95A4]/40",
+    cardShadowHover: "hover:shadow-[0_16px_40px_rgba(14,149,164,0.12)]",
     beamGradient: "from-transparent via-[#0E95A4] to-transparent",
-    spotlightColor: "rgba(14, 149, 164, 0.18)",
+    radialGlow: "radial-gradient(circle at top right, rgba(14, 149, 164, 0.12), transparent 70%)",
     badgeBg: "bg-[#E6F9FB]",
     badgeText: "text-[#0E95A4]",
-    badgeBorder: "border-[#28B7C7]/25",
+    badgeBorder: "border-[#28B7C7]/20",
     beaconColor: "bg-[#10B981]",
   },
   {
@@ -85,17 +93,19 @@ const stats: StatItem[] = [
     tag: "Partners",
     tagAr: "الشركاء",
     color: "#7C3AED",
+    cardBorderHover: "hover:border-[#7C3AED]/40",
+    cardShadowHover: "hover:shadow-[0_16px_40px_rgba(124,58,237,0.12)]",
     beamGradient: "from-transparent via-[#EC4899] to-transparent",
-    spotlightColor: "rgba(124, 58, 237, 0.18)",
+    radialGlow: "radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 70%)",
     badgeBg: "bg-[#F5EEFC]",
     badgeText: "text-[#7C3AED]",
-    badgeBorder: "border-[#7C3AED]/25",
+    badgeBorder: "border-[#7C3AED]/20",
     beaconColor: "bg-[#EC4899]",
   },
 ];
 
-// Aceternity Interactive Glow Card
-function AceternityStatCard({
+// GPU-Accelerated High-Performance Glow Card
+function StatCardItem({
   stat,
   language,
   t,
@@ -104,63 +114,41 @@ function AceternityStatCard({
   language: string;
   t: (k: string) => string;
 }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = useCallback(
-    ({ currentTarget, clientX, clientY }: React.MouseEvent) => {
-      const { left, top } = currentTarget.getBoundingClientRect();
-      mouseX.set(clientX - left);
-      mouseY.set(clientY - top);
-    },
-    [mouseX, mouseY]
-  );
-
   return (
     <motion.div
       variants={fadeUpItem}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="group relative rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 bg-white/90 backdrop-blur-xl border border-[#E2E6F2] shadow-[0_4px_24px_rgba(30,36,75,0.04)] hover:shadow-[0_16px_40px_rgba(30,36,75,0.08)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+      whileHover={{ y: -3 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className={cn(
+        "group relative rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6",
+        "bg-white/95 backdrop-blur-md border border-[#E2E6F2]",
+        "shadow-[0_4px_20px_rgba(30,36,75,0.03)]",
+        "transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden",
+        stat.cardBorderHover,
+        stat.cardShadowHover
+      )}
+      style={{ willChange: "transform, box-shadow" }}
     >
-      {/* ── Aceternity Mouse-Follow Spotlight Glow ── */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-2xl sm:rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`radial-gradient(180px circle at ${mouseX}px ${mouseY}px, ${stat.spotlightColor}, transparent 80%)`,
-        }}
+      {/* ── Smooth Ambient Radial Glow ── */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"
+        style={{ background: stat.radialGlow }}
       />
 
-      {/* ── Aceternity Border Spotlight Halo ── */}
-      <motion.div
-        className="pointer-events-none absolute -inset-[1px] rounded-2xl sm:rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`radial-gradient(140px circle at ${mouseX}px ${mouseY}px, ${stat.color}, transparent 70%)`,
-          maskImage:
-            "linear-gradient(black, black) content-box, linear-gradient(black, black)",
-          maskComposite: "exclude",
-          WebkitMaskComposite: "xor",
-          padding: "1.5px",
-        }}
-      />
-
-      {/* ── Top Neon Beam Highlight ── */}
+      {/* ── Top Neon Accent Beam ── */}
       <div
         className={cn(
-          "absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r opacity-40 group-hover:opacity-100 transition-opacity duration-300",
+          "absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r transition-all duration-300 origin-center scale-x-60 group-hover:scale-x-100 opacity-60 group-hover:opacity-100",
           stat.beamGradient
         )}
       />
 
       {/* ── Top Row: Icon Badge & Live Beacon ── */}
-      <div className="relative z-10 flex items-center justify-between mb-3.5">
+      <div className="relative z-10 flex items-center justify-between mb-3">
         <div
           className={cn(
-            "w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl border flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs",
+            "w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl border flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-xs",
             stat.badgeBg,
             stat.badgeText,
             stat.badgeBorder
@@ -174,7 +162,7 @@ function AceternityStatCard({
           <span className="relative flex h-1.5 w-1.5">
             <span
               className={cn(
-                "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75",
+                "animate-ping absolute inline-flex h-full w-full rounded-full opacity-60",
                 stat.beaconColor
               )}
             />
@@ -185,23 +173,23 @@ function AceternityStatCard({
               )}
             />
           </span>
-          <span className="tracking-wide">
+          <span className="tracking-wide font-medium">
             {language === "ar" ? stat.tagAr : stat.tag}
           </span>
         </div>
       </div>
 
-      {/* ── Metric Value Counter with Gradient Shine ── */}
+      {/* ── Metric Value Counter with Crisp Typography ── */}
       <div className="relative z-10 my-1">
         <div
-          className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E244B] tracking-tight group-hover:bg-gradient-to-r group-hover:from-[#1E244B] group-hover:to-[#5B43D6] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300"
+          className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1E244B] tracking-tight group-hover:text-[#5B43D6] transition-colors duration-200"
           style={{
             fontFamily:
               language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif",
           }}
         >
           {stat.isText ? (
-            <span className="text-xl sm:text-2xl lg:text-3xl font-black">
+            <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold">
               {t(stat.valueKey!)}
             </span>
           ) : (
@@ -243,11 +231,11 @@ export function StatsStrip() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <StaggerContainer
-          staggerDelay={0.08}
+          staggerDelay={0.06}
           className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
         >
           {stats.map((stat) => (
-            <AceternityStatCard
+            <StatCardItem
               key={stat.labelKey}
               stat={stat}
               language={language}
