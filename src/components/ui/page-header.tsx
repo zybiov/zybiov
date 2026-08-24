@@ -31,7 +31,7 @@ export function PageHeader({
       <div className="absolute inset-0 z-0 select-none pointer-events-none [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
         <motion.div
           initial={{ scale: 1.08, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.08 }}
+          animate={{ scale: 1, opacity: 0.05 }}
           transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full h-full"
         >
