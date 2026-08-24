@@ -2,9 +2,9 @@ import { ContactClientPage } from "./contact-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Us | Zybiov Multi-Activities Limited",
   description:
-    "Get in touch with Zybiov Multi-Activities Limited. Contact our headquarters in Khartoum, Sudan, or our operations liaison in Mumbai, India, for distribution inquiries and global trade partnerships.",
+    "Contact Zybiov Multi-Activities in Khartoum (Sudan) or Mumbai (India) for pharmaceutical supply and distribution partnerships.",
   keywords: [
     "Contact Zybiov",
     "Zybiov Sudan Phone Number",

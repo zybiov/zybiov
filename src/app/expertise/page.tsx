@@ -2,9 +2,9 @@ import { ExpertiseClientPage } from "./expertise-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Areas of Expertise",
+  title: "Areas of Expertise | Zybiov Multi-Activities",
   description:
-    "Explore Zybiov's core expertise: Sourcing and importation of premium pharmaceuticals directly from global manufacturers in India (Mumbai), alongside advanced medical equipment and nutritional supplements distribution in Sudan.",
+    "Explore Zybiov's core expertise: Importing quality pharmaceuticals, diagnostic devices, and nutritional supplements to Sudan.",
   keywords: [
     "Zybiov expertise",
     "Pharmaceutical products Sudan",

@@ -2,9 +2,9 @@ import { AboutClientPage } from "./about-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us | Zybiov Multi-Activities Limited",
   description:
-    "Discover Zybiov Multi-Activities Limited, a premier pharmaceutical importer and distributor. Learn about our headquarters in Sudan, our liaison & sourcing operations in Mumbai (India), and our vision for global healthcare networks.",
+    "Learn about Zybiov Multi-Activities Limited, bridging Indian pharmaceutical manufacturing with trusted distribution networks in Sudan.",
   keywords: [
     "About Zybiov",
     "Zybiov Multi-Activities Limited",

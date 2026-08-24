@@ -2,9 +2,9 @@ import { HomeClientPage } from "./home-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution — Sudan & India",
+  title: "Zybiov Multi-Activities | Global Pharma Distribution",
   description:
-    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
+    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor bridging manufacturing in India with Sudan.",
   keywords: [
     "Zybiov Multi-Activities Limited",
     "Zybiov Sudan",

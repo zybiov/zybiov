@@ -2,9 +2,9 @@ import { WhyUsClientPage } from "./why-us-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Why Zybiov",
+  title: "Why Zybiov | Zybiov Multi-Activities Limited",
   description:
-    "Discover why Zybiov is the preferred pharmaceutical distributor. Driven by global manufacturer partnerships, strict GMP standards compliance, and an optimized logistics network bridging India (Mumbai) and Sudan.",
+    "Discover why healthcare providers trust Zybiov: WHO-GMP partner standards, strict cold-chain logistics, and proven reliability.",
   keywords: [
     "Why Zybiov",
     "Pharmaceutical distribution standards Sudan",

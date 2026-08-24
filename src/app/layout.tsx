@@ -20,11 +20,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://zybiov.com"),
   title: {
-    default: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution — Sudan & India",
+    default: "Zybiov Multi-Activities | Global Pharma Distribution",
     template: "%s | Zybiov Multi-Activities Limited",
   },
   description:
-    "Zybiov Multi-Activities Limited (Zybiov) is a premier pharmaceutical and medical supplies importer and distributor, bridging manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa.",
+    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor bridging manufacturing in India with Sudan.",
   keywords: [
     "zybiov",
     "Zybiov",
