@@ -24,6 +24,8 @@
 .DS_Store
 *.pem
 someshit/
+react-ui-gen/
+better-web-ui/
 
 # debug
 npm-debug.log*
