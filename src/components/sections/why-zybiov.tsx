@@ -171,8 +171,8 @@ export function WhyZybiovSection() {
               {/* Bottom-left */}
               <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                 <Image
-                  src="/production.webp"
-                  alt="Pharmaceutical production"
+                  src="/gmp-facilities.webp"
+                  alt="GMP Certified Pharmaceutical Production Facility"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"

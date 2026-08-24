@@ -144,7 +144,7 @@ export function HomeClientPage() {
   const expertiseSectors = [
     {
       key: "1",
-      image: "/production.webp",
+      image: "/gmp-facilities.webp",
       title: t("expertise.sector1Title"),
       desc: t("expertise.sector1Desc"),
       stat: t("expertise.sector1Stat"),
@@ -168,7 +168,7 @@ export function HomeClientPage() {
     },
     {
       key: "3",
-      image: "/supplements.webp",
+      image: "/nutritional-supplements.webp",
       title: t("expertise.sector3Title"),
       desc: t("expertise.sector3Desc"),
       stat: t("expertise.sector3Stat"),
@@ -464,7 +464,7 @@ export function HomeClientPage() {
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                   <Image
-                    src="/production.webp"
+                    src="/gmp-facilities.webp"
                     alt="GMP Certified Pharmaceutical Production Facility"
                     fill
                     className="object-cover"

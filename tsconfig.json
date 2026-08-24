@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "react-ui-gen", "better-web-ui", "claude-seo"]
+  "exclude": ["node_modules", "react-ui-gen", "better-web-ui", "claude-seo", "design-visual-frontend"]
 }
