@@ -71,7 +71,9 @@ export function Navbar() {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [visible, setVisible] = useState(true);
 
+  const lastScrollY = useRef(0);
   const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const { language, setLanguage, t, dir } = useLanguage();
@@ -123,10 +125,10 @@ export function Navbar() {
       icon: ShieldCheck,
       title: isAr ? "لماذا تختار زيبوف" : "Why Choose Zybiov",
       desc: isAr
-        ? "شراكات عالمية، معايير ISO وسلسلة توريد موثوقة على مدار الساعة"
-        : "Global network, ISO compliance, and 24/7 logistics resilience",
+        ? "شراكات عالمية، إدارة مهنية وامتثال قانوني كامل"
+        : "Global partners, professional governance & full compliance",
       href: "/why-us",
-      gradient: "from-[#2B7DDC] to-[#5B43D6]",
+      gradient: "from-[#2B7DDC] to-[#3B82F6]",
     },
     {
       icon: Layers,
@@ -139,6 +141,33 @@ export function Navbar() {
     },
   ];
 
+  // Smart Hide on Scroll Down / Show on Scroll Up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always visible near top of page
+      if (currentScrollY < 60) {
+        setVisible(true);
+      }
+      // Scrolling down -> hide navbar
+      else if (currentScrollY > lastScrollY.current + 8) {
+        if (!mobileOpen && !activeDropdown) {
+          setVisible(false);
+        }
+      }
+      // Scrolling up -> show navbar
+      else if (currentScrollY < lastScrollY.current - 8) {
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileOpen, activeDropdown]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -149,6 +178,7 @@ export function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setVisible(true);
   }, [pathname]);
 
   const handleMouseEnter = (key: string) => {
@@ -166,11 +196,14 @@ export function Navbar() {
     <>
       {/* ── Desktop & Mobile Floating Island Top Bar ── */}
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{
+          y: visible ? 0 : -100,
+          opacity: visible ? 1 : 0,
+        }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "fixed top-3 sm:top-5 left-1/2 transform -translate-x-1/2 z-50",
+          "fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50",
           "flex items-center justify-between",
           "px-3.5 sm:px-5 py-2 sm:py-2.5",
           "bg-white/90 backdrop-blur-2xl border border-[#E2E5F3]",
