@@ -16,7 +16,7 @@ export function ExpertiseSection() {
   const sectors = [
     {
       key: "pharma",
-      image: "/gmp-facilities.webp",
+      image: "/pharmaceutical-products.webp",
       title: t("expertise.sector1Title"),
       desc: t("expertise.sector1Desc"),
       stat: t("expertise.sector1Stat"),
