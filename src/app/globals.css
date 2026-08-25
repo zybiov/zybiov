@@ -88,7 +88,6 @@ body {
 /* All headings use Manrope by default — no need for inline fontFamily props */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-manrope), sans-serif;
-  color: var(--heading);
   line-height: 1.2;
   font-weight: 700;
 }
