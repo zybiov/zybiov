@@ -432,7 +432,7 @@ export function HomeClientPage() {
                   </div>
                 </Reveal>
                 <Reveal delay={0.4}>
-                  <Link href="/reviews" className="btn-primary">
+                  <Link href="/why-us" className="btn-primary">
                     {t("whyChooseUs.cta")}
                     <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                   </Link>

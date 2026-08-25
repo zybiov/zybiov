@@ -34,7 +34,7 @@ export function AboutClientPage() {
       <span
         className="bg-gradient-to-r from-[#5B43D6] to-[#2B7DDC] bg-clip-text text-transparent"
       >
-        زيبيوف
+        زيبوف
       </span>
     </>
   );
