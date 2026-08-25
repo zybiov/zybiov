@@ -42,13 +42,13 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div className="relative w-[148px] h-[44px] bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="relative w-[110px] h-[34px] md:w-[148px] md:h-[44px] bg-white rounded-lg shadow-sm overflow-hidden">
                 <Image
                   src="/logo.webp"
                   alt={t("brandName")}
                   fill
-                  className="object-contain scale-150"
-                  sizes="148px"
+                  className="object-contain scale-125 md:scale-150"
+                  sizes="(max-width: 768px) 110px, 148px"
                 />
               </div>
             </div>
