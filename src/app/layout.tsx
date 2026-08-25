@@ -19,21 +19,26 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zybiov.com"),
+  applicationName: "Zybiov Multi-Activities Limited",
   title: {
-    default: "Zybiov Multi-Activities | Global Pharma Distribution",
+    default: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     template: "%s | Zybiov Multi-Activities Limited",
   },
   description:
-    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor bridging manufacturing in India with Sudan.",
+    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor bridging manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa.",
   keywords: [
-    "zybiov",
     "Zybiov",
+    "zybiov",
     "zybiov.com",
     "Zybiov Multi-Activities Limited",
+    "Zybiov Multi-Activities",
     "Zybiov Sudan",
     "Zybiov India",
     "Zybiov Mumbai",
     "Zybiov Khartoum",
+    "Zybiov Pharma",
+    "شركة زيبوف للأنشطة المتعددة المحدودة",
+    "زيبوف",
     "pharmaceutical distribution Sudan",
     "medical supplies Sudan",
     "Mumbai pharmaceutical sourcing",
@@ -44,19 +49,15 @@ export const metadata: Metadata = {
     "healthcare solutions East Africa",
     "Sudan India pharma trade",
     "Khartoum medical importer",
+    "WHO-GMP medicine sourcing",
   ],
-  authors: [{ name: "Zybiov Multi-Activities Limited" }],
+  authors: [{ name: "Zybiov Multi-Activities Limited", url: "https://zybiov.com" }],
   creator: "Zybiov Multi-Activities Limited",
   publisher: "Zybiov Multi-Activities Limited",
   manifest: "/manifest.json",
   category: "Pharmaceutical & Healthcare Distribution",
   alternates: {
     canonical: "https://zybiov.com",
-    languages: {
-      "en": "https://zybiov.com",
-      "ar": "https://zybiov.com",
-      "x-default": "https://zybiov.com",
-    },
   },
   openGraph: {
     type: "website",

@@ -1,7 +1,90 @@
-# https://www.robotstxt.org/robotstxt.html
+# Zybiov Multi-Activities Limited — Robots Configuration
+# https://zybiov.com
+
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://zybiov.com/sitemap.xml
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Storebot-Google
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Social & Link Preview Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# AI & LLM Search Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Canonical Sitemap & Host
+Sitemap: https://zybiov.com/sitemap.xml
+Host: https://zybiov.com

@@ -9,61 +9,105 @@ export function JsonLd() {
       "Zybiov",
       "zybiov",
       "zybiov.com",
-      "زيبوف",
       "Zybiov Sudan",
       "Zybiov India",
+      "Zybiov Mumbai",
+      "Zybiov Khartoum",
       "Zybiov Pharma",
-      "Zybiov Multi-Activities"
+      "Zybiov Multi-Activities",
+      "شركة زيبوف للأنشطة المتعددة المحدودة",
+      "زيبوف"
     ],
+    "disambiguatingDescription": "Zybiov Multi-Activities Limited (distinct from Zybio Inc.) is a premier private limited pharmaceutical and medical supplies importer and distributor, bridging global manufacturing in India (Mumbai) with regional healthcare distribution networks in Sudan and East Africa.",
     "url": "https://zybiov.com",
-    "logo": "https://zybiov.com/logo.webp",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zybiov.com/logo.webp",
+      "width": "512",
+      "height": "512",
+      "caption": "Zybiov Multi-Activities Limited Official Logo"
+    },
     "image": "https://zybiov.com/og-image.png",
     "email": "zybiovofficial@gmail.com",
+    "telephone": "+249-111-909-092",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Khartoum, Sudan"
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "Zybiov",
+      "slogan": "Quality in Every Step | Global Pharmaceutical Distribution"
+    },
     "sameAs": [
       "https://www.linkedin.com/company/zybiov/",
       "https://www.instagram.com/zybiov",
       "https://www.facebook.com/share/176TZy5JGM/",
       "https://www.youtube.com/@Zybiov"
     ],
-    "description": "Zybiov Multi-Activities Limited (Zybiov) is a premier pharmaceutical and medical supplies importer and distributor, bridging global manufacturing in India (Mumbai) with regional distribution networks in Sudan and East Africa.",
+    "description": "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor bridging global manufacturing in India (Mumbai) with regional healthcare networks in Sudan.",
+    "knowsAbout": [
+      "Pharmaceutical Sourcing & Importation Sudan",
+      "Medical Diagnostic Equipment Wholesale",
+      "Nutritional Supplements Distribution",
+      "Cold-Chain Pharmaceutical Logistics",
+      "WHO-GMP Compliance & Quality Control",
+      "India-Sudan Pharmaceutical Trade",
+      "Hospital Equipment Supply Chain",
+      "East Africa Healthcare Logistics"
+    ],
     "contactPoint": [
       {
         "@type": "ContactPoint",
         "telephone": "+249-111-909-092",
         "email": "zybiovofficial@gmail.com",
-        "contactType": "customer service",
+        "contactType": "Customer Service & Trade Inquiries",
         "areaServed": ["SD", "IN", "Global"],
         "availableLanguage": ["Arabic", "English"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+249-111-909-092",
+        "email": "zybiovofficial@gmail.com",
+        "contactType": "Pharmaceutical Sourcing & Liaison",
+        "areaServed": ["IN", "SD"],
+        "availableLanguage": ["English", "Hindi", "Arabic"]
       }
     ],
     "address": [
       {
         "@type": "PostalAddress",
+        "streetAddress": "Khartoum Al-Riyadh",
         "addressLocality": "Khartoum",
         "addressCountry": "Sudan",
         "contactType": "Headquarters"
       },
       {
         "@type": "PostalAddress",
+        "streetAddress": "Kalbadevi Dava Bazar, Marine Lines",
         "addressLocality": "Mumbai",
         "addressRegion": "Maharashtra",
+        "postalCode": "400002",
         "addressCountry": "India",
-        "contactType": "Liaison & Sourcing Office"
+        "contactType": "Liaison & Sourcing Hub"
       }
     ]
   };
 
-  const localBusinessSchema = {
+  const localBusinessSudan = {
     "@context": "https://schema.org",
     "@type": "WholesaleStore",
-    "@id": "https://zybiov.com/#localbusiness",
-    "name": "Zybiov Multi-Activities Limited",
-    "alternateName": "Zybiov",
+    "@id": "https://zybiov.com/#sudan-hq",
+    "name": "Zybiov Multi-Activities Limited — Sudan Headquarters",
+    "alternateName": ["Zybiov Khartoum", "Zybiov Sudan", "Zybiov Pharma Sudan"],
     "logo": "https://zybiov.com/logo.webp",
     "image": "https://zybiov.com/og-image.png",
     "telephone": "+249-111-909-092",
+    "email": "zybiovofficial@gmail.com",
     "url": "https://zybiov.com",
     "priceRange": "$$",
+    "currenciesAccepted": "USD, SDG",
+    "paymentAccepted": "Bank Transfer, Commercial Letter of Credit",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Khartoum Al-Riyadh",
@@ -89,13 +133,53 @@ export function JsonLd() {
     }
   };
 
+  const localBusinessIndia = {
+    "@context": "https://schema.org",
+    "@type": "WholesaleStore",
+    "@id": "https://zybiov.com/#mumbai-liaison",
+    "name": "Zybiov Multi-Activities Limited — Mumbai Liaison & Sourcing Office",
+    "alternateName": ["Zybiov Mumbai", "Zybiov India Sourcing Hub", "Zybiov Dava Bazar Office"],
+    "logo": "https://zybiov.com/logo.webp",
+    "image": "https://zybiov.com/og-image.png",
+    "telephone": "+249-111-909-092",
+    "email": "zybiovofficial@gmail.com",
+    "url": "https://zybiov.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kalbadevi Dava Bazar, Marine Lines",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400002",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "18.9482",
+      "longitude": "72.8295"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  };
+
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://zybiov.com/#website",
     "url": "https://zybiov.com",
     "name": "Zybiov Multi-Activities Limited",
-    "alternateName": "Zybiov",
+    "alternateName": ["Zybiov", "zybiov.com", "زيبوف"],
     "description": "Zybiov — Global Pharmaceutical & Medical Supplies Distribution — Sudan & India",
     "publisher": {
       "@id": "https://zybiov.com/#organization"
@@ -106,6 +190,7 @@ export function JsonLd() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": "https://zybiov.com/#breadcrumb",
     "itemListElement": [
       {
         "@type": "ListItem",
@@ -116,25 +201,25 @@ export function JsonLd() {
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "About Us",
+        "name": "About Zybiov",
         "item": "https://zybiov.com/about"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Expertise",
+        "name": "Areas of Expertise",
         "item": "https://zybiov.com/expertise"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Why Us",
+        "name": "Why Zybiov",
         "item": "https://zybiov.com/why-us"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "name": "Contact",
+        "name": "Contact Zybiov",
         "item": "https://zybiov.com/contact"
       }
     ]
@@ -145,7 +230,7 @@ export function JsonLd() {
     "@type": "MedicalBusiness",
     "@id": "https://zybiov.com/#medicalbusiness",
     "name": "Zybiov Multi-Activities Limited",
-    "alternateName": ["Zybiov Pharma", "Zybiov Medical Supplies"],
+    "alternateName": ["Zybiov Pharma", "Zybiov Medical Supplies", "Zybiov Healthcare"],
     "url": "https://zybiov.com",
     "logo": "https://zybiov.com/logo.webp",
     "image": "https://zybiov.com/og-image.png",
@@ -177,43 +262,52 @@ export function JsonLd() {
     }
   };
 
-  const indiaOfficeSchema = {
+  const faqSchema = {
     "@context": "https://schema.org",
-    "@type": "WholesaleStore",
-    "@id": "https://zybiov.com/#mumbaioffice",
-    "name": "Zybiov Multi-Activities Limited — Mumbai Liaison & Sourcing Office",
-    "alternateName": ["Zybiov Mumbai", "Zybiov India Sourcing Hub", "Zybiov Dava Bazar"],
-    "logo": "https://zybiov.com/logo.webp",
-    "image": "https://zybiov.com/og-image.png",
-    "telephone": "+249-111-909-092",
-    "url": "https://zybiov.com",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Kalbadevi Dava Bazar, Marine Lines",
-      "addressLocality": "Mumbai",
-      "addressRegion": "Maharashtra",
-      "postalCode": "400002",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "18.9482",
-      "longitude": "72.8295"
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "09:00",
-      "closes": "18:00"
-    }
+    "@type": "FAQPage",
+    "@id": "https://zybiov.com/#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Zybiov Multi-Activities Limited?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor. Headquartered in Khartoum, Sudan with a liaison and sourcing hub in Mumbai, India, Zybiov delivers certified pharmaceuticals, diagnostic equipment, and nutritional supplements across healthcare networks in Sudan and East Africa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is Zybiov located?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zybiov Multi-Activities Limited operates its main corporate headquarters in Khartoum (Al-Riyadh), Sudan, and maintains an international pharmaceutical sourcing and liaison hub in Mumbai (Kalbadevi Dava Bazar), Maharashtra, India."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Zybiov Multi-Activities Limited related to Zybio Inc.?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Zybiov Multi-Activities Limited is an independent private limited corporation specializing in pharmaceutical distribution, healthcare procurement, and medical supply chain between India and Sudan. It is distinct from Zybio Inc."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What products and healthcare services does Zybiov distribute?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zybiov distributes three primary categories: 1) Essential and specialty pharmaceuticals sourced from WHO-GMP compliant manufacturers; 2) Advanced medical equipment, diagnostic machinery, and hospital consumables; 3) Clinical nutritional supplements and wellness formulations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can healthcare providers or manufacturers contact Zybiov?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can contact Zybiov directly via phone at +249-111-909-092, email at zybiovofficial@gmail.com, or through the official website contact form at https://zybiov.com/contact."
+        }
+      }
+    ]
   };
 
   return (
@@ -224,11 +318,11 @@ export function JsonLd() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSudan) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(indiaOfficeSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessIndia) }}
       />
       <script
         type="application/ld+json"
@@ -242,7 +336,10 @@ export function JsonLd() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     </>
   );
 }
-
