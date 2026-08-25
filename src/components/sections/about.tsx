@@ -10,7 +10,7 @@ import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 
 export function AboutSection() {
-  const { t } = useLanguage();
+  const { t, language, dir } = useLanguage();
 
   // 3D Tilt Logic
   const ref = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ export function AboutSection() {
   const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
@@ -55,9 +55,9 @@ export function AboutSection() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left: Image */}
-          <Reveal direction="left" className="relative w-full h-full">
+          <Reveal direction="left" className="relative w-full h-full order-2 lg:order-1">
             <motion.div
               ref={ref}
               onMouseMove={handleMouseMove}
@@ -70,7 +70,7 @@ export function AboutSection() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Inner wrapper for image scaling */}
-              <div className="relative w-full" style={{ aspectRatio: "4/5", transform: "translateZ(30px)" }}>
+              <div className="relative w-full" style={{ aspectRatio: "16/10", transform: "translateZ(30px)" }}>
                 <Image
                   src="/about-us.webp"
                   alt="Zybiov state-of-the-art pharmaceutical distribution and medical logistics center"
@@ -78,10 +78,10 @@ export function AboutSection() {
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                
+
                 {/* Glossy gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#1E244B]/30 via-transparent to-white/10 pointer-events-none mix-blend-overlay" />
-                
+
                 {/* Vignette */}
                 <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)] pointer-events-none" />
               </div>
@@ -89,14 +89,13 @@ export function AboutSection() {
           </Reveal>
 
           {/* Right: Content */}
-          <div className="flex flex-col">
+          <div className="flex flex-col order-1 lg:order-2">
             <Reveal>
               <span className="section-tag mb-5 sm:mb-6 inline-flex">{t("about.whoWeAre")}</span>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5 sm:mb-6"
-                style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5 sm:mb-6 text-[#1E244B]">
                 <span className="block text-sm uppercase tracking-wider text-[#5B43D6] mb-2 font-bold">
                   {t("about.titleLeading")}
                 </span>
@@ -112,27 +111,28 @@ export function AboutSection() {
               </h2>
             </Reveal>
 
-            <div className="space-y-3.5 sm:space-y-4.5 mb-6 sm:mb-8 bg-[#F8F9FE] sm:bg-transparent p-4 sm:p-0 rounded-2xl sm:rounded-none border border-[#E8ECF8] sm:border-0 shadow-sm sm:shadow-none">
+            {/* Plain paragraphs — no card, no box, no border */}
+            <div className="space-y-4 mb-6 sm:mb-8">
               <Reveal delay={0.15}>
-                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
+                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
                   {t("about.desc1")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.2}>
-                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
+                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
                   {t("about.desc2")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.25}>
-                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
+                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
                   {t("about.desc3")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.3}>
-                <p className="text-[14px] sm:text-[15px] md:text-base leading-[1.7] sm:leading-relaxed text-[#4E5569]">
+                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
                   {t("about.desc4")}
                 </p>
               </Reveal>
@@ -147,7 +147,7 @@ export function AboutSection() {
                     className="flex items-start gap-3"
                   >
                     <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#5B43D6]" />
-                    <span className="text-sm leading-snug font-semibold text-[#5E647A]">{item}</span>
+                    <span className="text-sm leading-snug font-semibold text-[#111827]">{item}</span>
                   </motion.div>
                 ))}
               </div>
@@ -163,12 +163,10 @@ export function AboutSection() {
             >
               <Link
                 href="/why-us"
-                className={cn(
-                  "btn-primary text-sm"
-                )}
+                className={cn("btn-primary text-sm", dir === "rtl" && "flex-row-reverse")}
               >
                 {t("whyChooseUs.cta")}
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
               </Link>
             </motion.div>
           </div>

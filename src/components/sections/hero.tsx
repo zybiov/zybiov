@@ -135,8 +135,6 @@ export function HeroSection() {
         <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight max-w-4xl mb-6 leading-[1.12]"
           style={{
-            fontFamily:
-              language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif",
             textShadow: "0 2px 10px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)",
           }}
         >

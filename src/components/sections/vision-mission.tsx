@@ -28,8 +28,7 @@ export function VisionMissionSection() {
         {/* Section header */}
         <Reveal className="text-center mb-12 sm:mb-16">
           <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("visionMission.badge")}</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
-            style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-[#1E244B]">
             {t("visionMission.title")}{" "}
             <span style={{
               background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
@@ -40,7 +39,7 @@ export function VisionMissionSection() {
               {t("visionMission.titleAccent")}
             </span>
           </h2>
-          <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: "#5E647A" }}>
+          <p className="text-base sm:text-lg max-w-2xl mx-auto text-[#6B7280]">
             {t("visionMission.sub")}
           </p>
         </Reveal>
@@ -68,7 +67,7 @@ export function VisionMissionSection() {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-5 sm:mb-6">
                   <Eye className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4" style={{ fontFamily: "Manrope, sans-serif" }}>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                   {t("visionMission.visionTitle")}
                 </h3>
                 <p className="text-white/85 leading-relaxed text-[14px] sm:text-[15px]">
@@ -120,7 +119,7 @@ export function VisionMissionSection() {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-5 sm:mb-6">
                   <Target className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4" style={{ fontFamily: "Manrope, sans-serif" }}>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                   {t("visionMission.missionTitle")}
                 </h3>
                 <p className="text-white/85 leading-relaxed text-[14px] sm:text-[15px]">

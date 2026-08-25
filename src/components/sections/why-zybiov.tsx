@@ -94,8 +94,7 @@ export function WhyZybiovSection() {
               <span className="section-tag mb-5 sm:mb-6 inline-flex">{t("why.badge")}</span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4"
-                style={{ color: "#1E244B", fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-[#1E244B]">
                 {t("why.title")}{" "}
                 <span style={{
                   background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",

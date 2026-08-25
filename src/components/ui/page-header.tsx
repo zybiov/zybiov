@@ -115,7 +115,7 @@ export function PageHeader({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-5 max-w-4xl"
-            style={{ fontFamily: "Manrope, sans-serif", lineHeight: 1.15 }}
+            style={{ lineHeight: 1.15 }}
           >
             {title}
           </motion.h1>

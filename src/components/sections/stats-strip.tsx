@@ -183,10 +183,7 @@ function StatCardItem({
       <div className="relative z-10 my-1">
         <div
           className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1E244B] tracking-tight group-hover:text-[#5B43D6] transition-colors duration-200"
-          style={{
-            fontFamily:
-              language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif",
-          }}
+          style={{ fontFamily: "var(--font-manrope)" }}
         >
           {stat.isText ? (
             <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold">

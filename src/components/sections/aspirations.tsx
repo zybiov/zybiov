@@ -123,7 +123,6 @@ export function AspirationsSection() {
               <Reveal delay={0.1}>
                 <h2
                   className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   {t("aspirations.title")}
                 </h2>

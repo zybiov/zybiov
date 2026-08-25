@@ -242,8 +242,7 @@ export function ContactSection() {
         {/* Header */}
         <Reveal className="text-center mb-12 sm:mb-16">
           <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("contactPage.tag")}</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
-            style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-[#1E244B]">
             {language === "en" ? (
               <>
                 Let&apos;s{" "}
@@ -287,7 +286,7 @@ export function ContactSection() {
                 }}>
                 <div className="absolute inset-0 opacity-[0.05] rounded-3xl overflow-hidden"
                   style={{ backgroundImage: "radial-gradient(white 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-5 sm:mb-6" style={{ fontFamily: "Manrope, sans-serif" }}>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-5 sm:mb-6">
                   {t("contactPage.infoTitle")}
                 </h3>
                 <div className="space-y-4">
@@ -390,14 +389,14 @@ export function ContactSection() {
                     style={{ background: "linear-gradient(135deg, #5B43D6, #28B7C7)" }}>
                     <Send className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 text-[#1E244B]">
                     {t("contactPage.successTitle")}
                   </h3>
-                  <p className="text-sm sm:text-base" style={{ color: "#5E647A" }}>{t("contactPage.successDesc")}</p>
+                  <p className="text-sm sm:text-base text-[#6B7280]">{t("contactPage.successDesc")}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 text-[#1E244B]">
                     {t("contactPage.formTitle")}
                   </h3>
 

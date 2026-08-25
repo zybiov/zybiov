@@ -83,7 +83,7 @@ export function ExpertiseSection() {
         {/* Intro */}
         <Reveal className="text-center mb-16 sm:mb-24">
           <span className="section-tag mb-4 inline-flex">{t("expertise.tag")}</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1E244B] mb-5" style={{ fontFamily: "Manrope, sans-serif" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1E244B] mb-5">
             {language === "en" ? (
               <>
                 Delivering excellence across our{" "}
@@ -152,12 +152,12 @@ export function ExpertiseSection() {
                   </span>
 
                   {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#1E244B] mb-4" style={{ fontFamily: "Manrope, sans-serif" }}>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#1E244B] mb-4">
                     {sec.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm sm:text-base text-[#5E647A] leading-relaxed mb-6">
+                  <p className="text-sm sm:text-base text-[#111827] leading-relaxed mb-6">
                     {sec.desc}
                   </p>
 

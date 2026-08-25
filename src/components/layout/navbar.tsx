@@ -219,7 +219,7 @@ export function Navbar() {
             className="flex items-center group flex-shrink-0 relative"
             aria-label="Zybiov Home"
           >
-            <div className="relative w-[110px] h-[36px] sm:w-[135px] sm:h-[40px] md:w-[155px] md:h-[42px] transition-transform duration-300 group-hover:scale-[1.03]">
+            <div className="relative w-[140px] h-[44px] sm:w-[165px] sm:h-[48px] md:w-[185px] md:h-[52px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
                 src="/logo.webp"
                 alt={t("brandName")}
