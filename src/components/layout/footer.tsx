@@ -17,7 +17,7 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", hoverBg: "hover:bg-[#2B7DDC]" },
+  { icon: GlobeIcon, label: "Website", href: "https://zybiov.com", hoverBg: "hover:bg-[#2B7DDC]" },
   { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/zybiov/", hoverBg: "hover:bg-[#0A66C2]" },
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov", hoverBg: "hover:bg-[#E1306C]" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/176TZy5JGM/", hoverBg: "hover:bg-[#1877F2]" },

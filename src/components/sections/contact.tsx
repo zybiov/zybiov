@@ -14,8 +14,8 @@ const socialLinks = [
   {
     icon: GlobeIcon,
     label: "Website",
-    href: "https://www.zybiov.com",
-    handle: "www.zybiov.com",
+    href: "https://zybiov.com",
+    handle: "zybiov.com",
     bg: "linear-gradient(135deg, #1E244B, #2B7DDC)",
   },
   {
@@ -337,9 +337,9 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">Website</p>
-                      <a href="https://www.zybiov.com" target="_blank" rel="noopener noreferrer"
+                      <a href="https://zybiov.com" target="_blank" rel="noopener noreferrer"
                         className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
-                        www.zybiov.com
+                        zybiov.com
                       </a>
                     </div>
                   </div>
