@@ -237,7 +237,6 @@ export function HomeClientPage() {
               <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("expertise.tag")}</span>
               <h2
                 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1E244B] mb-4"
-                style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 {language === "en" ? (
                   <>
@@ -269,7 +268,7 @@ export function HomeClientPage() {
                   </>
                 )}
               </h2>
-              <p className="text-base sm:text-lg text-[#5E647A] max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-[#4B5563] max-w-2xl mx-auto">
                 {t("expertise.desc")}
               </p>
             </Reveal>
@@ -294,11 +293,10 @@ export function HomeClientPage() {
                     <div className="p-6 sm:p-7 flex flex-col flex-1">
                       <h3
                         className="text-lg sm:text-xl font-bold text-[#1E244B] mb-3"
-                        style={{ fontFamily: "Manrope, sans-serif" }}
                       >
                         {sector.title}
                       </h3>
-                      <p className="text-sm text-[#5E647A] leading-relaxed mb-5 flex-1">
+                      <p className="text-sm text-[#4B5563] leading-relaxed mb-5 flex-1">
                         {sector.desc}
                       </p>
                       {/* Tags */}
@@ -375,7 +373,6 @@ export function HomeClientPage() {
                 <Reveal delay={0.1}>
                   <h2
                     className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E244B] leading-tight mb-5 sm:mb-6"
-                    style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     {language === "en" ? (
                       <>
@@ -409,7 +406,7 @@ export function HomeClientPage() {
                   </h2>
                 </Reveal>
                 <Reveal delay={0.2}>
-                  <p className="text-base text-[#5E647A] leading-relaxed mb-7 sm:mb-8">
+                  <p className="text-base text-[#4B5563] leading-relaxed mb-7 sm:mb-8">
                     {t("whyChooseUs.desc")}
                   </p>
                 </Reveal>
@@ -425,7 +422,7 @@ export function HomeClientPage() {
                         </div>
                         <div>
                           <p className="font-bold text-[#1E244B] text-sm mb-0.5">{feat.title}</p>
-                          <p className="text-xs text-[#5E647A]">{feat.desc}</p>
+                          <p className="text-xs text-[#4B5563]">{feat.desc}</p>
                         </div>
                       </div>
                     ))}

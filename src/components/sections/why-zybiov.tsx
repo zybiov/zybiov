@@ -107,7 +107,7 @@ export function WhyZybiovSection() {
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
-              <p className="text-base sm:text-lg leading-relaxed mb-8 sm:mb-10" style={{ color: "#5E647A" }}>
+              <p className="text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 text-[#4B5563]">
                 {t("why.sub")}
               </p>
             </Reveal>
@@ -137,7 +137,7 @@ export function WhyZybiovSection() {
                       <h3 className="text-[15px] sm:text-[16px] font-bold mb-1.5" style={{ color: "#1E244B" }}>
                         {t(reason.titleKey)}
                       </h3>
-                      <p className="text-sm leading-relaxed" style={{ color: "#5E647A" }}>
+                      <p className="text-sm leading-relaxed text-[#4B5563]">
                         {t(reason.descKey)}
                       </p>
                     </div>
@@ -214,7 +214,7 @@ export function WhyZybiovSection() {
             <h3 className="text-2xl sm:text-3xl font-bold text-[#1E244B]">
               {language === "en" ? "Uncompromising Quality Standards" : "معايير جودة لا نقبل المساومة عليها"}
             </h3>
-            <p className="text-sm sm:text-base max-w-xl mx-auto mt-3 text-[#5E647A]">
+            <p className="text-sm sm:text-base max-w-xl mx-auto mt-3 text-[#4B5563]">
               {language === "en" 
                 ? "Every pharmaceutical product, medical device, and logistics process adheres to global health requirements."
                 : "يلتزم كل منتج صيدلاني وجهاز طبي وعملية لوجستية بالمتطلبات الصحية العالمية."}
@@ -242,7 +242,7 @@ export function WhyZybiovSection() {
                     <h4 className="text-base font-bold text-[#1E244B] mb-2">
                       {language === "en" ? badge.titleEn : badge.titleAr}
                     </h4>
-                    <p className="text-xs leading-relaxed text-[#5E647A] px-2">
+                    <p className="text-xs leading-relaxed text-[#4B5563] px-2">
                       {language === "en" ? badge.descEn : badge.descAr}
                     </p>
                   </div>

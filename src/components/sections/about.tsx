@@ -70,7 +70,7 @@ export function AboutSection() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Inner wrapper for image scaling */}
-              <div className="relative w-full" style={{ aspectRatio: "16/10", transform: "translateZ(30px)" }}>
+              <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5]" style={{ transform: "translateZ(30px)" }}>
                 <Image
                   src="/about-us.webp"
                   alt="Zybiov state-of-the-art pharmaceutical distribution and medical logistics center"

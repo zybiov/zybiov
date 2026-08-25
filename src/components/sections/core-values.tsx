@@ -115,11 +115,7 @@ export function CoreValuesSection() {
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight"
-            style={{
-              color: "#1E244B",
-              fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif",
-            }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight text-[#1E244B]"
           >
             {t("coreValues.title")}{" "}
             <span
@@ -134,8 +130,7 @@ export function CoreValuesSection() {
             </span>
           </h2>
           <p
-            className="text-base sm:text-lg max-w-2xl mx-auto text-[#5E647A] leading-relaxed"
-            style={{ fontFamily: language === "ar" ? "Cairo, sans-serif" : "inherit" }}
+            className="text-base sm:text-lg max-w-2xl mx-auto text-[#4B5563] leading-relaxed"
           >
             {t("coreValues.sub")}
           </p>
@@ -202,15 +197,12 @@ export function CoreValuesSection() {
                       {/* Title */}
                       <h3
                         className="text-xl font-bold mb-3 text-[#1E244B] tracking-tight group-hover:text-[#5B43D6] transition-colors duration-200"
-                        style={{
-                          fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif",
-                        }}
                       >
                         {value.title}
                       </h3>
 
                       {/* Narrative */}
-                      <p className="text-xs sm:text-sm text-[#5E647A] leading-relaxed font-normal mb-6">
+                      <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed font-normal mb-6">
                         {value.desc}
                       </p>
                     </div>

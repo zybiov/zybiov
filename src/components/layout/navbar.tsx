@@ -216,22 +216,17 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center group flex-shrink-0 relative"
+            className="flex items-center group flex-shrink-0 relative py-0.5"
             aria-label="Zybiov Home"
           >
-            <div className="relative w-[140px] h-[44px] sm:w-[165px] sm:h-[48px] md:w-[185px] md:h-[52px] transition-transform duration-300 group-hover:scale-[1.03]">
-              <Image
-                src="/logo.webp"
-                alt={t("brandName")}
-                fill
-                className={cn(
-                  "object-contain",
-                  dir === "rtl" ? "object-right" : "object-left"
-                )}
-                priority
-                sizes="(max-width: 640px) 110px, 155px"
-              />
-            </div>
+            <Image
+              src="/logo.webp"
+              alt={t("brandName")}
+              width={160}
+              height={80}
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
           </Link>
 
           {/* ── Desktop Navigation Bar ── */}
@@ -599,19 +594,14 @@ export function Navbar() {
 
               {/* Header */}
               <div className="flex items-center justify-between px-5 pt-4 pb-4 border-b border-[#F0F2FA]">
-                <div className="relative w-[130px] h-[44px]">
-                  <Image
-                    src="/logo.webp"
-                    alt={t("brandShort")}
-                    fill
-                    className={cn(
-                      "object-contain",
-                      dir === "rtl" ? "object-right" : "object-left"
-                    )}
-                    priority
-                    sizes="130px"
-                  />
-                </div>
+                <Image
+                  src="/logo.webp"
+                  alt={t("brandShort")}
+                  width={140}
+                  height={70}
+                  className="h-8 w-auto object-contain"
+                  priority
+                />
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F3F4FB] text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border border-[#E2E5F3]"

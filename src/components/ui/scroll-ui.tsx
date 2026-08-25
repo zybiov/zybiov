@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { useLanguage } from "@/components/layout/language-context";
 
 export function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
@@ -25,6 +26,7 @@ export function ScrollProgressBar() {
 
 export function BackToTopButton() {
   const [visible, setVisible] = useState(false);
+  const { dir } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
@@ -46,7 +48,7 @@ export function BackToTopButton() {
           transition={{ type: "spring", stiffness: 300, damping: 24 }}
           onClick={scrollToTop}
           aria-label="Back to top"
-          className="fixed bottom-6 left-6 z-[200] w-11 h-11 rounded-2xl flex items-center justify-center cursor-pointer shadow-[0_8px_24px_rgba(91,67,214,0.3)] hover:shadow-[0_12px_32px_rgba(91,67,214,0.45)] transition-shadow duration-200"
+          className={`fixed bottom-6 ${dir === "rtl" ? "right-6" : "left-6"} z-[200] w-11 h-11 rounded-2xl flex items-center justify-center cursor-pointer shadow-[0_8px_24px_rgba(91,67,214,0.3)] hover:shadow-[0_12px_32px_rgba(91,67,214,0.45)] transition-shadow duration-200`}
           style={{
             background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
           }}
