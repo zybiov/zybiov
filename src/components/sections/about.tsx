@@ -112,27 +112,27 @@ export function AboutSection() {
             </Reveal>
 
             {/* Plain paragraphs — no card, no box, no border */}
-            <div className="space-y-4 mb-6 sm:mb-8">
+            <div className="flex flex-col gap-4 sm:gap-5 mb-6 sm:mb-8 w-full">
               <Reveal delay={0.15}>
-                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
+                <p className="editorial-paragraph">
                   {t("about.desc1")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.2}>
-                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
+                <p className="editorial-paragraph">
                   {t("about.desc2")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.25}>
-                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
+                <p className="editorial-paragraph">
                   {t("about.desc3")}
                 </p>
               </Reveal>
 
               <Reveal delay={0.3}>
-                <p className="text-[15px] sm:text-[15px] md:text-base leading-[1.8] text-[#111827]">
+                <p className="editorial-paragraph">
                   {t("about.desc4")}
                 </p>
               </Reveal>

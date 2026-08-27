@@ -117,6 +117,44 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.8;
 }
 
+/* ─── Editorial Justified Typography ─── */
+.editorial-paragraph {
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.75;
+  color: var(--body);
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-text-justify: inter-word;
+  text-align-last: start;
+  -webkit-text-align-last: start;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-wrap: pretty;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .editorial-paragraph {
+    font-size: 0.96875rem; /* 15.5px */
+    line-height: 1.8;
+  }
+}
+
+@media (min-width: 1024px) {
+  .editorial-paragraph {
+    font-size: 1rem; /* 16px */
+    line-height: 1.85;
+  }
+}
+
 /* ─── Premium Arabic Support (RTL & Typography) ─── */
 html[lang="ar"],
 html.lang-ar,
@@ -128,6 +166,23 @@ html.lang-ar,
 html[lang="ar"] *,
 html.lang-ar *,
 [dir="rtl"] * {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+/* Editorial paragraph in Arabic RTL */
+html[lang="ar"] .editorial-paragraph,
+html.lang-ar .editorial-paragraph,
+[dir="rtl"] .editorial-paragraph {
+  font-family: var(--font-cairo), var(--font-tajawal), sans-serif !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  text-align-last: start !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+  line-height: 1.9 !important;
   letter-spacing: normal !important;
   word-spacing: normal !important;
 }
