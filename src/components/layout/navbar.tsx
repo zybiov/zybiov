@@ -212,7 +212,7 @@ export function Navbar() {
           "transition-all duration-300 ease-out"
         )}
       >
-        <div className="flex items-center justify-between w-full gap-x-2 sm:gap-x-6 h-[38px] sm:h-[42px]">
+        <div className="flex items-center justify-between w-full gap-x-1 lg:gap-x-3 xl:gap-x-6 h-[38px] sm:h-[42px]">
           {/* Logo */}
           <Link
             href="/"
@@ -529,11 +529,11 @@ export function Navbar() {
           </nav>
 
           {/* ── Action Section (Desktop) ── */}
-          <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 flex-shrink-0">
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <Link
               href="/contact"
-              className="relative group overflow-hidden inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap"
+              className="relative group overflow-hidden inline-flex items-center justify-center gap-1 lg:gap-1.5 px-3 lg:px-4 py-2 rounded-full font-extrabold text-[10px] lg:text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap"
             >
               <span>{t("contactUs")}</span>
               <ArrowRight
