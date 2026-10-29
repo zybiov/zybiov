@@ -205,7 +205,7 @@ export function Navbar() {
         className={cn(
           "fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50",
           "flex items-center justify-between",
-          "px-3.5 sm:px-5 py-2 sm:py-2.5",
+          "pl-3.5 pr-4 sm:pl-5 sm:pr-6 py-2 sm:py-2.5",
           "bg-white/90 backdrop-blur-2xl border border-[#E2E5F3]",
           "shadow-[0_10px_35px_rgba(30,36,75,0.12)] hover:bg-white/95 rounded-full",
           "w-[calc(100%-1.5rem)] max-w-6xl sm:w-auto",
@@ -533,7 +533,7 @@ export function Navbar() {
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <Link
               href="/contact"
-              className="relative group overflow-hidden inline-flex items-center justify-center gap-1 lg:gap-1.5 px-3 lg:px-4 py-2 rounded-full font-extrabold text-[10px] lg:text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap"
+              className="relative group overflow-hidden inline-flex items-center justify-center gap-1 lg:gap-1.5 px-3 lg:px-4 py-2 rounded-full font-extrabold text-[10px] lg:text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] active:scale-[0.98] whitespace-nowrap"
             >
               <span>{t("contactUs")}</span>
               <ArrowRight
