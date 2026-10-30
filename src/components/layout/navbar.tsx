@@ -208,11 +208,11 @@ export function Navbar() {
           "pl-3.5 pr-4 sm:pl-5 sm:pr-6 py-2 sm:py-2.5",
           "bg-white/90 backdrop-blur-2xl border border-[#E2E5F3]",
           "shadow-[0_10px_35px_rgba(30,36,75,0.12)] hover:bg-white/95 rounded-full",
-          "w-[calc(100%-1.5rem)] max-w-6xl sm:w-auto",
+          "w-[calc(100%-1.5rem)] max-w-6xl sm:w-auto lg:w-max",
           "transition-all duration-300 ease-out"
         )}
       >
-        <div className="flex items-center justify-between w-full gap-x-1 lg:gap-x-3 xl:gap-x-6 h-[38px] sm:h-[42px]">
+        <div className="flex items-center justify-between w-full lg:w-max gap-x-2 lg:gap-x-3 xl:gap-x-6 h-[38px] sm:h-[42px]">
           {/* Logo */}
           <Link
             href="/"
@@ -232,7 +232,7 @@ export function Navbar() {
           {/* ── Desktop Navigation Bar ── */}
           <nav
             onMouseLeave={() => setHoveredLink(null)}
-            className="hidden lg:flex items-center gap-1 relative"
+            className="hidden lg:flex items-center gap-1 relative flex-shrink-0"
           >
             {/* Home */}
             <Link
@@ -529,11 +529,11 @@ export function Navbar() {
           </nav>
 
           {/* ── Action Section (Desktop) ── */}
-          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 flex-shrink-0">
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <Link
               href="/contact"
-              className="relative group overflow-hidden inline-flex items-center justify-center gap-1 lg:gap-1.5 px-3 lg:px-4 py-2 rounded-full font-extrabold text-[10px] lg:text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] active:scale-[0.98] whitespace-nowrap"
+              className="relative group overflow-hidden inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full font-extrabold text-[11px] tracking-wider uppercase text-white bg-gradient-to-r from-[#5B43D6] via-[#6E56E8] to-[#28B7C7] shadow-[0_4px_16px_rgba(91,67,214,0.3)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(91,67,214,0.45)] active:scale-[0.98] whitespace-nowrap"
             >
               <span>{t("contactUs")}</span>
               <ArrowRight
